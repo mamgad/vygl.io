@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vygl — Local-First Security Scanning Platform</title>
+  <meta name="description" content="Scan your code locally for vulnerabilities, secrets, and misconfigurations. SAST, SCA, Secrets, and IaC scanning with AI-powered false positive elimination — your source code never leaves your machine." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+</head>
+<body>
+
+  <!-- ─── Navbar ─── -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span class="logo-v">V</span><span class="logo-text">YGL</span>
+      </a>
+      <div class="nav-links" id="nav-links">
+        <a href="#features">Features</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#benefits">Benefits</a>
+      </div>
+      <div class="nav-actions">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </button>
+        <a href="#cta" class="btn btn-ghost">Sign In</a>
+        <a href="#cta" class="btn btn-primary">Get Started</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a href="#features">Features</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#cta" class="btn btn-primary" style="margin-top: 0.5rem; text-align:center;">Get Started</a>
+    </div>
+  </nav>
+
+  <!-- ─── Hero ─── -->
+  <section class="hero" id="scan-demo">
+    <div class="hero-bg-grid"></div>
+    <div class="hero-glow hero-glow-1"></div>
+    <div class="hero-glow hero-glow-2"></div>
+    <div class="hero-inner">
+      <div class="hero-content reveal">
+        <h1 class="hero-title">
+          Scan Code.<br />
+          <span class="hero-accent">Ship Secure.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Run SAST, SCA, Secrets, and IaC scans from a single CLI — detect code vulnerabilities, insecure dependencies, hardcoded secrets, and infrastructure misconfigurations. AI-powered verification eliminates false positives. Scans run entirely on your machine. Only findings metadata is pushed to the cloud.
+        </p>
+        <div class="hero-cta">
+          <a href="#cta" class="btn btn-primary btn-lg">
+            Get Started Free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#features" class="btn btn-outline btn-lg">
+            Learn More
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-demo reveal reveal-delay-1">
+        <div class="scan-demo-layout">
+        <!-- Editor -->
+        <div class="hero-editor">
+          <div class="editor-chrome">
+            <div class="editor-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="editor-tabs">
+              <button class="editor-tab active" data-tab="0">server.py</button>
+              <button class="editor-tab" data-tab="1">pom.xml</button>
+              <button class="editor-tab" data-tab="2">main.tf</button>
+            </div>
+          </div>
+
+          <div class="editor-panel active" data-panel="0">
+            <div class="editor-body">
+              <div class="editor-lines">
+                <div class="code-line"><span class="ln"> 1</span> <span class="t-purple">from </span>flask <span class="t-purple">import </span>Flask, request</div>
+                <div class="code-line"><span class="ln"> 2</span> <span class="t-purple">import </span>sqlite3, os</div>
+                <div class="code-line"><span class="ln"> 3</span></div>
+                <div class="code-line"><span class="ln"> 4</span> app = Flask(__name__)</div>
+                <div class="code-line"><span class="ln"> 5</span></div>
+                <div class="code-line flagged-line secrets-flag"><span class="ln"> 6</span> API_KEY = <span class="t-emerald">"sk-proj-4f8a...29xQ"</span></div>
+                <div class="code-line"><span class="ln"> 7</span></div>
+                <div class="code-line"><span class="ln"> 8</span> <span class="t-purple">def </span><span class="t-blue">get_user</span>(user_id):</div>
+                <div class="code-line flagged-line sast-flag"><span class="ln"> 9</span>     db.execute(<span class="t-emerald">f"SELECT * WHERE id=</span><span class="t-red">{user_id}</span><span class="t-emerald">"</span>)</div>
+                <div class="code-line"><span class="ln">10</span>     query = request.args.get(<span class="t-emerald">"q"</span>)</div>
+                <div class="code-line flagged-line sast-flag"><span class="ln">11</span>     os.system(<span class="t-emerald">f"grep </span><span class="t-red">{query}</span><span class="t-emerald"> /var/log"</span>)</div>
+                <div class="code-line"><span class="ln">12</span>     <span class="t-purple">return </span>jsonify(result)</div>
+              </div>
+              <div class="editor-scan-line"></div>
+            </div>
+          </div>
+
+          <div class="editor-panel" data-panel="1">
+            <div class="editor-body">
+              <div class="editor-lines">
+                <div class="code-line"><span class="ln"> 1</span> <span class="t-blue">&lt;project&gt;</span></div>
+                <div class="code-line"><span class="ln"> 2</span>   <span class="t-blue">&lt;dependencies&gt;</span></div>
+                <div class="code-line"><span class="ln"> 3</span></div>
+                <div class="code-line flagged-line sca-flag"><span class="ln"> 4</span>     <span class="t-blue">&lt;dependency&gt;</span></div>
+                <div class="code-line flagged-line sca-flag"><span class="ln"> 5</span>       <span class="t-blue">&lt;groupId&gt;</span><span class="t-emerald">org.apache.logging.log4j</span><span class="t-blue">&lt;/groupId&gt;</span></div>
+                <div class="code-line flagged-line sca-flag"><span class="ln"> 6</span>       <span class="t-blue">&lt;artifactId&gt;</span><span class="t-emerald">log4j-core</span><span class="t-blue">&lt;/artifactId&gt;</span></div>
+                <div class="code-line flagged-line sca-flag"><span class="ln"> 7</span>       <span class="t-blue">&lt;version&gt;</span><span class="t-red">2.14.1</span><span class="t-blue">&lt;/version&gt;</span></div>
+                <div class="code-line flagged-line sca-flag"><span class="ln"> 8</span>     <span class="t-blue">&lt;/dependency&gt;</span></div>
+                <div class="code-line"><span class="ln"> 9</span></div>
+                <div class="code-line flagged-line sca-flag-med"><span class="ln">10</span>     <span class="t-blue">&lt;dependency&gt;</span></div>
+                <div class="code-line flagged-line sca-flag-med"><span class="ln">11</span>       <span class="t-blue">&lt;groupId&gt;</span><span class="t-emerald">com.fasterxml.jackson.core</span><span class="t-blue">&lt;/groupId&gt;</span></div>
+                <div class="code-line flagged-line sca-flag-med"><span class="ln">12</span>       <span class="t-blue">&lt;version&gt;</span><span class="t-yellow">2.9.8</span><span class="t-blue">&lt;/version&gt;</span></div>
+                <div class="code-line flagged-line sca-flag-med"><span class="ln">13</span>     <span class="t-blue">&lt;/dependency&gt;</span></div>
+              </div>
+              <div class="editor-scan-line"></div>
+            </div>
+          </div>
+
+          <div class="editor-panel" data-panel="2">
+            <div class="editor-body">
+              <div class="editor-lines">
+                <div class="code-line"><span class="ln"> 1</span> <span class="t-purple">resource </span><span class="t-emerald">"aws_s3_bucket"</span> <span class="t-emerald">"data"</span> {</div>
+                <div class="code-line"><span class="ln"> 2</span>   bucket = <span class="t-emerald">"acme-app-uploads"</span></div>
+                <div class="code-line"><span class="ln"> 3</span> }</div>
+                <div class="code-line"><span class="ln"> 4</span></div>
+                <div class="code-line flagged-line iac-flag"><span class="ln"> 5</span> <span class="t-purple">resource </span><span class="t-emerald">"aws_s3_bucket_acl"</span> <span class="t-emerald">"data"</span> {</div>
+                <div class="code-line flagged-line iac-flag"><span class="ln"> 6</span>   acl = <span class="t-red">"public-read"</span></div>
+                <div class="code-line flagged-line iac-flag"><span class="ln"> 7</span> }</div>
+                <div class="code-line"><span class="ln"> 8</span></div>
+                <div class="code-line flagged-line iac-flag"><span class="ln"> 9</span> <span class="t-purple">resource </span><span class="t-emerald">"aws_security_group"</span> <span class="t-emerald">"web"</span> {</div>
+                <div class="code-line flagged-line iac-flag"><span class="ln">10</span>   ingress {</div>
+                <div class="code-line flagged-line iac-flag"><span class="ln">11</span>     from_port   = <span class="t-orange">0</span></div>
+                <div class="code-line flagged-line iac-flag"><span class="ln">12</span>     to_port     = <span class="t-orange">65535</span></div>
+                <div class="code-line flagged-line iac-flag"><span class="ln">13</span>     cidr_blocks = [<span class="t-red">"0.0.0.0/0"</span>]</div>
+              </div>
+              <div class="editor-scan-line"></div>
+            </div>
+          </div>
+
+          <div class="editor-status">
+            <div class="status-left">
+              <span class="status-scan-indicator"></span>
+              <span>Scanning...</span>
+            </div>
+            <div class="status-right">
+              <span class="status-tag status-tag-purple">SAST</span>
+              <span class="status-tag status-tag-blue">SCA</span>
+              <span class="status-tag status-tag-red">Secrets</span>
+              <span class="status-tag status-tag-emerald">IaC</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Findings panel — rows aligned to flagged lines -->
+        <div class="findings-panel">
+          <div class="findings-panel-inner active" data-findings="0">
+            <div class="fp-row anim-tag anim-d1" data-line="5"><span class="fp-dot fp-dot-red"></span><span class="fp-class fp-class-red">Secrets</span><span class="fp-desc">Hardcoded API key</span><span class="fp-badge fp-crit">CRIT</span></div>
+            <div class="fp-row anim-tag anim-d2" data-line="8"><span class="fp-dot fp-dot-purple"></span><span class="fp-class fp-class-purple">SAST</span><span class="fp-desc">SQL Injection</span><span class="fp-badge fp-high">HIGH</span></div>
+            <div class="fp-row anim-tag anim-d3" data-line="10"><span class="fp-dot fp-dot-purple"></span><span class="fp-class fp-class-purple">SAST</span><span class="fp-desc">Command Injection</span><span class="fp-badge fp-high">HIGH</span></div>
+          </div>
+          <div class="findings-panel-inner" data-findings="1">
+            <div class="fp-row anim-tag anim-d1" data-line="6"><span class="fp-dot fp-dot-red"></span><span class="fp-class fp-class-blue">SCA</span><span class="fp-desc">Log4Shell CVE-2021-44228</span><span class="fp-badge fp-crit">CRIT</span></div>
+            <div class="fp-row anim-tag anim-d2" data-line="11"><span class="fp-dot fp-dot-yellow"></span><span class="fp-class fp-class-blue">SCA</span><span class="fp-desc">CVE-2019-12384</span><span class="fp-badge fp-med">MED</span></div>
+          </div>
+          <div class="findings-panel-inner" data-findings="2">
+            <div class="fp-row anim-tag anim-d1" data-line="5"><span class="fp-dot fp-dot-emerald"></span><span class="fp-class fp-class-emerald">IaC</span><span class="fp-desc">S3 public access</span><span class="fp-badge fp-high">HIGH</span></div>
+            <div class="fp-row anim-tag anim-d2" data-line="12"><span class="fp-dot fp-dot-emerald"></span><span class="fp-class fp-class-emerald">IaC</span><span class="fp-desc">Open ingress 0.0.0.0/0</span><span class="fp-badge fp-crit">CRIT</span></div>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Social Proof ─── -->
+  <section class="social-proof">
+    <div class="container">
+      <div class="proof-grid reveal">
+        <div class="proof-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2"/><path d="M7 2v20"/><path d="M17 2v20"/><path d="M2 12h20"/><path d="M2 7h5"/><path d="M2 17h5"/><path d="M17 7h5"/><path d="M17 17h5"/></svg>
+          <span><strong>4</strong> Scan Engines</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          <span><strong>600+</strong> Detection Rules</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <span><strong>7+</strong> Languages</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+          <span><strong>CycloneDX</strong> SBOM Export</span>
+        </div>
+        <div class="proof-divider"></div>
+        <div class="proof-item">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+          <span><strong>AI-Powered</strong> False Positive Elimination</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Features / Layers ─── -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Every Layer of Your Stack, Covered</h2>
+        <p class="section-subtitle">One CLI, four scan engines, and AI-powered verification. From source code to infrastructure — so you can ship with confidence.</p>
+      </div>
+
+      <!-- Engines grid (parallel) + AI layer (post-process) -->
+      <div class="engines-layout reveal">
+        <div class="engines-grid">
+          <!-- SAST -->
+          <div class="engine-card">
+            <div class="engine-indicator engine-ind-purple"></div>
+            <div class="engine-top">
+              <span class="node-label node-label-purple">SAST</span>
+              <span class="engine-name">OpenGrep</span>
+            </div>
+            <h3>Code Analysis</h3>
+            <p>SQL injection, XSS, command injection, path traversal, SSRF, and insecure deserialization.</p>
+            <div class="node-detects">
+              <span>SQLi</span><span>XSS</span><span>RCE</span><span>Path Traversal</span><span>SSRF</span>
+            </div>
+          </div>
+
+          <!-- SCA -->
+          <div class="engine-card">
+            <div class="engine-indicator engine-ind-blue"></div>
+            <div class="engine-top">
+              <span class="node-label node-label-blue">SCA</span>
+              <span class="engine-name">OSV</span>
+            </div>
+            <h3>Dependency Analysis</h3>
+            <p>Vulnerable dependencies like Log4Shell and Spring4Shell. CVE tracking across 7+ languages.</p>
+            <div class="node-detects">
+              <span>Log4Shell</span><span>Spring4Shell</span><span>CVE Tracking</span><span>SBOM</span>
+            </div>
+          </div>
+
+          <!-- Secrets -->
+          <div class="engine-card">
+            <div class="engine-indicator engine-ind-red"></div>
+            <div class="engine-top">
+              <span class="node-label node-label-red">Secrets</span>
+              <span class="engine-name">Gitleaks</span>
+            </div>
+            <h3>Secret Detection</h3>
+            <p>Hardcoded AWS keys, database credentials, JWT secrets, and private keys using 600+ patterns.</p>
+            <div class="node-detects">
+              <span>AWS Keys</span><span>JWT Secrets</span><span>DB Creds</span><span>Private Keys</span>
+            </div>
+          </div>
+
+          <!-- IaC -->
+          <div class="engine-card">
+            <div class="engine-indicator engine-ind-emerald"></div>
+            <div class="engine-top">
+              <span class="node-label node-label-emerald">IaC</span>
+              <span class="engine-name">Checkov</span>
+            </div>
+            <h3>Infrastructure Scanning</h3>
+            <p>Public S3 buckets, unrestricted security groups, overprivileged IAM, and container misconfigs.</p>
+            <div class="node-detects">
+              <span>Terraform</span><span>Kubernetes</span><span>Docker</span><span>CloudFormation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connector arrows -->
+        <div class="engines-connector">
+          <div class="connector-lines">
+            <div class="conn-line conn-line-purple"></div>
+            <div class="conn-line conn-line-blue"></div>
+            <div class="conn-line conn-line-red"></div>
+            <div class="conn-line conn-line-emerald"></div>
+          </div>
+          <div class="connector-merge">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+        </div>
+
+        <!-- AI verification — full width, receives all findings -->
+        <div class="ai-engine-card">
+          <div class="ai-engine-glow"></div>
+          <div class="ai-engine-inner">
+            <div class="ai-engine-left">
+              <div class="engine-top">
+                <span class="node-label node-label-violet">AI</span>
+                <span class="engine-name">LLM-Powered</span>
+              </div>
+              <h3>Finding Verification</h3>
+              <p>All findings flow through AI verification. Internally hosted LLMs analyze each result — eliminating false positives, scoring confidence, and suggesting fixes. Bring your own API for full control.</p>
+            </div>
+            <div class="ai-engine-right">
+              <div class="ai-engine-stat">
+                <span class="ai-stat-icon ai-stat-red">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                </span>
+                <div>
+                  <span class="ai-stat-label">False Positives</span>
+                  <span class="ai-stat-value">Eliminated</span>
+                </div>
+              </div>
+              <div class="ai-engine-stat">
+                <span class="ai-stat-icon ai-stat-green">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </span>
+                <div>
+                  <span class="ai-stat-label">True Positives</span>
+                  <span class="ai-stat-value">Verified + Fix suggested</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─── AI Verification Demo ─── -->
+  <section class="ai-demo-section" id="ai-demo">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">AI-Powered False Positive Elimination</h2>
+        <p class="section-subtitle">Every finding is automatically verified by an internally hosted LLM. See verdicts, confidence scores, and suggested fixes — all without leaving the dashboard.</p>
+      </div>
+
+      <div class="ai-demo-mock reveal">
+        <div class="dash-chrome">
+          <div class="dash-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="dash-url">app.vygl.io/findings/a3e7f…</span>
+        </div>
+        <div class="ai-demo-body">
+          <!-- Left: Finding context -->
+          <div class="ai-demo-finding">
+            <div class="ai-demo-badges">
+              <span class="ai-badge ai-badge-red">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+                High
+              </span>
+              <span class="ai-badge ai-badge-purple">SAST</span>
+              <span class="ai-badge ai-badge-status">Open</span>
+            </div>
+            <h3 class="ai-demo-rule">python.django.security.injection.sql-injection</h3>
+            <p class="ai-demo-desc">User-controlled data is used in a raw SQL query, which could lead to SQL injection.</p>
+            <div class="ai-demo-location">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span>backend/views/users.py:42-44</span>
+            </div>
+            <div class="ai-demo-code">
+              <div class="ai-code-line"><span class="ai-ln">35</span> <span class="t-purple">from </span>django.http <span class="t-purple">import </span>JsonResponse</div>
+              <div class="ai-code-line"><span class="ai-ln">36</span> <span class="t-purple">from </span>.models <span class="t-purple">import </span>User</div>
+              <div class="ai-code-line"><span class="ai-ln">37</span></div>
+              <div class="ai-code-line"><span class="ai-ln">38</span> <span class="t-purple">@</span><span class="t-blue">login_required</span></div>
+              <div class="ai-code-line"><span class="ai-ln">39</span> <span class="t-purple">@</span><span class="t-blue">require_GET</span></div>
+              <div class="ai-code-line"><span class="ai-ln">40</span> <span class="t-purple">def </span><span class="t-blue">search_users</span>(request):</div>
+              <div class="ai-code-line"><span class="ai-ln">41</span>     <span class="t-emerald">"""Search users by name."""</span></div>
+              <div class="ai-code-line ai-code-flagged"><span class="ai-ln">42</span>     query = request.GET.get(<span class="t-emerald">"q"</span>)</div>
+              <div class="ai-code-line ai-code-flagged"><span class="ai-ln">43</span>     users = User.objects.raw(</div>
+              <div class="ai-code-line ai-code-flagged"><span class="ai-ln">44</span>         <span class="t-emerald">f"SELECT * FROM users WHERE name LIKE '%</span><span class="t-red">{query}</span><span class="t-emerald">%'"</span></div>
+              <div class="ai-code-line ai-code-flagged"><span class="ai-ln">45</span>     )</div>
+              <div class="ai-code-line"><span class="ai-ln">46</span>     results = [</div>
+              <div class="ai-code-line"><span class="ai-ln">47</span>         {<span class="t-emerald">"id"</span>: u.id, <span class="t-emerald">"name"</span>: u.name}</div>
+              <div class="ai-code-line"><span class="ai-ln">48</span>         <span class="t-purple">for </span>u <span class="t-purple">in </span>users</div>
+              <div class="ai-code-line"><span class="ai-ln">49</span>     ]</div>
+              <div class="ai-code-line"><span class="ai-ln">50</span>     <span class="t-purple">return </span>JsonResponse({<span class="t-emerald">"users"</span>: results})</div>
+            </div>
+          </div>
+
+          <!-- Right: AI Verification card -->
+          <div class="ai-demo-card" id="ai-demo-card">
+            <div class="ai-card-header">
+              <div class="ai-card-title">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+                AI Verification
+              </div>
+              <span class="ai-card-disclaimer">AI-generated — verify manually before acting.</span>
+            </div>
+            <div class="ai-card-body">
+              <!-- Initial state: button -->
+              <div class="ai-state ai-state-idle" id="ai-state-idle">
+                <p class="ai-state-desc">Analyze this finding with AI to determine if it's a true or false positive and get a suggested fix.</p>
+                <button class="ai-verify-btn" id="ai-verify-btn">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+                  Verify with AI
+                </button>
+              </div>
+
+              <!-- Loading state: spinner -->
+              <div class="ai-state ai-state-loading" id="ai-state-loading" style="display:none;">
+                <div class="ai-spinner"></div>
+                <span>Analyzing finding...</span>
+              </div>
+
+              <!-- Result state: streaming verdict -->
+              <div class="ai-state ai-state-result" id="ai-state-result" style="display:none;">
+                <div class="ai-result-header">
+                  <span class="ai-verdict-badge ai-verdict-tp" id="ai-verdict-badge">True Positive</span>
+                  <div class="ai-confidence" id="ai-confidence">
+                    <span class="ai-conf-bar ai-conf-filled"></span>
+                    <span class="ai-conf-bar ai-conf-filled"></span>
+                    <span class="ai-conf-bar ai-conf-filled"></span>
+                    <span class="ai-conf-label">High</span>
+                  </div>
+                </div>
+                <div class="ai-reasoning" id="ai-reasoning"></div>
+                <div class="ai-fix-section" id="ai-fix-section" style="display:none;">
+                  <span class="ai-fix-label">SUGGESTED FIX</span>
+                  <div class="ai-fix-code" id="ai-fix-code"></div>
+                </div>
+                <div class="ai-result-footer" id="ai-result-footer" style="display:none;">
+                  <span>vygl-sec-llm-v2 · just now</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── How It Works: CLI + Dashboard ─── -->
+  <section class="terminal-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Run Anywhere. Review Everything.</h2>
+        <p class="section-subtitle">Run Vygl as a Docker container in your CI/CD pipeline or locally. Scan results are automatically pushed to the cloud dashboard where your team can triage, track, and manage findings across every project.</p>
+      </div>
+      <div class="terminal reveal">
+        <div class="terminal-chrome">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="terminal-title">CI/CD Pipeline</span>
+        </div>
+        <div class="terminal-body" id="cli-output">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Dashboard ─── -->
+  <section class="how-it-works" id="dashboard">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2 class="section-title">Your Security Posture, at a Glance</h2>
+        <p class="section-subtitle">Findings from every scan flow into a unified dashboard. Track trends, triage issues, and manage your security posture across all projects and branches.</p>
+      </div>
+
+      <!-- Dashboard mock -->
+      <div class="dash-mock reveal">
+        <div class="dash-chrome">
+          <div class="dash-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+          </div>
+          <span class="dash-url">app.vygl.io/dashboard</span>
+        </div>
+        <div class="dash-body">
+          <div class="dash-sidebar">
+            <div class="dash-logo"><span style="color:var(--accent);font-family:var(--font-display);font-weight:700;font-size:0.75rem;">V</span><span style="font-family:var(--font-display);font-weight:700;font-size:0.75rem;color:var(--fg);">YGL</span></div>
+            <div class="dash-nav-item dash-nav-active">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Dashboard
+            </div>
+            <div class="dash-nav-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+              Projects
+            </div>
+            <div class="dash-nav-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+              Findings
+            </div>
+            <div class="dash-nav-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              Dependencies
+            </div>
+            <div class="dash-nav-item">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Rules
+            </div>
+          </div>
+          <div class="dash-main">
+            <!-- Posture banner -->
+            <div class="dash-posture">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              <span><strong>293 open findings</strong> &nbsp;·&nbsp; 8 projects &nbsp;·&nbsp; 56 scans (30d)</span>
+              <span class="dash-posture-btn">View all &rarr;</span>
+            </div>
+            <!-- Area chart -->
+            <div class="dash-chart-card">
+              <div class="dash-chart-head">
+                <span class="dash-chart-title">Findings Over Time</span>
+                <div class="dash-chart-range">
+                  <span>7D</span><span class="dash-range-active">1M</span><span>3M</span><span>6M</span>
+                </div>
+              </div>
+              <div class="dash-area-chart">
+                <svg viewBox="0 0 400 100" preserveAspectRatio="none" class="dash-area-svg">
+                  <defs>
+                    <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/><stop offset="100%" stop-color="#ef4444" stop-opacity="0"/></linearGradient>
+                    <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.2"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient>
+                  </defs>
+                  <!-- New findings area -->
+                  <path d="M0,85 L30,80 L70,75 L110,78 L150,60 L190,55 L230,50 L270,35 L310,20 L350,30 L400,25 L400,100 L0,100Z" fill="url(#redGrad)"/>
+                  <polyline points="0,85 30,80 70,75 110,78 150,60 190,55 230,50 270,35 310,20 350,30 400,25" fill="none" stroke="#ef4444" stroke-width="2"/>
+                  <!-- Resolved area -->
+                  <path d="M0,90 L30,88 L70,85 L110,80 L150,82 L190,75 L230,70 L270,65 L310,55 L350,50 L400,45 L400,100 L0,100Z" fill="url(#greenGrad)"/>
+                  <polyline points="0,90 30,88 70,85 110,80 150,82 190,75 230,70 270,65 310,55 350,50 400,45" fill="none" stroke="#22c55e" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="dash-chart-legend">
+                <span><span class="dash-legend-line dash-legend-red"></span> New findings</span>
+                <span><span class="dash-legend-line dash-legend-green"></span> Resolved</span>
+              </div>
+            </div>
+            <!-- Bottom: severity + table side by side -->
+            <div class="dash-bottom">
+              <div class="dash-severity-card">
+                <div class="dash-sev-title">Severity Distribution</div>
+                <div class="dash-donut-wrap">
+                  <svg viewBox="0 0 100 100" class="dash-donut">
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="var(--border)" stroke-width="10"/>
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#ef4444" stroke-width="10" stroke-dasharray="30 209" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#fb923c" stroke-width="10" stroke-dasharray="58 181" stroke-dashoffset="-30" transform="rotate(-90 50 50)"/>
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#eab308" stroke-width="10" stroke-dasharray="80 159" stroke-dashoffset="-88" transform="rotate(-90 50 50)"/>
+                    <circle cx="50" cy="50" r="38" fill="none" stroke="#60a5fa" stroke-width="10" stroke-dasharray="30 209" stroke-dashoffset="-168" transform="rotate(-90 50 50)"/>
+                    <text x="50" y="47" text-anchor="middle" class="dash-donut-num">293</text>
+                    <text x="50" y="58" text-anchor="middle" class="dash-donut-label">findings</text>
+                  </svg>
+                </div>
+                <div class="dash-sev-list">
+                  <div><span class="dash-sev-dot" style="background:#ef4444"></span>Critical <strong>42</strong></div>
+                  <div><span class="dash-sev-dot" style="background:#fb923c"></span>High <strong>87</strong></div>
+                  <div><span class="dash-sev-dot" style="background:#eab308"></span>Medium <strong>121</strong></div>
+                  <div><span class="dash-sev-dot" style="background:#60a5fa"></span>Low <strong>43</strong></div>
+                </div>
+              </div>
+              <div class="dash-table-card">
+                <div class="dash-table-title">Top Vulnerabilities</div>
+                <div class="dash-table">
+                  <div class="dash-table-head"><span>Rule</span><span>Severity</span><span>Type</span><span>Count</span></div>
+                  <div class="dash-table-row"><span>gitleaks.generic-api-key</span><span class="dash-sev-red">High</span><span class="dash-type-red">Secrets</span><span>87</span></div>
+                  <div class="dash-table-row"><span>sql-injection-fstring</span><span class="dash-sev-red">Critical</span><span class="dash-type-purple">SAST</span><span>23</span></div>
+                  <div class="dash-table-row"><span>CVE-2021-44228</span><span class="dash-sev-red">Critical</span><span class="dash-type-blue">SCA</span><span>16</span></div>
+                  <div class="dash-table-row"><span>s3-bucket-public-access</span><span class="dash-sev-orange">High</span><span class="dash-type-emerald">IaC</span><span>12</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Benefits ─── -->
+  <section class="benefits" id="benefits">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Why Vygl</span>
+        <h2 class="section-title">Built for Security-Conscious Teams</h2>
+        <p class="section-subtitle">Privacy-first architecture, comprehensive coverage, and developer-friendly workflows.</p>
+      </div>
+      <div class="benefits-grid">
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>Local-First Privacy</h3>
+          <p>Source code never leaves your environment. Only findings metadata is transmitted to the cloud.</p>
+        </div>
+        <div class="benefit-card reveal reveal-delay-1">
+          <div class="benefit-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          </div>
+          <h3>Comprehensive Coverage</h3>
+          <p>Four scan engines in one tool. Cover SAST, SCA, secrets, and IaC in a single command.</p>
+        </div>
+        <div class="benefit-card reveal reveal-delay-2">
+          <div class="benefit-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"/><path d="M5 19.5C5.5 18 6 15 6 12c0-.7.12-1.37.34-2"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M9 6.8a6 6 0 0 1 9 5.2c0 .47 0 1.17-.02 2"/></svg>
+          </div>
+          <h3>Smart Deduplication</h3>
+          <p>SHA-256 fingerprinting eliminates duplicates across scans. Focus on what actually matters.</p>
+        </div>
+        <div class="benefit-card reveal reveal-delay-1">
+          <div class="benefit-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3>Policy as Code</h3>
+          <p>Cloud-managed rules with monitor, block, and disable modes. Enforce security policies in CI/CD.</p>
+        </div>
+        <div class="benefit-card reveal reveal-delay-2">
+          <div class="benefit-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
+          </div>
+          <h3>CI/CD Native</h3>
+          <p>Runs in GitHub Actions, GitLab CI, or any Docker-compatible pipeline. Block merges on critical findings.</p>
+        </div>
+        <div class="benefit-card reveal reveal-delay-3">
+          <div class="benefit-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
+          </div>
+          <h3>AI False Positive Elimination</h3>
+          <p>Cut through scanner noise. Internally hosted LLMs verify each finding and filter out false positives — or bring your own API for full control.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="cta" id="cta">
+    <div class="container">
+      <div class="cta-card reveal">
+        <h2>Ready to Secure Your Code?</h2>
+        <p>Get started in minutes. No credit card required. Free for open source projects.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn btn-primary btn-lg">
+            Get Started Free
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
+          <a href="#" class="btn btn-outline btn-lg">Read Documentation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Footer ─── -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">
+            <span class="logo-v">V</span><span class="logo-text">YGL</span>
+          </a>
+          <p>Local-first security scanning for modern development teams.</p>
+        </div>
+        <div class="footer-links">
+          <h4>Product</h4>
+          <a href="#features">Features</a>
+          <a href="#ai-demo">AI Verification</a>
+          <a href="#how-it-works">How It Works</a>
+          <a href="#benefits">Benefits</a>
+        </div>
+        <div class="footer-links">
+          <h4>Resources</h4>
+          <a href="#">Documentation</a>
+          <a href="#">API Reference</a>
+          <a href="#">Changelog</a>
+        </div>
+        <div class="footer-links">
+          <h4>Company</h4>
+          <a href="#">About</a>
+          <a href="#">Security</a>
+          <a href="#">Contact</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Vygl. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
