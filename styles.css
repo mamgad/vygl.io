@@ -2284,12 +2284,13 @@ body::before {
 [data-theme="light"] .trust-row { background: rgba(0,0,0,0.02); }
 
 /* Editor & code blocks */
-[data-theme="light"] .editor-shell {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 6px rgba(0,0,0,0.06), 0 24px 80px rgba(0,0,0,0.08), inset 0 1px 0 var(--border);
+[data-theme="light"] .hero-editor {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.06), 0 24px 80px rgba(0,0,0,0.08), 0 0 60px rgba(59, 130, 246, 0.06);
 }
 [data-theme="light"] .editor-chrome { background: #f1f5f9; }
-[data-theme="light"] .editor-tab { background: rgba(0,0,0,0.02); }
+[data-theme="light"] .editor-tab.active { background: rgba(0,0,0,0.02); }
 [data-theme="light"] .editor-body { background: #ffffff; }
+[data-theme="light"] .editor-status { background: #f1f5f9; }
 [data-theme="light"] .line-number { color: #94a3b8; opacity: 0.7; }
 [data-theme="light"] .findings-panel { background: #f1f5f9; }
 
@@ -2330,34 +2331,35 @@ body::before {
 [data-theme="light"] .dash-status-bar { background: rgba(0,0,0,0.06); }
 
 /* AI demo mock */
-[data-theme="light"] .ai-demo-mock .dash-shell {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 6px rgba(0,0,0,0.06), 0 24px 80px rgba(0,0,0,0.08), inset 0 1px 0 var(--border);
+[data-theme="light"] .ai-demo-mock {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.06), 0 24px 80px rgba(0,0,0,0.08), 0 0 60px rgba(192,132,252,0.06);
 }
 [data-theme="light"] .ai-demo-mock .dash-chrome {
   background: #f1f5f9;
   border-bottom: 1px solid var(--border);
 }
-[data-theme="light"] .ai-demo-mock .dash-body { background: #ffffff; }
-[data-theme="light"] .ai-code-block { background: #f8fafc; }
-[data-theme="light"] .ai-code-block code { color: #334155; }
-[data-theme="light"] .ai-code-block .ai-line-num { color: #94a3b8; }
+[data-theme="light"] .ai-demo-body { background: #ffffff; }
+[data-theme="light"] .ai-demo-code { background: #f8fafc; }
+[data-theme="light"] .ai-code-line { color: #334155; }
+[data-theme="light"] .ai-ln { color: #94a3b8; }
 [data-theme="light"] .ai-verify-btn {
   background: var(--accent);
   color: #ffffff;
 }
-[data-theme="light"] .ai-finding-badge {
+[data-theme="light"] .ai-reasoning code {
   color: #c2410c;
   background: rgba(194,65,12,0.06);
   border: 1px solid rgba(194,65,12,0.15);
 }
-[data-theme="light"] .ai-fix-block { background: #f8fafc; }
+[data-theme="light"] .ai-fix-code { background: #f8fafc; }
 
 /* Terminal */
-[data-theme="light"] .terminal-shell {
-  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 6px rgba(0,0,0,0.06), 0 20px 60px rgba(0,0,0,0.06), inset 0 1px 0 var(--border);
+[data-theme="light"] .terminal {
+  box-shadow: 0 4px 6px rgba(0,0,0,0.06), 0 20px 60px rgba(0,0,0,0.06), 0 0 40px rgba(59, 130, 246, 0.05);
 }
 [data-theme="light"] .terminal-chrome { background: #f1f5f9; }
-[data-theme="light"] .terminal { background: #ffffff; }
+[data-theme="light"] .terminal-body { background: #ffffff; }
+[data-theme="light"] .terminal-body pre { color: #475569; }
 [data-theme="light"] .terminal-title { color: #475569; }
 [data-theme="light"] .t-prompt { color: #059669; }
 [data-theme="light"] .t-cmd { color: #1e293b; }
