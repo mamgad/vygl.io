@@ -199,7 +199,7 @@ img { max-width: 100%; }
   background: var(--bg);
 }
 
-.mobile-nav a {
+.mobile-nav a:not(.btn) {
   font-size: 0.9375rem;
   color: var(--fg-muted);
   padding: 0.5rem 0;
