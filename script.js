@@ -403,3 +403,129 @@ if (aiDemoCard) {
     aiObserver.observe(aiDemoSection);
   }
 }
+
+// ─── AI Consultation Demo ───
+const consultSection = document.querySelector('.ai-consult-section');
+const consultIdle = document.getElementById('ai-consult-idle');
+const consultLoading = document.getElementById('ai-consult-loading');
+const consultResult = document.getElementById('ai-consult-result');
+const consultBtn = document.getElementById('ai-consult-btn');
+
+if (consultSection && consultIdle && consultLoading && consultResult && consultBtn) {
+  let consultAnimating = false;
+
+  // Reuse the streamText function pattern from the AI demo
+  function streamConsultText(el, html, speed, callback) {
+    const segments = [];
+    const tagRe = /<[^>]+>/g;
+    let lastIdx = 0;
+    let match;
+    while ((match = tagRe.exec(html)) !== null) {
+      if (match.index > lastIdx) {
+        segments.push({ type: 'text', content: html.slice(lastIdx, match.index) });
+      }
+      segments.push({ type: 'tag', content: match[0] });
+      lastIdx = match.index + match[0].length;
+    }
+    if (lastIdx < html.length) {
+      segments.push({ type: 'text', content: html.slice(lastIdx) });
+    }
+
+    let rendered = '';
+    let segIdx = 0;
+    let charIdx = 0;
+
+    function tick() {
+      if (segIdx >= segments.length) {
+        el.innerHTML = rendered;
+        if (callback) callback();
+        return;
+      }
+      const seg = segments[segIdx];
+      if (seg.type === 'tag') {
+        rendered += seg.content;
+        segIdx++;
+        tick();
+        return;
+      }
+      if (charIdx < seg.content.length) {
+        rendered += seg.content[charIdx];
+        charIdx++;
+        el.innerHTML = rendered + '<span class="ai-cursor"></span>';
+        setTimeout(tick, speed);
+      } else {
+        segIdx++;
+        charIdx = 0;
+        tick();
+      }
+    }
+    tick();
+  }
+
+  const execSummaryHTML = 'This project has a <strong>moderate risk</strong> profile with 47 open findings across 4 scan types. Two critical issues require immediate attention: an unparameterized SQL query in <code>backend/views/users.py</code> and an outdated <code>log4j-core 2.14.1</code> dependency vulnerable to Log4Shell (CVE-2021-44228). The majority of medium-severity findings are IaC misconfigurations that can be batch-resolved. Overall, the codebase follows reasonable security practices but has pockets of legacy code with direct user-input handling.';
+
+  function runConsultDemo() {
+    if (consultAnimating) return;
+    consultAnimating = true;
+
+    // Show loading skeleton
+    consultIdle.style.display = 'none';
+    consultLoading.style.display = 'flex';
+    consultResult.style.display = 'none';
+
+    // Hide all cards and reset exec summary
+    const cards = consultResult.querySelectorAll('.ai-consult-card');
+    cards.forEach(c => c.classList.remove('visible'));
+    const execText = document.getElementById('ai-consult-exec-text');
+
+    setTimeout(function() {
+      // Show result container
+      consultLoading.style.display = 'none';
+      consultResult.style.display = 'flex';
+
+      // Reset exec summary to original content but hidden
+      if (execText) {
+        execText.dataset.originalHtml = execText.dataset.originalHtml || execText.innerHTML;
+        execText.innerHTML = '';
+      }
+
+      // Stagger card reveals
+      cards.forEach(function(card, i) {
+        setTimeout(function() {
+          card.classList.add('visible');
+
+          // Stream text for first card (executive summary)
+          if (i === 0 && execText) {
+            setTimeout(function() {
+              streamConsultText(execText, execSummaryHTML, 12, null);
+            }, 200);
+          }
+        }, i * 400);
+      });
+
+      // Loop: reset after all cards visible + reading pause
+      var totalTime = (cards.length * 400) + (execSummaryHTML.length * 12) + 6000;
+      setTimeout(function() {
+        consultAnimating = false;
+        consultResult.style.display = 'none';
+        consultIdle.style.display = 'flex';
+        // Restore original exec summary for next run
+        if (execText && execText.dataset.originalHtml) {
+          execText.innerHTML = execText.dataset.originalHtml;
+        }
+      }, totalTime);
+    }, 1800);
+  }
+
+  // Button click triggers demo
+  consultBtn.addEventListener('click', runConsultDemo);
+
+  // Auto-trigger when scrolled into view
+  const consultObserver = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      setTimeout(runConsultDemo, 1000);
+      consultObserver.unobserve(consultSection);
+    }
+  }, { threshold: 0.3 });
+  consultObserver.observe(consultSection);
+}
