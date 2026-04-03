@@ -462,7 +462,7 @@ if (consultSection && consultIdle && consultLoading && consultResult && consultB
     tick();
   }
 
-  const execSummaryHTML = 'This project has a <strong>moderate risk</strong> profile with 47 open findings across 4 scan types. Two critical issues require immediate attention: an unparameterized SQL query in <code>backend/views/users.py</code> and an outdated <code>log4j-core 2.14.1</code> dependency vulnerable to Log4Shell (CVE-2021-44228). The majority of medium-severity findings are IaC misconfigurations that can be batch-resolved. Overall, the codebase follows reasonable security practices but has pockets of legacy code with direct user-input handling.';
+  const execSummaryHTML = '<strong>Moderate risk.</strong> 47 open findings across 4 scan types. Two critical issues: SQL injection in <code>backend/views/users.py</code> and Log4Shell in <code>log4j-core 2.14.1</code>. AI triage cleared 9 false positives from secrets detection. Remaining medium-severity IaC findings can be batch-resolved.';
 
   function runConsultDemo() {
     if (consultAnimating) return;

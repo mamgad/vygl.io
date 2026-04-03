@@ -580,7 +580,7 @@
                   Executive Summary
                 </div>
                 <div class="ai-consult-card-body" id="ai-consult-exec-text">
-                  <p>This project has a <strong>moderate risk</strong> profile with 47 open findings across 4 scan types. Two critical issues require immediate attention: an unparameterized SQL query in <code>backend/views/users.py</code> and an outdated <code>log4j-core 2.14.1</code> dependency vulnerable to Log4Shell (CVE-2021-44228). The majority of medium-severity findings are IaC misconfigurations that can be batch-resolved. Overall, the codebase follows reasonable security practices but has pockets of legacy code with direct user-input handling.</p>
+                  <p><strong>Moderate risk.</strong> 47 open findings across 4 scan types. Two critical issues: SQL injection in <code>backend/views/users.py</code> and Log4Shell in <code>log4j-core 2.14.1</code>. AI triage cleared 9 false positives from secrets detection. Remaining medium-severity IaC findings can be batch-resolved.</p>
                 </div>
               </div>
 
@@ -588,52 +588,29 @@
               <div class="ai-consult-card" id="ai-consult-card-1">
                 <div class="ai-consult-card-header">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                  Critical Priority Actions
+                  Priority Actions
                 </div>
                 <div class="ai-consult-card-body">
                   <ol class="ai-consult-list">
-                    <li><strong>Fix SQL injection in <code>backend/views/users.py:42</code></strong> &mdash; Rule <code>sql-injection-fstring</code>. User-supplied <code>request.GET["q"]</code> is interpolated into a raw SQL query via f-string. Migrate to Django ORM <code>filter()</code> or parameterized <code>.raw()</code>.</li>
-                    <li><strong>Upgrade <code>log4j-core</code> from 2.14.1 to 2.21+</strong> &mdash; <code>pom.xml:7</code>. CVE-2021-44228 (CVSS 10.0) allows unauthenticated remote code execution. Patch immediately.</li>
-                    <li><strong>Rotate exposed API key in <code>config.py:6</code></strong> &mdash; Rule <code>gitleaks.generic-api-key</code>. The key <code>sk-proj-4f8a...29xQ</code> is hardcoded. Move to environment variables and rotate the credential.</li>
+                    <li><strong>Fix SQL injection</strong> in <code>backend/views/users.py:42</code> &mdash; migrate to parameterized queries.</li>
+                    <li><strong>Upgrade <code>log4j-core</code></strong> to 2.21+ &mdash; CVE-2021-44228 (CVSS 10.0), RCE.</li>
+                    <li><strong>Rotate API key</strong> in <code>config.py:6</code> &mdash; move to environment variables.</li>
                   </ol>
                 </div>
               </div>
 
-              <!-- Section 3: Patterns & Noise Analysis -->
+              <!-- Section 3: Quick Wins -->
               <div class="ai-consult-card" id="ai-consult-card-2">
-                <div class="ai-consult-card-header">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                  Patterns &amp; Noise Analysis
-                </div>
-                <div class="ai-consult-card-body">
-                  <p>12 of the 47 findings come from <code>gitleaks.generic-api-key</code> — AI verification flagged <strong>9 of these as false positives</strong> (test fixtures, example configs, and Base64-encoded non-secrets). The remaining 3 are true positives in production configs. Additionally, 6 IaC findings follow a repeating pattern of overly permissive security group ingress rules in <code>main.tf</code> that can be batch-fixed with a shared Terraform module.</p>
-                </div>
-              </div>
-
-              <!-- Section 4: Quick Wins -->
-              <div class="ai-consult-card" id="ai-consult-card-3">
                 <div class="ai-consult-card-header">
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
                   Quick Wins
                 </div>
                 <div class="ai-consult-card-body">
                   <ul class="ai-consult-list">
-                    <li><strong>Bump <code>jackson-databind</code> to 2.15+</strong> in <code>pom.xml:12</code> &mdash; resolves 4 medium-severity CVEs in one version change.</li>
-                    <li><strong>Add <code>force_ssl = true</code></strong> to the S3 bucket policy in <code>main.tf:3</code> &mdash; eliminates the public-access finding.</li>
-                    <li><strong>Restrict security group ingress</strong> in <code>main.tf:13</code> from <code>0.0.0.0/0</code> to your VPN CIDR &mdash; fixes 3 IaC findings at once.</li>
-                    <li><strong>Suppress 9 false positive secrets</strong> using <code>// novygl: gitleaks.generic-api-key</code> inline comments in test fixtures.</li>
+                    <li><strong>Bump <code>jackson-databind</code></strong> to 2.15+ &mdash; resolves 4 CVEs.</li>
+                    <li><strong>Restrict ingress</strong> in <code>main.tf:13</code> from <code>0.0.0.0/0</code> to VPN CIDR &mdash; fixes 3 IaC findings.</li>
+                    <li><strong>Suppress 9 FP secrets</strong> in test fixtures with <code>// novygl</code> comments.</li>
                   </ul>
-                </div>
-              </div>
-
-              <!-- Section 5: Scan Coverage Assessment -->
-              <div class="ai-consult-card" id="ai-consult-card-4">
-                <div class="ai-consult-card-header">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-                  Scan Coverage Assessment
-                </div>
-                <div class="ai-consult-card-body">
-                  <p>All four scan types have run on the <code>main</code> branch within the last 24 hours. <strong>SAST coverage is strong</strong> across Python and Java files. <strong>SCA</strong> detected 47 dependencies with 5 known vulnerabilities. <strong>Secrets detection</strong> has a high false-positive rate on this repo (75%) &mdash; consider tuning <code>gitleaks.generic-api-key</code> to monitor mode for test directories. <strong>IaC scanning</strong> covers all <code>.tf</code> files but Kubernetes manifests in <code>k8s/</code> are not yet included in scan scope.</p>
                 </div>
               </div>
             </div>
