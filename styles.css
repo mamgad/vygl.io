@@ -2383,7 +2383,8 @@ body::before {
 /* Content area */
 .ai-consult-content {
   padding: 1.25rem;
-  min-height: 420px;
+  height: 480px;
+  overflow: hidden;
 }
 
 /* Idle state */
@@ -2627,7 +2628,8 @@ body::before {
 
   .ai-consult-content {
     padding: 1rem;
-    min-height: 360px;
+    height: 420px;
+    overflow: hidden;
   }
 
   .ai-consult-idle {
