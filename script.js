@@ -483,9 +483,10 @@ if (consultSection && consultIdle && consultLoading && consultResult && consultB
       consultLoading.style.display = 'none';
       consultResult.style.display = 'flex';
 
-      // Reset exec summary to original content but hidden
+      // Lock exec summary height before clearing so streaming doesn't cause layout shift
       if (execText) {
         execText.dataset.originalHtml = execText.dataset.originalHtml || execText.innerHTML;
+        execText.style.minHeight = execText.scrollHeight + 'px';
         execText.innerHTML = '';
       }
 
@@ -512,6 +513,7 @@ if (consultSection && consultIdle && consultLoading && consultResult && consultB
         // Restore original exec summary for next run
         if (execText && execText.dataset.originalHtml) {
           execText.innerHTML = execText.dataset.originalHtml;
+          execText.style.minHeight = '';
         }
       }, totalTime);
     }, 1800);
