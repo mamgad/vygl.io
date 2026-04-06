@@ -69,6 +69,7 @@
         <a href="#features">Features</a>
         <a href="#ai-consultation">Security Brief</a>
         <a href="#how-it-works">How It Works</a>
+        <a href="#integrations">Integrations</a>
         <a href="#benefits">Benefits</a>
       </div>
       <div class="nav-actions">
@@ -86,6 +87,7 @@
       <a href="#features">Features</a>
       <a href="#ai-consultation">Security Brief</a>
       <a href="#how-it-works">How It Works</a>
+      <a href="#integrations">Integrations</a>
       <a href="#benefits">Benefits</a>
       <a href="mailto:access@vygl.io" class="btn btn-primary" style="margin-top: 0.5rem; text-align:center;">Request Access</a>
     </div>
@@ -804,12 +806,63 @@
           <h3>AI-Assisted Triage</h3>
           <p>AI reviews each finding to help identify false positives and prioritize real issues. Bring your own LLM provider or use ours.</p>
         </div>
-        <div class="benefit-card reveal reveal-delay-1">
-          <div class="benefit-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Integrations ─── -->
+  <section class="integrations" id="integrations">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Integrations</span>
+        <h2 class="section-title">Fits Into Your Workflow</h2>
+        <p class="section-subtitle">Get notified where your team already works. Vygl integrates with the tools you use every day.</p>
+      </div>
+      <div class="integrations-grid">
+        <!-- Slack -->
+        <div class="integration-card reveal">
+          <div class="integration-header">
+            <div class="integration-icon integration-icon-slack">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M14.5 2a2.5 2.5 0 0 0 0 5H17V4.5A2.5 2.5 0 0 0 14.5 2z" fill="#E01E5A"/><path d="M2 14.5a2.5 2.5 0 0 0 5 0V12H4.5A2.5 2.5 0 0 0 2 14.5z" fill="#36C5F0"/><path d="M9.5 22a2.5 2.5 0 0 0 0-5H7v2.5A2.5 2.5 0 0 0 9.5 22z" fill="#2EB67D"/><path d="M22 9.5a2.5 2.5 0 0 0-5 0V12h2.5A2.5 2.5 0 0 0 22 9.5z" fill="#ECB22E"/><path d="M9.5 2A2.5 2.5 0 0 0 7 4.5V7h2.5a2.5 2.5 0 0 0 0-5z" fill="#36C5F0"/><path d="M2 9.5A2.5 2.5 0 0 0 4.5 12H7V9.5a2.5 2.5 0 0 0-5 0z" fill="#2EB67D"/><path d="M14.5 22a2.5 2.5 0 0 0 2.5-2.5V17h-2.5a2.5 2.5 0 0 0 0 5z" fill="#ECB22E"/><path d="M22 14.5a2.5 2.5 0 0 0-2.5-2.5H17v2.5a2.5 2.5 0 0 0 5 0z" fill="#E01E5A"/></svg>
+            </div>
+            <div>
+              <h3>Slack</h3>
+              <span class="integration-status integration-status-live">Available</span>
+            </div>
           </div>
-          <h3>Slack Notifications</h3>
-          <p>Get real-time scan results in Slack with detailed findings, severity breakdowns, new vs recurring tracking, and direct links to each finding.</p>
+          <p>Real-time scan results with severity breakdowns, new vs recurring findings, AI verdicts, and clickable links to every finding.</p>
+          <ul class="integration-features">
+            <li>Scan completion summaries</li>
+            <li>Critical &amp; high finding alerts</li>
+            <li>Direct links to findings</li>
+            <li>Test notifications</li>
+          </ul>
+        </div>
+        <!-- Microsoft Teams -->
+        <div class="integration-card integration-card-soon reveal reveal-delay-1">
+          <div class="integration-header">
+            <div class="integration-icon integration-icon-teams">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20h-1a4 4 0 0 1-4-4V8a4 4 0 0 1 4-4h1"/><circle cx="19" cy="5" r="2.5"/><circle cx="15" cy="7" r="3"/><path d="M10 20H3a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1h7a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1z"/></svg>
+            </div>
+            <div>
+              <h3>Microsoft Teams</h3>
+              <span class="integration-status integration-status-soon">Coming Soon</span>
+            </div>
+          </div>
+          <p>Get scan notifications and finding alerts delivered directly to your Teams channels.</p>
+        </div>
+        <!-- Webhooks -->
+        <div class="integration-card integration-card-soon reveal reveal-delay-2">
+          <div class="integration-header">
+            <div class="integration-icon integration-icon-webhook">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"/><path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06"/><path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8H12"/></svg>
+            </div>
+            <div>
+              <h3>Custom Webhooks</h3>
+              <span class="integration-status integration-status-soon">Coming Soon</span>
+            </div>
+          </div>
+          <p>Send scan events to any HTTP endpoint. Build custom integrations with your internal tools and workflows.</p>
         </div>
       </div>
     </div>
@@ -847,6 +900,7 @@
           <a href="#ai-demo">AI Verification</a>
           <a href="#ai-consultation">Security Brief</a>
           <a href="#how-it-works">How It Works</a>
+          <a href="#integrations">Integrations</a>
           <a href="#benefits">Benefits</a>
         </div>
         <div class="footer-links">

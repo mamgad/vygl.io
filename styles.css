@@ -1790,6 +1790,119 @@ img { max-width: 100%; }
 .t-underline { text-decoration: underline; }
 
 /* ─── Benefits ─── */
+/* ─── Integrations ─── */
+
+.integrations {
+  padding: 6rem 0;
+}
+
+.integrations-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.integration-card {
+  padding: 1.75rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  transition: all 0.2s ease;
+}
+
+.integration-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+}
+
+.integration-card-soon {
+  opacity: 0.6;
+}
+
+.integration-card-soon:hover {
+  opacity: 0.8;
+}
+
+.integration-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.integration-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+}
+
+.integration-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.integration-status {
+  font-size: 0.65rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+
+.integration-status-live {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.integration-status-soon {
+  background: rgba(148, 163, 184, 0.15);
+  color: var(--fg-muted);
+}
+
+.integration-card p {
+  font-size: 0.875rem;
+  color: var(--fg-muted);
+  line-height: 1.6;
+  margin-bottom: 0.75rem;
+}
+
+.integration-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.integration-features li {
+  font-size: 0.8rem;
+  color: var(--fg-muted);
+  padding: 0.25rem 0;
+  padding-left: 1.25rem;
+  position: relative;
+}
+
+.integration-features li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: #22c55e;
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+@media (max-width: 768px) {
+  .integrations-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .benefits {
   padding: 6rem 0;
   background: var(--bg-elevated);
