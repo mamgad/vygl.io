@@ -1,0 +1,21 @@
+{
+  "name": "Vygl — Security Scanning Platform",
+  "short_name": "Vygl",
+  "description": "Find vulnerabilities across code, dependencies, secrets, and infrastructure. AI-powered triage helps you cut through the noise.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#080b14",
+  "theme_color": "#080b14",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
