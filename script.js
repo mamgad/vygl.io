@@ -531,3 +531,156 @@ if (consultSection && consultIdle && consultLoading && consultResult && consultB
   }, { threshold: 0.3 });
   consultObserver.observe(consultSection);
 }
+
+// ─── MCP IDE Demo ───
+var mcpClaudeGen = 0;
+var mcpCursorGen = 0;
+var mcpClaudeAnimating = false;
+var mcpCursorAnimating = false;
+var mcpClaudeOutput = document.getElementById('mcp-claude-output');
+var mcpCursorChat = document.getElementById('mcp-cursor-chat');
+
+var mcpTabs = document.querySelectorAll('.mcp-tab');
+var mcpPanels = document.querySelectorAll('.mcp-panel');
+
+mcpTabs.forEach(function(tab) {
+  tab.addEventListener('click', function() {
+    var idx = tab.dataset.mcpTab;
+    mcpTabs.forEach(function(t) { t.classList.remove('active'); });
+    tab.classList.add('active');
+    mcpPanels.forEach(function(p) { p.classList.remove('active'); });
+    var panel = document.querySelector('.mcp-panel[data-mcp-panel="' + idx + '"]');
+    if (panel) panel.classList.add('active');
+
+    // Cancel old animations and start fresh
+    mcpClaudeGen++;
+    mcpCursorGen++;
+    mcpClaudeAnimating = false;
+    mcpCursorAnimating = false;
+    if (mcpClaudeOutput) mcpClaudeOutput.innerHTML = '';
+    if (mcpCursorChat) mcpCursorChat.innerHTML = '';
+
+    if (idx === '0') runMcpClaudeDemo();
+    if (idx === '1') runMcpCursorDemo();
+  });
+});
+
+var mcpClaudeLines = [
+  { text: '<span class="mcp-prompt">❯</span> <span class="t-white">what critical findings do we have in acme-api?</span>', delay: 0 },
+  { text: '', delay: 300 },
+  { text: '<span class="mcp-assistant">⏺</span> I\'ll search your security findings.', delay: 400 },
+  { text: '', delay: 200 },
+  { text: '  <span class="mcp-tool-call">vygl:search_findings</span><span class="t-muted">(project: </span><span class="t-emerald">"acme-api"</span><span class="t-muted">, severity: </span><span class="t-emerald">"critical"</span><span class="t-muted">)</span>', delay: 300 },
+  { text: '', delay: 600 },
+  { text: '  Found <span class="t-white t-bold">2</span> critical findings:', delay: 300 },
+  { text: '', delay: 150 },
+  { text: '  <span class="t-red">●</span> <span class="t-red t-bold">CRITICAL</span>  <span class="t-white">SQL Injection via f-string</span>', delay: 250 },
+  { text: '    <span class="t-purple">SAST</span> · <span class="t-muted">backend/views/users.py:42</span>', delay: 150 },
+  { text: '', delay: 100 },
+  { text: '  <span class="t-red">●</span> <span class="t-red t-bold">CRITICAL</span>  <span class="t-white">Log4Shell CVE-2021-44228</span>', delay: 250 },
+  { text: '    <span class="t-cyan">SCA</span> · <span class="t-muted">pom.xml:7 · log4j-core@2.14.1</span>', delay: 150 },
+  { text: '', delay: 100 },
+  { text: '  Both require immediate attention.', delay: 200 },
+  { text: '', delay: 800 },
+  { text: '<span class="mcp-prompt">❯</span> <span class="t-white">verify the SQL injection — is it a real issue?</span>', delay: 500 },
+  { text: '', delay: 300 },
+  { text: '<span class="mcp-assistant">⏺</span> Let me verify that with AI triage.', delay: 400 },
+  { text: '', delay: 200 },
+  { text: '  <span class="mcp-tool-call">vygl:ai_verify_finding</span><span class="t-muted">(finding_id: </span><span class="t-emerald">"sql-inj-a3e7f"</span><span class="t-muted">)</span>', delay: 300 },
+  { text: '', delay: 800 },
+  { text: '  <span class="t-green">✓</span> <span class="t-white t-bold">True Positive</span> · <span class="t-green">High confidence</span>', delay: 400 },
+  { text: '', delay: 150 },
+  { text: '  User input from <span class="t-orange">request.GET.get("q")</span> is directly', delay: 200 },
+  { text: '  interpolated into raw SQL via f-string. An attacker', delay: 150 },
+  { text: '  can inject arbitrary SQL.', delay: 150 },
+  { text: '', delay: 200 },
+  { text: '  <span class="t-muted">Suggested fix — use Django ORM:</span>', delay: 200 },
+  { text: '', delay: 100 },
+  { text: '    <span class="t-blue">users</span> = User.objects.filter(', delay: 100 },
+  { text: '        name__icontains=query', delay: 100 },
+  { text: '    )', delay: 100 },
+];
+
+function runMcpClaudeDemo() {
+  if (mcpClaudeAnimating) return;
+  mcpClaudeAnimating = true;
+  var gen = ++mcpClaudeGen;
+
+  if (mcpClaudeOutput) mcpClaudeOutput.innerHTML = '';
+  var pre = document.createElement('pre');
+  if (mcpClaudeOutput) mcpClaudeOutput.appendChild(pre);
+
+  var totalDelay = 0;
+  mcpClaudeLines.forEach(function(line) {
+    totalDelay += line.delay;
+    setTimeout(function() {
+      if (gen !== mcpClaudeGen) return;
+      var div = document.createElement('div');
+      div.className = 'cli-line';
+      div.innerHTML = line.text || '&nbsp;';
+      pre.appendChild(div);
+      if (mcpClaudeOutput) mcpClaudeOutput.scrollTop = mcpClaudeOutput.scrollHeight;
+    }, totalDelay);
+  });
+
+  setTimeout(function() {
+    if (gen !== mcpClaudeGen) return;
+    mcpClaudeAnimating = false;
+    pre.remove();
+    runMcpClaudeDemo();
+  }, totalDelay + 5000);
+}
+
+var mcpCursorMessages = [
+  { type: 'user', html: 'What security findings do we have in this project?' },
+  { type: 'tool', html: '<span class="mcp-tool-name">vygl:search_findings</span> <span class="mcp-tool-status">✓</span>' },
+  { type: 'assistant', html: '<strong>47 findings</strong> across 4 scan types:<br><br><span class="t-red">● 2 critical</span> — SQL injection in <span class="t-orange">users.py:42</span>, Log4Shell in <span class="t-orange">pom.xml:7</span><br><span class="t-orange">● 8 high</span> · <span class="t-yellow">12 medium</span> · <span class="t-blue">3 low</span><br><br>AI triage cleared <strong>9 false positives</strong>.' },
+  { type: 'user', html: 'Is the command injection in deploy.py a real issue?' },
+  { type: 'tool', html: '<span class="mcp-tool-name">vygl:ai_verify_finding</span> <span class="mcp-tool-status">✓</span>' },
+  { type: 'assistant', html: '<span class="t-yellow">⚠ Likely False Positive</span> · High confidence<br><br>The input is validated through an allowlist before reaching <span class="t-orange">os.system()</span>. Only predefined deploy commands are accepted.' },
+];
+
+function runMcpCursorDemo() {
+  if (mcpCursorAnimating) return;
+  mcpCursorAnimating = true;
+  var gen = ++mcpCursorGen;
+
+  if (mcpCursorChat) mcpCursorChat.innerHTML = '';
+
+  var delays = [300, 400, 800, 1500, 400, 800];
+  var totalDelay = 0;
+
+  mcpCursorMessages.forEach(function(msg, i) {
+    totalDelay += delays[i] || 500;
+    setTimeout(function() {
+      if (gen !== mcpCursorGen) return;
+      var div = document.createElement('div');
+      div.className = 'mcp-chat-msg mcp-chat-' + msg.type;
+      div.innerHTML = msg.html;
+      div.style.animation = 'cli-fade-in 0.3s ease-out both';
+      if (mcpCursorChat) {
+        mcpCursorChat.appendChild(div);
+        mcpCursorChat.scrollTop = mcpCursorChat.scrollHeight;
+      }
+    }, totalDelay);
+  });
+
+  setTimeout(function() {
+    if (gen !== mcpCursorGen) return;
+    mcpCursorAnimating = false;
+    if (mcpCursorChat) mcpCursorChat.innerHTML = '';
+    runMcpCursorDemo();
+  }, totalDelay + 6000);
+}
+
+// Auto-trigger when scrolled into view
+var mcpSectionEl = document.querySelector('.mcp-section');
+if (mcpSectionEl) {
+  var mcpObserver = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting) {
+      runMcpClaudeDemo();
+      mcpObserver.unobserve(mcpSectionEl);
+    }
+  }, { threshold: 0.3 });
+  mcpObserver.observe(mcpSectionEl);
+}

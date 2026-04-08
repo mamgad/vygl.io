@@ -1214,6 +1214,123 @@
     </div>
   </section>
 
+  <!-- ─── MCP IDE Integration ─── -->
+  <section class="mcp-section" id="mcp">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">AI IDE Integration</span>
+        <h2 class="section-title">Your Security Data, Inside Your IDE</h2>
+        <p class="section-subtitle">Query findings, verify issues, and check project health — directly from Claude Code, Cursor, or any MCP-compatible IDE. Zero context switching.</p>
+      </div>
+
+      <div class="mcp-demo reveal">
+        <div class="mcp-demo-glow-1" aria-hidden="true"></div>
+        <div class="mcp-demo-glow-2" aria-hidden="true"></div>
+
+        <div class="mcp-window">
+          <!-- Chrome with IDE tabs -->
+          <div class="terminal-chrome">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="mcp-tab-bar">
+              <button class="mcp-tab active" data-mcp-tab="0">
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+                Claude Code
+              </button>
+              <button class="mcp-tab" data-mcp-tab="1">
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                Cursor
+              </button>
+            </div>
+          </div>
+
+          <!-- Claude Code Panel -->
+          <div class="mcp-panel active" data-mcp-panel="0">
+            <div class="mcp-terminal-body" id="mcp-claude-output"></div>
+          </div>
+
+          <!-- Cursor Panel -->
+          <div class="mcp-panel" data-mcp-panel="1">
+            <div class="mcp-ide-body">
+              <!-- Sidebar -->
+              <div class="mcp-ide-sidebar">
+                <div class="mcp-ide-sidebar-section">EXPLORER</div>
+                <div class="mcp-ide-file mcp-ide-file-active">
+                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
+                  users.py
+                </div>
+                <div class="mcp-ide-file">
+                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--fg-faint)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
+                  models.py
+                </div>
+                <div class="mcp-ide-file">
+                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--fg-faint)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
+                  pom.xml
+                </div>
+                <div class="mcp-ide-file">
+                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--fg-faint)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
+                  main.tf
+                </div>
+              </div>
+              <!-- Editor -->
+              <div class="mcp-ide-editor">
+                <div class="mcp-ide-editor-tab">users.py</div>
+                <div class="mcp-ide-code">
+                  <div class="ai-code-line"><span class="ai-ln">38</span> <span class="t-purple">@</span><span class="t-blue">login_required</span></div>
+                  <div class="ai-code-line"><span class="ai-ln">39</span> <span class="t-purple">@</span><span class="t-blue">require_GET</span></div>
+                  <div class="ai-code-line"><span class="ai-ln">40</span> <span class="t-purple">def </span><span class="t-blue">search_users</span>(request):</div>
+                  <div class="ai-code-line"><span class="ai-ln">41</span>     <span class="t-emerald">"""Search users."""</span></div>
+                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">42</span>     query = request.GET.get(<span class="t-emerald">"q"</span>)</div>
+                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">43</span>     users = User.objects.raw(</div>
+                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">44</span>         <span class="t-emerald">f"...%</span><span class="t-red">{query}</span><span class="t-emerald">%'"</span></div>
+                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">45</span>     )</div>
+                  <div class="ai-code-line"><span class="ai-ln">46</span>     results = [{<span class="t-emerald">"id"</span>: u.id}</div>
+                  <div class="ai-code-line"><span class="ai-ln">47</span>         <span class="t-purple">for </span>u <span class="t-purple">in </span>users]</div>
+                  <div class="ai-code-line"><span class="ai-ln">48</span>     <span class="t-purple">return </span>JsonResponse(..)</div>
+                </div>
+              </div>
+              <!-- Chat Panel -->
+              <div class="mcp-ide-chat">
+                <div class="mcp-chat-header">
+                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                  AI Chat
+                  <span class="mcp-chat-mcp-badge">MCP</span>
+                </div>
+                <div class="mcp-chat-messages" id="mcp-cursor-chat"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Supported IDEs -->
+      <div class="mcp-supported reveal">
+        <span class="mcp-supported-label">Works with any MCP-compatible IDE</span>
+        <div class="mcp-supported-list">
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            Claude Code
+          </div>
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+            Cursor
+          </div>
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>
+            Windsurf
+          </div>
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Any MCP Client
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── CTA ─── -->
   <section class="cta" id="cta">
     <div class="container">
