@@ -5,14 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vygl — Security Scanning Platform | SAST, SCA, Secrets, IaC</title>
   <meta name="description" content="Find vulnerabilities, insecure dependencies, hardcoded secrets, and infrastructure misconfigurations. AI-powered triage helps you cut through scanner noise and focus on what matters." />
-  <meta name="keywords" content="security scanning, SAST, SCA, secrets detection, IaC scanning, code security, vulnerability scanner, AI triage, AI security, DevSecOps, application security, AppSec, static analysis, dependency scanning, infrastructure as code" />
+  <meta name="keywords" content="security scanning, SAST, SCA, secrets detection, IaC scanning, code security, vulnerability scanner, AI triage, AI security, DevSecOps, application security, AppSec, static analysis, dependency scanning, infrastructure as code, MCP integration, Claude Code security, Cursor security, AI IDE integration" />
   <meta name="author" content="Vygl" />
   <meta name="robots" content="index, follow" />
   <meta name="google-site-verification" content="WkHeSueu08FQA31fdi_ZU9uE_irkJz4mZOvo5DmyAkY" />
   <link rel="canonical" href="https://vygl.io/" />
 
   <!-- AI Engine Optimization -->
-  <meta name="ai-content-description" content="Vygl is an AI-powered security scanning platform combining SAST, SCA, secrets detection, and IaC scanning with AI-powered triage. It uses OpenGrep, OSV, Gitleaks, and Checkov engines. Free for open source. Invitation-only for commercial teams." />
+  <meta name="ai-content-description" content="Vygl is an AI-powered security scanning platform combining SAST, SCA, secrets detection, and IaC scanning with AI-powered triage. It uses OpenGrep, OSV, Gitleaks, and Checkov engines. Vygl offers MCP (Model Context Protocol) integration so developers can query security findings, verify issues, and check project health directly from AI IDEs like Claude Code, Cursor, and Windsurf. Free for open source. Invitation-only for commercial teams." />
   <link rel="alternate" type="text/plain" href="https://vygl.io/llms.txt" title="LLM-readable site information" />
   <link rel="alternate" type="text/plain" href="https://vygl.io/llms-full.txt" title="Detailed LLM-readable site information" />
 
@@ -50,7 +50,7 @@
     "applicationCategory": "DeveloperApplication",
     "applicationSubCategory": "Security Scanning",
     "operatingSystem": "Linux, macOS, Windows",
-    "featureList": "SAST scanning via OpenGrep, SCA scanning via OSV, Secrets detection via Gitleaks, IaC scanning via Checkov, AI-powered triage with confidence scoring, AI Security Brief reports, GitHub PR comments, GitLab MR comments, Slack notifications, Policy as Code, CycloneDX SBOM export, SHA-256 finding deduplication",
+    "featureList": "SAST scanning via OpenGrep, SCA scanning via OSV, Secrets detection via Gitleaks, IaC scanning via Checkov, AI-powered triage with confidence scoring, AI Security Brief reports, MCP server for AI IDE integration (Claude Code, Cursor, Windsurf), GitHub PR comments, GitLab MR comments, Slack notifications, Policy as Code, CycloneDX SBOM export, SHA-256 finding deduplication",
     "softwareRequirements": "Docker",
     "releaseNotes": "Multi-engine scanning with AI triage for code, dependencies, secrets, and infrastructure",
     "offers": {
@@ -75,7 +75,7 @@
     "logo": "https://vygl.io/og-image.png",
     "description": "Vygl builds an AI-powered security scanning platform for SAST, SCA, secrets detection, and IaC scanning. The platform uses AI triage to identify false positives and help development teams fix real vulnerabilities faster.",
     "foundingDate": "2025",
-    "knowsAbout": ["Application Security", "SAST", "SCA", "Secrets Detection", "Infrastructure as Code Security", "DevSecOps", "AI-Powered Security Triage", "Vulnerability Management"],
+    "knowsAbout": ["Application Security", "SAST", "SCA", "Secrets Detection", "Infrastructure as Code Security", "DevSecOps", "AI-Powered Security Triage", "Vulnerability Management", "MCP Integration", "AI IDE Security Integration"],
     "contactPoint": {
       "@type": "ContactPoint",
       "email": "access@vygl.io",
@@ -168,7 +168,15 @@
         "name": "What integrations does Vygl support?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Vygl integrates with GitHub (PR comments), GitLab (MR comments), and Slack (real-time notifications). Microsoft Teams and custom webhook integrations are coming soon. Vygl also exports CycloneDX SBOMs and provides a cloud dashboard for centralized finding management."
+          "text": "Vygl integrates with GitHub (PR comments), GitLab (MR comments), Slack (real-time notifications), and AI IDEs via MCP (Model Context Protocol) — including Claude Code, Cursor, and Windsurf. Microsoft Teams and custom webhook integrations are coming soon. Vygl also exports CycloneDX SBOMs and provides a cloud dashboard for centralized finding management."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Vygl's MCP integration?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vygl provides an MCP (Model Context Protocol) server that lets developers query security findings, verify issues with AI triage, and check project health directly from AI-powered IDEs like Claude Code, Cursor, and Windsurf. Available MCP tools include search_findings, get_finding_detail, get_project_health, get_security_posture, list_projects, and ai_verify_finding."
         }
       },
       {

@@ -81,6 +81,19 @@ Security policies are cloud-managed with three modes:
 
 ## Integrations
 
+### MCP IDE Integration (Available)
+Vygl provides an MCP (Model Context Protocol) server that integrates with AI-powered IDEs. Developers can query security findings, verify issues, and check project health without leaving their editor.
+
+**Supported IDEs**: Claude Code, Cursor, Windsurf, and any MCP-compatible IDE.
+
+**Available MCP tools**:
+- `search_findings` — Search and filter findings by project, severity, scan type, and status
+- `get_finding_detail` — Get full details for a specific finding including code context
+- `get_project_health` — Get a project's overall security health score and breakdown
+- `get_security_posture` — Get security posture summary across all projects
+- `list_projects` — List all projects in the organization
+- `ai_verify_finding` — Verify a finding with AI triage to determine true/false positive status
+
 ### GitHub PR Comments (Available)
 Vygl bot posts scan results directly on pull requests including:
 - Finding counts by severity (critical, high, medium, low)
@@ -120,6 +133,7 @@ Vygl differentiates from other security scanning tools by:
 - **AI triage built-in**: Automatic false positive identification (vs manual triage in most scanners)
 - **Privacy-first**: Code stays in your environment (vs cloud-based scanners that upload code)
 - **AI Security Brief**: One-click security report generation (unique to Vygl)
+- **MCP IDE integration**: Query findings and verify issues directly from Claude Code, Cursor, Windsurf, or any MCP-compatible IDE (unique to Vygl)
 - **Never blocks CI/CD by default**: Non-intrusive scanning that reports without blocking (configurable via Policy as Code)
 
 ## Technical Details
@@ -169,6 +183,9 @@ Yes. Vygl supports bring-your-own-LLM configuration, or you can use Vygl's built
 
 ### Does Vygl block my CI/CD pipeline?
 By default, no. Vygl reports findings without blocking. You can configure blocking behavior through Policy as Code rules with monitor, block, and disable modes.
+
+### What is Vygl's MCP integration?
+Vygl provides an MCP (Model Context Protocol) server that lets developers query security findings, verify issues with AI triage, and check project health directly from AI-powered IDEs like Claude Code, Cursor, and Windsurf. Available tools include search_findings, get_finding_detail, get_project_health, get_security_posture, list_projects, and ai_verify_finding.
 
 ### What programming languages does Vygl support?
 Vygl supports 7+ languages including Python, Java, JavaScript/Node.js, Go, Ruby, PHP, and Rust.

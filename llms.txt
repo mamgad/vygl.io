@@ -23,6 +23,7 @@ Vygl scans your codebase using four specialized engines and then uses AI to tria
 
 ## Integrations
 
+- MCP (Model Context Protocol) server for AI IDE integration (available) — query findings, verify issues, and check project health from Claude Code, Cursor, Windsurf, or any MCP-compatible IDE
 - GitHub PR comments (available)
 - GitLab MR comments (available)
 - Slack notifications (available)
