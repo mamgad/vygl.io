@@ -3202,12 +3202,19 @@ body::before {
 
   .ai-consult-content {
     padding: 1rem;
-    height: 420px;
-    overflow: hidden;
+    height: auto;
+    min-height: 360px;
+    max-height: 480px;
+    overflow-y: auto;
+    overflow-x: hidden;
   }
 
   .ai-consult-idle {
-    min-height: 300px;
+    min-height: 280px;
+  }
+
+  .ai-consult-mock {
+    max-width: 100%;
   }
 }
 
@@ -3390,6 +3397,14 @@ body::before {
   opacity: 0.7;
   border-radius: 1px;
   animation: ai-blink 1s step-end infinite;
+}
+
+.mcp-claude-typing-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--fg);
+  font-weight: 400;
+  white-space: pre;
 }
 
 .mcp-claude-input-meta {

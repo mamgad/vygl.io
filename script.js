@@ -559,47 +559,81 @@ mcpTabs.forEach(function(tab) {
     mcpCursorAnimating = false;
     if (mcpClaudeOutput) mcpClaudeOutput.innerHTML = '';
     if (mcpCursorChat) mcpCursorChat.innerHTML = '';
+    // Clear any typing text from input box
+    var typingText = document.querySelector('.mcp-claude-typing-text');
+    if (typingText) typingText.remove();
 
     if (idx === '0') runMcpClaudeDemo();
     if (idx === '1') runMcpCursorDemo();
   });
 });
 
-var mcpClaudeLines = [
-  { text: '<span class="mcp-prompt">❯</span> <span class="t-white">what critical findings do we have in acme-api?</span>', delay: 0 },
-  { text: '', delay: 300 },
-  { text: '<span class="mcp-assistant">⏺</span> I\'ll search your security findings.', delay: 400 },
-  { text: '', delay: 200 },
-  { text: '  <span class="mcp-tool-call">vygl:search_findings</span><span class="t-muted">(project: </span><span class="t-emerald">"acme-api"</span><span class="t-muted">, severity: </span><span class="t-emerald">"critical"</span><span class="t-muted">)</span>', delay: 300 },
-  { text: '', delay: 600 },
-  { text: '  Found <span class="t-white t-bold">2</span> critical findings:', delay: 300 },
-  { text: '', delay: 150 },
-  { text: '  <span class="t-red">●</span> <span class="t-red t-bold">CRITICAL</span>  <span class="t-white">SQL Injection via f-string</span>', delay: 250 },
-  { text: '    <span class="t-purple">SAST</span> · <span class="t-muted">backend/views/users.py:42</span>', delay: 150 },
-  { text: '', delay: 100 },
-  { text: '  <span class="t-red">●</span> <span class="t-red t-bold">CRITICAL</span>  <span class="t-white">Log4Shell CVE-2021-44228</span>', delay: 250 },
-  { text: '    <span class="t-cyan">SCA</span> · <span class="t-muted">pom.xml:7 · log4j-core@2.14.1</span>', delay: 150 },
-  { text: '', delay: 100 },
-  { text: '  Both require immediate attention.', delay: 200 },
-  { text: '', delay: 800 },
-  { text: '<span class="mcp-prompt">❯</span> <span class="t-white">verify the SQL injection — is it a real issue?</span>', delay: 500 },
-  { text: '', delay: 300 },
-  { text: '<span class="mcp-assistant">⏺</span> Let me verify that with AI triage.', delay: 400 },
-  { text: '', delay: 200 },
-  { text: '  <span class="mcp-tool-call">vygl:ai_verify_finding</span><span class="t-muted">(finding_id: </span><span class="t-emerald">"sql-inj-a3e7f"</span><span class="t-muted">)</span>', delay: 300 },
-  { text: '', delay: 800 },
-  { text: '  <span class="t-green">✓</span> <span class="t-white t-bold">True Positive</span> · <span class="t-green">High confidence</span>', delay: 400 },
-  { text: '', delay: 150 },
-  { text: '  User input from <span class="t-orange">request.GET.get("q")</span> is directly', delay: 200 },
-  { text: '  interpolated into raw SQL via f-string. An attacker', delay: 150 },
-  { text: '  can inject arbitrary SQL.', delay: 150 },
-  { text: '', delay: 200 },
-  { text: '  <span class="t-muted">Suggested fix — use Django ORM:</span>', delay: 200 },
-  { text: '', delay: 100 },
-  { text: '    <span class="t-blue">users</span> = User.objects.filter(', delay: 100 },
-  { text: '        name__icontains=query', delay: 100 },
-  { text: '    )', delay: 100 },
+var mcpClaudeScript = [
+  // First interaction — typed in input box, then response in output
+  { type: 'typing', text: 'what critical findings do we have in acme-api?', speed: 35 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '<span class="mcp-assistant">⏺</span> I\'ll search your security findings.', delay: 400 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '  <span class="mcp-tool-call">vygl:search_findings</span><span class="t-muted">(project: </span><span class="t-emerald">"acme-api"</span><span class="t-muted">, severity: </span><span class="t-emerald">"critical"</span><span class="t-muted">)</span>', delay: 300 },
+  { type: 'line', text: '', delay: 600 },
+  { type: 'line', text: '  Found <span class="t-white t-bold">2</span> critical findings:', delay: 300 },
+  { type: 'line', text: '', delay: 150 },
+  { type: 'line', text: '  <span class="t-red">●</span> <span class="t-red t-bold">CRITICAL</span>  <span class="t-white">SQL Injection via f-string</span>', delay: 250 },
+  { type: 'line', text: '    <span class="t-purple">SAST</span> · <span class="t-muted">backend/views/users.py:42</span>', delay: 150 },
+  { type: 'line', text: '', delay: 100 },
+  { type: 'line', text: '  <span class="t-red">●</span> <span class="t-red t-bold">CRITICAL</span>  <span class="t-white">Log4Shell CVE-2021-44228</span>', delay: 250 },
+  { type: 'line', text: '    <span class="t-cyan">SCA</span> · <span class="t-muted">pom.xml:7 · log4j-core@2.14.1</span>', delay: 150 },
+  { type: 'line', text: '', delay: 100 },
+  { type: 'line', text: '  Both require immediate attention.', delay: 200 },
+  { type: 'line', text: '', delay: 800 },
+  // Second interaction — typed in input box
+  { type: 'typing', text: 'verify the SQL injection — is it a real issue?', speed: 35 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '<span class="mcp-assistant">⏺</span> Let me verify that with AI triage.', delay: 400 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '  <span class="mcp-tool-call">vygl:ai_verify_finding</span><span class="t-muted">(finding_id: </span><span class="t-emerald">"sql-inj-a3e7f"</span><span class="t-muted">)</span>', delay: 300 },
+  { type: 'line', text: '', delay: 800 },
+  { type: 'line', text: '  <span class="t-green">✓</span> <span class="t-white t-bold">True Positive</span> · <span class="t-green">High confidence</span>', delay: 400 },
+  { type: 'line', text: '', delay: 150 },
+  { type: 'line', text: '  User input from <span class="t-orange">request.GET.get("q")</span> is directly', delay: 200 },
+  { type: 'line', text: '  interpolated into raw SQL via f-string. An attacker', delay: 150 },
+  { type: 'line', text: '  can inject arbitrary SQL.', delay: 150 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '  <span class="t-muted">Suggested fix — use Django ORM:</span>', delay: 200 },
+  { type: 'line', text: '', delay: 100 },
+  { type: 'line', text: '    <span class="t-blue">users</span> = User.objects.filter(', delay: 100 },
+  { type: 'line', text: '        name__icontains=query', delay: 100 },
+  { type: 'line', text: '    )', delay: 100 },
 ];
+
+function typeInInputBox(inputArea, text, speed, gen, callback) {
+  var cursor = inputArea.querySelector('.mcp-claude-cursor');
+  var textSpan = document.createElement('span');
+  textSpan.className = 'mcp-claude-typing-text';
+  if (cursor) {
+    inputArea.insertBefore(textSpan, cursor);
+  } else {
+    inputArea.appendChild(textSpan);
+  }
+
+  var i = 0;
+  function tick() {
+    if (gen !== mcpClaudeGen) { textSpan.remove(); return; }
+    if (i < text.length) {
+      textSpan.textContent += text[i];
+      i++;
+      setTimeout(tick, speed);
+    } else {
+      // Typing done — brief pause, then clear and callback
+      setTimeout(function() {
+        if (gen !== mcpClaudeGen) { textSpan.remove(); return; }
+        textSpan.remove();
+        if (callback) callback();
+      }, 300);
+    }
+  }
+  tick();
+}
 
 function runMcpClaudeDemo() {
   if (mcpClaudeAnimating) return;
@@ -610,25 +644,52 @@ function runMcpClaudeDemo() {
   var pre = document.createElement('pre');
   if (mcpClaudeOutput) mcpClaudeOutput.appendChild(pre);
 
-  var totalDelay = 0;
-  mcpClaudeLines.forEach(function(line) {
-    totalDelay += line.delay;
-    setTimeout(function() {
-      if (gen !== mcpClaudeGen) return;
-      var div = document.createElement('div');
-      div.className = 'cli-line';
-      div.innerHTML = line.text || '&nbsp;';
-      pre.appendChild(div);
-      if (mcpClaudeOutput) mcpClaudeOutput.scrollTop = mcpClaudeOutput.scrollHeight;
-    }, totalDelay);
-  });
+  var inputArea = document.querySelector('.mcp-claude-input-area');
+  var idx = 0;
 
-  setTimeout(function() {
+  function processNext() {
     if (gen !== mcpClaudeGen) return;
-    mcpClaudeAnimating = false;
-    pre.remove();
-    runMcpClaudeDemo();
-  }, totalDelay + 5000);
+    if (idx >= mcpClaudeScript.length) {
+      // All done — pause then loop
+      setTimeout(function() {
+        if (gen !== mcpClaudeGen) return;
+        mcpClaudeAnimating = false;
+        pre.remove();
+        runMcpClaudeDemo();
+      }, 5000);
+      return;
+    }
+
+    var item = mcpClaudeScript[idx];
+    idx++;
+
+    if (item.type === 'typing' && inputArea) {
+      // Type text character-by-character in the input box
+      typeInInputBox(inputArea, item.text, item.speed || 35, gen, function() {
+        if (gen !== mcpClaudeGen) return;
+        // Move the completed prompt into the terminal output
+        var div = document.createElement('div');
+        div.className = 'cli-line';
+        div.innerHTML = '<span class="mcp-prompt">❯</span> <span class="t-white">' + item.text + '</span>';
+        pre.appendChild(div);
+        if (mcpClaudeOutput) mcpClaudeOutput.scrollTop = mcpClaudeOutput.scrollHeight;
+        processNext();
+      });
+    } else {
+      // Regular output line — add after delay
+      setTimeout(function() {
+        if (gen !== mcpClaudeGen) return;
+        var div = document.createElement('div');
+        div.className = 'cli-line';
+        div.innerHTML = item.text || '&nbsp;';
+        pre.appendChild(div);
+        if (mcpClaudeOutput) mcpClaudeOutput.scrollTop = mcpClaudeOutput.scrollHeight;
+        processNext();
+      }, item.delay || 100);
+    }
+  }
+
+  processNext();
 }
 
 var mcpCursorMessages = [
