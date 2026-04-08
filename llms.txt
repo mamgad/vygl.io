@@ -1,0 +1,48 @@
+# Vygl
+
+> Vygl is an AI-powered security scanning platform that finds vulnerabilities across code, dependencies, secrets, and infrastructure. It combines multiple scan engines (SAST, SCA, Secrets, IaC) with AI-powered triage to help development teams cut through scanner noise and focus on real issues.
+
+## What Vygl Does
+
+Vygl scans your codebase using four specialized engines and then uses AI to triage the results:
+
+- **SAST (Static Application Security Testing)** via OpenGrep: Detects SQL injection, XSS, command injection, path traversal, SSRF, and insecure deserialization in source code.
+- **SCA (Software Composition Analysis)** via OSV: Identifies vulnerable dependencies like Log4Shell and Spring4Shell, with CVE tracking across 7+ programming languages and CycloneDX SBOM export.
+- **Secrets Detection** via Gitleaks: Finds hardcoded API keys, database credentials, JWT secrets, and private keys using 600+ detection patterns.
+- **IaC (Infrastructure as Code) Scanning** via Checkov: Catches public S3 buckets, unrestricted security groups, overprivileged IAM roles, and container misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation.
+- **AI-Powered Triage**: Every finding is reviewed by an LLM that scores confidence, identifies true vs false positives, and suggests fixes. Bring your own LLM provider or use Vygl's.
+
+## Key Features
+
+- AI Security Brief: One-click AI-generated security report analyzing all findings with executive summary, priority actions, and quick wins.
+- SHA-256 fingerprinting for smart deduplication across scans.
+- Policy as Code with monitor, block, and disable modes.
+- Privacy-first: scans run in your environment; only findings metadata reaches the cloud.
+- Runs as a Docker container in CI/CD pipelines (GitHub Actions, GitLab CI, or any Docker-compatible pipeline).
+- Cloud dashboard for triage, tracking, and managing findings across projects and branches.
+
+## Integrations
+
+- GitHub PR comments (available)
+- GitLab MR comments (available)
+- Slack notifications (available)
+- Microsoft Teams (coming soon)
+- Custom Webhooks (coming soon)
+
+## Pricing
+
+- Free for open-source projects.
+- Invitation-only for commercial teams.
+
+## How to Get Access
+
+Vygl is currently invitation-only. Request access by emailing access@vygl.io.
+
+## Links
+
+- Website: https://vygl.io
+- Contact: access@vygl.io
+
+## Detailed Information
+
+For more detailed information, see [llms-full.txt](https://vygl.io/llms-full.txt).

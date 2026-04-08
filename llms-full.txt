@@ -1,0 +1,174 @@
+# Vygl — AI-Powered Security Scanning Platform
+
+> Vygl is a security scanning platform that combines SAST, SCA, secrets detection, and IaC scanning with AI-powered triage. It helps development and security teams find vulnerabilities, cut through false positives, and focus on fixing what actually matters.
+
+## Product Overview
+
+Vygl is designed for security-conscious development teams who need comprehensive vulnerability scanning without the noise. It runs multiple scan engines in parallel and uses AI to analyze every finding, scoring confidence levels, identifying false positives, and suggesting fixes.
+
+The platform operates on a privacy-first model: scans run in your environment (as a Docker container), and only findings metadata is sent to the cloud dashboard. Your source code never leaves your infrastructure.
+
+## Scan Engines
+
+### SAST (Static Application Security Testing)
+- **Engine**: OpenGrep
+- **Purpose**: Analyzes source code for security vulnerabilities
+- **Detects**: SQL injection (SQLi), Cross-Site Scripting (XSS), Remote Code Execution (RCE), Command Injection, Path Traversal, Server-Side Request Forgery (SSRF), Insecure Deserialization
+- **Languages**: Supports 7+ programming languages
+
+### SCA (Software Composition Analysis)
+- **Engine**: OSV (Open Source Vulnerabilities)
+- **Purpose**: Identifies vulnerable third-party dependencies
+- **Detects**: Known CVEs including Log4Shell (CVE-2021-44228), Spring4Shell, jackson-databind vulnerabilities, and thousands more
+- **Features**: CVE tracking across 7+ languages, CycloneDX SBOM export
+- **Languages**: Python, Java, JavaScript/Node.js, Go, Ruby, PHP, Rust, and more
+
+### Secrets Detection
+- **Engine**: Gitleaks
+- **Purpose**: Finds hardcoded secrets and credentials in code
+- **Detects**: AWS access keys, database credentials, JWT secrets, private keys, API tokens, OAuth secrets
+- **Coverage**: 600+ detection patterns
+- **Capabilities**: Identifies secrets across code, configuration files, and git history
+
+### IaC (Infrastructure as Code) Scanning
+- **Engine**: Checkov
+- **Purpose**: Detects infrastructure misconfigurations
+- **Detects**: Public S3 buckets, unrestricted security groups (0.0.0.0/0 ingress), overprivileged IAM roles, container misconfigurations
+- **Supports**: Terraform, Kubernetes manifests, Dockerfiles, CloudFormation templates, Helm charts
+
+## AI-Powered Triage
+
+Every finding from all scan engines flows through Vygl's AI triage system:
+
+1. **Confidence Scoring**: Each finding receives a confidence score (High, Medium, Low)
+2. **Verdict Classification**: Findings are classified as True Positive, Likely True Positive, Likely False Positive, or False Positive
+3. **Reasoning**: AI provides detailed reasoning for each verdict, explaining why a finding is or isn't exploitable
+4. **Suggested Fixes**: True positive findings include AI-generated fix suggestions with code examples
+5. **Deduplication**: SHA-256 fingerprinting eliminates duplicate findings across multiple scans
+
+### Bring Your Own LLM
+Teams can use Vygl's built-in LLM provider or configure their own (e.g., GPT-4o, Claude, or self-hosted models).
+
+## AI Security Brief
+
+One-click comprehensive security report that:
+- Analyzes all open findings across all scan types
+- Generates an executive summary of the project's security posture
+- Identifies priority actions (critical issues to fix first)
+- Suggests quick wins (low-effort, high-impact fixes)
+- Provides finding counts by severity and type
+
+## How It Works
+
+1. **Install**: Run Vygl as a Docker container in your CI/CD pipeline or locally
+2. **Scan**: Vygl runs all four scan engines (SAST, SCA, Secrets, IaC) against your codebase
+3. **Triage**: AI automatically reviews every finding, scoring confidence and identifying false positives
+4. **Review**: Results appear in the cloud dashboard and/or as PR/MR comments
+5. **Fix**: Use AI-suggested fixes and priority rankings to remediate efficiently
+
+### CI/CD Integration
+Vygl runs as a Docker container and integrates with:
+- GitHub Actions
+- GitLab CI/CD
+- Any Docker-compatible CI/CD pipeline
+- Local development environments
+
+### Policy as Code
+Security policies are cloud-managed with three modes:
+- **Monitor**: Track findings without blocking
+- **Block**: Fail CI/CD pipelines on policy violations
+- **Disable**: Turn off specific rules
+
+## Integrations
+
+### GitHub PR Comments (Available)
+Vygl bot posts scan results directly on pull requests including:
+- Finding counts by severity (critical, high, medium, low)
+- New vs recurring findings
+- Findings table with severity, type, description, and file location
+- AI triage summary with verdicts for each finding
+
+### GitLab MR Comments (Available)
+Same capabilities as GitHub integration, posted on merge requests.
+
+### Slack Notifications (Available)
+- Scan completion summaries
+- Critical and high finding alerts
+- Direct links to findings in the dashboard
+- Test notification support
+
+### Microsoft Teams (Coming Soon)
+Scan notifications and finding alerts in Teams channels.
+
+### Custom Webhooks (Coming Soon)
+Send scan events to any HTTP endpoint for custom integrations.
+
+## Cloud Dashboard
+
+Unified security dashboard providing:
+- **Security Posture Overview**: Total open findings across all projects
+- **Findings Over Time**: Trend charts showing new vs resolved findings
+- **Severity Distribution**: Visual breakdown of critical, high, medium, and low findings
+- **Top Vulnerabilities**: Table of most common findings by rule, severity, and type
+- **Project Management**: Multi-project support with branch-level tracking
+- **Finding Detail Pages**: Full context for each finding including code snippets, AI verdicts, and fix suggestions
+
+## Comparison with Alternatives
+
+Vygl differentiates from other security scanning tools by:
+- **Unified platform**: SAST + SCA + Secrets + IaC in a single tool (vs running Semgrep, Snyk, TruffleHog, and Checkov separately)
+- **AI triage built-in**: Automatic false positive identification (vs manual triage in most scanners)
+- **Privacy-first**: Code stays in your environment (vs cloud-based scanners that upload code)
+- **AI Security Brief**: One-click security report generation (unique to Vygl)
+- **Never blocks CI/CD by default**: Non-intrusive scanning that reports without blocking (configurable via Policy as Code)
+
+## Technical Details
+
+- **Operating Systems**: Linux, macOS, Windows
+- **Deployment**: Docker container
+- **Output Formats**: CycloneDX SBOM, dashboard, PR/MR comments, Slack, webhooks
+- **Detection Rules**: 600+ built-in patterns
+- **Language Support**: 7+ programming languages
+
+## Pricing and Access
+
+- **Open Source Projects**: Free
+- **Commercial Teams**: Invitation-only (request access at access@vygl.io)
+
+## Contact
+
+- **Website**: https://vygl.io
+- **Email**: access@vygl.io
+- **Access Requests**: access@vygl.io
+
+## Frequently Asked Questions
+
+### What is Vygl?
+Vygl is an AI-powered security scanning platform that combines SAST, SCA, secrets detection, and IaC scanning with AI-powered triage to help development teams find and fix vulnerabilities.
+
+### What types of vulnerabilities does Vygl detect?
+Vygl detects SQL injection, XSS, command injection, path traversal, SSRF in source code (SAST); known CVEs in dependencies like Log4Shell (SCA); hardcoded API keys, credentials, and secrets (Secrets); and infrastructure misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation (IaC).
+
+### How does Vygl's AI triage work?
+Every finding is automatically reviewed by an LLM that classifies it as a true or false positive, assigns a confidence score, provides reasoning, and suggests fixes for confirmed vulnerabilities.
+
+### Does Vygl access my source code?
+No. Vygl runs scans in your environment (as a Docker container). Only findings metadata is sent to the cloud dashboard — your source code never leaves your infrastructure.
+
+### What CI/CD pipelines does Vygl support?
+Vygl runs as a Docker container and works with GitHub Actions, GitLab CI/CD, and any Docker-compatible pipeline.
+
+### Is Vygl free?
+Vygl is free for open-source projects. Commercial access is invitation-only — email access@vygl.io to request access.
+
+### What scan engines does Vygl use?
+Vygl uses OpenGrep for SAST, OSV for SCA, Gitleaks for secrets detection, and Checkov for IaC scanning.
+
+### Can I use my own LLM provider with Vygl?
+Yes. Vygl supports bring-your-own-LLM configuration, or you can use Vygl's built-in provider.
+
+### Does Vygl block my CI/CD pipeline?
+By default, no. Vygl reports findings without blocking. You can configure blocking behavior through Policy as Code rules with monitor, block, and disable modes.
+
+### What programming languages does Vygl support?
+Vygl supports 7+ languages including Python, Java, JavaScript/Node.js, Go, Ruby, PHP, and Rust.

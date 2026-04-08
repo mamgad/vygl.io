@@ -11,6 +11,11 @@
   <meta name="google-site-verification" content="WkHeSueu08FQA31fdi_ZU9uE_irkJz4mZOvo5DmyAkY" />
   <link rel="canonical" href="https://vygl.io/" />
 
+  <!-- AI Engine Optimization -->
+  <meta name="ai-content-description" content="Vygl is an AI-powered security scanning platform combining SAST, SCA, secrets detection, and IaC scanning with AI-powered triage. It uses OpenGrep, OSV, Gitleaks, and Checkov engines. Free for open source. Invitation-only for commercial teams." />
+  <link rel="alternate" type="text/plain" href="https://vygl.io/llms.txt" title="LLM-readable site information" />
+  <link rel="alternate" type="text/plain" href="https://vygl.io/llms-full.txt" title="Detailed LLM-readable site information" />
+
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://vygl.io/" />
@@ -41,14 +46,23 @@
     "@type": "SoftwareApplication",
     "name": "Vygl",
     "url": "https://vygl.io",
-    "description": "Security scanning platform with AI-powered triage. Find vulnerabilities across code, dependencies, secrets, and infrastructure.",
+    "description": "Vygl is an AI-powered security scanning platform that combines SAST, SCA, secrets detection, and infrastructure-as-code scanning with AI-powered triage. It helps development teams find vulnerabilities, identify false positives, and focus on fixing what actually matters.",
     "applicationCategory": "DeveloperApplication",
+    "applicationSubCategory": "Security Scanning",
     "operatingSystem": "Linux, macOS, Windows",
+    "featureList": "SAST scanning via OpenGrep, SCA scanning via OSV, Secrets detection via Gitleaks, IaC scanning via Checkov, AI-powered triage with confidence scoring, AI Security Brief reports, GitHub PR comments, GitLab MR comments, Slack notifications, Policy as Code, CycloneDX SBOM export, SHA-256 finding deduplication",
+    "softwareRequirements": "Docker",
+    "releaseNotes": "Multi-engine scanning with AI triage for code, dependencies, secrets, and infrastructure",
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD",
       "description": "Free for open source projects"
+    },
+    "creator": {
+      "@type": "Organization",
+      "name": "Vygl",
+      "url": "https://vygl.io"
     }
   }
   </script>
@@ -59,7 +73,14 @@
     "name": "Vygl",
     "url": "https://vygl.io",
     "logo": "https://vygl.io/og-image.png",
-    "description": "Security scanning platform with AI-powered triage for SAST, SCA, secrets detection, and IaC scanning.",
+    "description": "Vygl builds an AI-powered security scanning platform for SAST, SCA, secrets detection, and IaC scanning. The platform uses AI triage to identify false positives and help development teams fix real vulnerabilities faster.",
+    "foundingDate": "2025",
+    "knowsAbout": ["Application Security", "SAST", "SCA", "Secrets Detection", "Infrastructure as Code Security", "DevSecOps", "AI-Powered Security Triage", "Vulnerability Management"],
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "access@vygl.io",
+      "contactType": "sales"
+    },
     "sameAs": []
   }
   </script>
@@ -68,8 +89,131 @@
     "@context": "https://schema.org",
     "@type": "WebSite",
     "name": "Vygl",
-    "alternateName": "Vygl Security",
-    "url": "https://vygl.io"
+    "alternateName": ["Vygl Security", "Vygl Security Scanner", "Vygl AppSec"],
+    "url": "https://vygl.io",
+    "description": "Vygl is an AI-powered security scanning platform for SAST, SCA, secrets detection, and IaC scanning with AI-powered triage."
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Vygl?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vygl is an AI-powered security scanning platform that combines four scan engines — SAST (OpenGrep), SCA (OSV), Secrets Detection (Gitleaks), and IaC Scanning (Checkov) — with AI-powered triage. It helps development teams find vulnerabilities across code, dependencies, secrets, and infrastructure, then uses AI to identify false positives and suggest fixes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What types of vulnerabilities does Vygl detect?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vygl detects SQL injection, XSS, command injection, path traversal, and SSRF in source code (SAST); known CVEs in dependencies like Log4Shell and Spring4Shell (SCA); hardcoded API keys, database credentials, JWT secrets, and private keys using 600+ patterns (Secrets); and infrastructure misconfigurations like public S3 buckets and unrestricted security groups in Terraform, Kubernetes, Docker, and CloudFormation (IaC)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Vygl's AI triage work?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Every finding from all scan engines is automatically reviewed by an LLM. The AI classifies each finding as a true or false positive, assigns a confidence score (high, medium, low), provides detailed reasoning, and suggests fixes for confirmed vulnerabilities. Teams can bring their own LLM provider or use Vygl's built-in provider."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Vygl access my source code?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. Vygl runs scans in your environment as a Docker container. Only findings metadata is sent to the cloud dashboard — your source code never leaves your infrastructure. This privacy-first approach means your code stays yours."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What CI/CD pipelines does Vygl support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vygl runs as a Docker container and works with GitHub Actions, GitLab CI/CD, and any Docker-compatible pipeline. It can also run locally for development. By default, Vygl reports findings without blocking your pipeline, but you can configure blocking behavior through Policy as Code rules."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is Vygl free?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vygl is free for open-source projects. Commercial access is currently invitation-only. You can request access by emailing access@vygl.io."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What scan engines does Vygl use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vygl uses four specialized engines: OpenGrep for SAST (static code analysis), OSV for SCA (dependency vulnerability scanning), Gitleaks for secrets detection (600+ patterns), and Checkov for IaC scanning (Terraform, Kubernetes, Docker, CloudFormation)."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How does Vygl compare to other security scanning tools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vygl combines SAST, SCA, secrets detection, and IaC scanning in a single platform (vs running Semgrep, Snyk, TruffleHog, and Checkov separately). It has AI triage built-in for automatic false positive identification, operates privacy-first with code staying in your environment, offers one-click AI Security Brief reports, and never blocks CI/CD by default."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What integrations does Vygl support?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Vygl integrates with GitHub (PR comments), GitLab (MR comments), and Slack (real-time notifications). Microsoft Teams and custom webhook integrations are coming soon. Vygl also exports CycloneDX SBOMs and provides a cloud dashboard for centralized finding management."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is Vygl's AI Security Brief?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The AI Security Brief is a one-click feature that generates a comprehensive AI-powered security report for your project. It analyzes all open findings across scan types and provides an executive summary, priority actions (critical issues to fix first), and quick wins (low-effort, high-impact fixes)."
+        }
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": "How to get started with Vygl security scanning",
+    "description": "Set up Vygl to scan your codebase for vulnerabilities, insecure dependencies, hardcoded secrets, and infrastructure misconfigurations with AI-powered triage.",
+    "step": [
+      {
+        "@type": "HowToStep",
+        "position": 1,
+        "name": "Request access",
+        "text": "Email access@vygl.io to request an invitation. Vygl is free for open-source projects."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 2,
+        "name": "Run Vygl in your CI/CD pipeline",
+        "text": "Run Vygl as a Docker container in GitHub Actions, GitLab CI, or any Docker-compatible pipeline. Vygl can also run locally."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 3,
+        "name": "Review AI-triaged findings",
+        "text": "View scan results in the cloud dashboard, GitHub PR comments, GitLab MR comments, or Slack. AI triage automatically classifies findings as true or false positives with confidence scores."
+      },
+      {
+        "@type": "HowToStep",
+        "position": 4,
+        "name": "Fix prioritized vulnerabilities",
+        "text": "Use AI-suggested fixes and the Security Brief to prioritize and remediate real vulnerabilities. Generate one-click security reports for your team."
+      }
+    ]
   }
   </script>
 
@@ -1085,6 +1229,61 @@
       </div>
     </div>
   </section>
+
+  <!-- ─── Machine-readable content for AI engines ─── -->
+  <article class="sr-only" aria-hidden="true" itemscope itemtype="https://schema.org/SoftwareApplication">
+    <meta itemprop="name" content="Vygl" />
+    <meta itemprop="url" content="https://vygl.io" />
+    <meta itemprop="applicationCategory" content="DeveloperApplication" />
+    <h2 itemprop="description">Vygl is an AI-powered security scanning platform that combines SAST, SCA, secrets detection, and IaC scanning with AI-powered triage to help development teams find and fix vulnerabilities.</h2>
+    <section>
+      <h3>About Vygl</h3>
+      <p>Vygl is a security scanning platform built for modern development teams. It runs four specialized scan engines — OpenGrep for SAST (static application security testing), OSV for SCA (software composition analysis), Gitleaks for secrets detection, and Checkov for infrastructure-as-code scanning — and uses AI-powered triage to classify every finding as a true or false positive with confidence scores and suggested fixes.</p>
+      <p>Vygl operates on a privacy-first model where scans run in your environment as a Docker container. Only findings metadata reaches the cloud dashboard — your source code never leaves your infrastructure.</p>
+    </section>
+    <section>
+      <h3>Core Capabilities</h3>
+      <dl>
+        <dt>SAST (Static Application Security Testing)</dt>
+        <dd>OpenGrep engine detects SQL injection, XSS, command injection, path traversal, SSRF, and insecure deserialization across 7+ programming languages.</dd>
+        <dt>SCA (Software Composition Analysis)</dt>
+        <dd>OSV engine identifies vulnerable dependencies like Log4Shell (CVE-2021-44228) and Spring4Shell with CVE tracking and CycloneDX SBOM export.</dd>
+        <dt>Secrets Detection</dt>
+        <dd>Gitleaks engine finds hardcoded AWS keys, database credentials, JWT secrets, and private keys using 600+ detection patterns.</dd>
+        <dt>IaC (Infrastructure as Code) Scanning</dt>
+        <dd>Checkov engine catches public S3 buckets, unrestricted security groups, overprivileged IAM roles in Terraform, Kubernetes, Docker, and CloudFormation.</dd>
+        <dt>AI-Powered Triage</dt>
+        <dd>Every finding is reviewed by an LLM that scores confidence, classifies true vs false positives, and suggests fixes. Supports bring-your-own-LLM.</dd>
+        <dt>AI Security Brief</dt>
+        <dd>One-click AI-generated security report with executive summary, priority actions, and quick wins across all findings.</dd>
+      </dl>
+    </section>
+    <section>
+      <h3>Integrations</h3>
+      <ul>
+        <li>GitHub PR comments with scan results and AI triage summaries</li>
+        <li>GitLab MR comments with scan results and AI triage summaries</li>
+        <li>Slack real-time notifications with severity breakdowns and direct links</li>
+        <li>CI/CD integration via Docker (GitHub Actions, GitLab CI, any Docker pipeline)</li>
+        <li>Microsoft Teams notifications (coming soon)</li>
+        <li>Custom webhooks (coming soon)</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Key Differentiators</h3>
+      <ul>
+        <li>Unified platform: SAST + SCA + Secrets + IaC in one tool (vs running Semgrep, Snyk, TruffleHog, and Checkov separately)</li>
+        <li>AI triage built-in: Automatic false positive identification with confidence scoring</li>
+        <li>Privacy-first: Source code stays in your environment, only metadata reaches the cloud</li>
+        <li>Non-blocking: Reports findings without blocking CI/CD by default (configurable via Policy as Code)</li>
+        <li>Smart deduplication: SHA-256 fingerprinting eliminates duplicate findings across scans</li>
+      </ul>
+    </section>
+    <section>
+      <h3>Pricing</h3>
+      <p>Vygl is free for open-source projects. Commercial access is invitation-only. Request access at access@vygl.io.</p>
+    </section>
+  </article>
 
   <!-- ─── Footer ─── -->
   <footer class="footer">
