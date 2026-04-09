@@ -1462,6 +1462,128 @@
     </div>
   </footer>
 
+  <!-- ─── Side Navigation (Desktop) ─── -->
+  <nav class="side-nav" id="side-nav" aria-label="Section navigation">
+    <div class="side-nav-panel">
+      <div class="side-nav-header">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>NAV</span>
+      </div>
+      <div class="side-nav-track-wrap">
+        <div class="side-nav-track"></div>
+        <div class="side-nav-progress" id="side-nav-progress"></div>
+        <div class="side-nav-items">
+          <a href="#scan-demo" class="side-nav-item active" data-section="scan-demo">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">Overview</span>
+          </a>
+          <a href="#features" class="side-nav-item" data-section="features">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">Features</span>
+          </a>
+          <a href="#ai-demo" class="side-nav-item" data-section="ai-demo">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">AI Triage</span>
+          </a>
+          <a href="#ai-consultation" class="side-nav-item" data-section="ai-consultation">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">Sec Brief</span>
+          </a>
+          <a href="#how-it-works" class="side-nav-item" data-section="how-it-works">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">CLI</span>
+          </a>
+          <a href="#dashboard" class="side-nav-item" data-section="dashboard">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">Dashboard</span>
+          </a>
+          <a href="#benefits" class="side-nav-item" data-section="benefits">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">Why Vygl</span>
+          </a>
+          <a href="#integrations" class="side-nav-item" data-section="integrations">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">Integrations</span>
+          </a>
+          <a href="#mcp" class="side-nav-item" data-section="mcp">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">MCP IDE</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ─── Mobile TOC Button ─── -->
+  <button class="toc-fab" id="toc-fab" aria-label="Table of contents">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="18" y2="18"/></svg>
+  </button>
+
+  <!-- ─── Mobile TOC Panel ─── -->
+  <div class="toc-panel" id="toc-panel">
+    <div class="toc-panel-backdrop" id="toc-backdrop"></div>
+    <div class="toc-panel-content">
+      <div class="toc-panel-header">
+        <span class="toc-panel-title">Contents</span>
+        <button class="toc-panel-close" id="toc-close" aria-label="Close table of contents">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="toc-panel-links">
+        <a href="#scan-demo" class="toc-link" data-section="scan-demo">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">Overview</span>
+          <span class="toc-link-desc">Hero & scan demo</span>
+        </a>
+        <a href="#features" class="toc-link" data-section="features">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">Features</span>
+          <span class="toc-link-desc">SAST, SCA, Secrets, IaC</span>
+        </a>
+        <a href="#ai-demo" class="toc-link" data-section="ai-demo">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">AI Triage</span>
+          <span class="toc-link-desc">Automated verification</span>
+        </a>
+        <a href="#ai-consultation" class="toc-link" data-section="ai-consultation">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">Security Brief</span>
+          <span class="toc-link-desc">AI-generated reports</span>
+        </a>
+        <a href="#how-it-works" class="toc-link" data-section="how-it-works">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">CLI</span>
+          <span class="toc-link-desc">Terminal & Docker usage</span>
+        </a>
+        <a href="#dashboard" class="toc-link" data-section="dashboard">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">Dashboard</span>
+          <span class="toc-link-desc">Cloud results view</span>
+        </a>
+        <a href="#benefits" class="toc-link" data-section="benefits">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">Why Vygl</span>
+          <span class="toc-link-desc">Privacy, coverage, CI/CD</span>
+        </a>
+        <a href="#integrations" class="toc-link" data-section="integrations">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">Integrations</span>
+          <span class="toc-link-desc">GitHub, GitLab, Slack</span>
+        </a>
+        <a href="#mcp" class="toc-link" data-section="mcp">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">MCP IDE</span>
+          <span class="toc-link-desc">Claude Code, Cursor</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── Back to Top ─── -->
+  <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+  </button>
+
   <script src="script.js" defer></script>
 </body>
 </html>

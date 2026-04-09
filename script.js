@@ -745,3 +745,162 @@ if (mcpSectionEl) {
   }, { threshold: 0.3 });
   mcpObserver.observe(mcpSectionEl);
 }
+
+// ─── Side Navigation & Active Section Tracking ───
+(function() {
+  var sideNav = document.getElementById('side-nav');
+  var tocFab = document.getElementById('toc-fab');
+  var tocPanel = document.getElementById('toc-panel');
+  var tocClose = document.getElementById('toc-close');
+  var tocBackdrop = document.getElementById('toc-backdrop');
+  var backToTop = document.getElementById('back-to-top');
+
+  if (!sideNav) return;
+
+  // Section IDs in order
+  var sectionIds = [
+    'scan-demo', 'features', 'ai-demo', 'ai-consultation',
+    'how-it-works', 'dashboard', 'benefits', 'integrations', 'mcp'
+  ];
+
+  // Map section IDs to top nav hrefs
+  var navLinkMap = {
+    'features': '#features',
+    'ai-consultation': '#ai-consultation',
+    'how-it-works': '#how-it-works',
+    'integrations': '#integrations',
+    'benefits': '#benefits'
+  };
+
+  var sideNavItems = sideNav.querySelectorAll('.side-nav-item');
+  var sideNavProgress = document.getElementById('side-nav-progress');
+  var tocLinks = tocPanel ? tocPanel.querySelectorAll('.toc-link') : [];
+  var topNavLinks = document.querySelectorAll('.nav-links a');
+  var currentActive = 'scan-demo';
+
+  function setActive(sectionId) {
+    if (sectionId === currentActive) return;
+    currentActive = sectionId;
+
+    // Update side nav items
+    var activeIdx = 0;
+    sideNavItems.forEach(function(item, i) {
+      var isActive = item.dataset.section === sectionId;
+      item.classList.toggle('active', isActive);
+      if (isActive) activeIdx = i;
+    });
+
+    // Update progress bar height
+    if (sideNavProgress && sideNavItems.length > 1) {
+      var pct = (activeIdx / (sideNavItems.length - 1)) * 100;
+      sideNavProgress.style.height = pct + '%';
+    }
+
+    // Update mobile TOC
+    tocLinks.forEach(function(link) {
+      link.classList.toggle('active', link.dataset.section === sectionId);
+    });
+
+    // Update top nav links
+    topNavLinks.forEach(function(link) {
+      var href = link.getAttribute('href');
+      var matchesSection = false;
+      for (var id in navLinkMap) {
+        if (navLinkMap[id] === href && id === sectionId) {
+          matchesSection = true;
+          break;
+        }
+      }
+      link.classList.toggle('nav-active', matchesSection);
+    });
+  }
+
+  // IntersectionObserver to track which section is visible
+  var sectionEls = [];
+  sectionIds.forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) sectionEls.push({ id: id, el: el });
+  });
+
+  var sectionObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setActive(entry.target.id);
+      }
+    });
+  }, {
+    rootMargin: '-30% 0px -60% 0px',
+    threshold: 0
+  });
+
+  sectionEls.forEach(function(s) {
+    sectionObserver.observe(s.el);
+  });
+
+  // Show/hide side nav & back-to-top based on scroll position
+  var showThreshold = 300;
+
+  function updateVisibility() {
+    var scrolled = window.scrollY > showThreshold;
+    sideNav.classList.toggle('visible', scrolled);
+    if (tocFab) tocFab.classList.toggle('visible', scrolled);
+    if (backToTop) backToTop.classList.toggle('visible', scrolled);
+  }
+
+  window.addEventListener('scroll', updateVisibility, { passive: true });
+  updateVisibility();
+
+  // Back to top
+  if (backToTop) {
+    backToTop.addEventListener('click', function() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
+  // Mobile TOC toggle
+  function openToc() {
+    if (tocPanel) tocPanel.classList.add('open');
+  }
+
+  function closeToc() {
+    if (tocPanel) tocPanel.classList.remove('open');
+  }
+
+  if (tocFab) tocFab.addEventListener('click', openToc);
+  if (tocClose) tocClose.addEventListener('click', closeToc);
+  if (tocBackdrop) tocBackdrop.addEventListener('click', closeToc);
+
+  // Close TOC on link click
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function() {
+      closeToc();
+    });
+  });
+
+  // Side nav smooth scroll + update URL bar
+  sideNavItems.forEach(function(item) {
+    item.addEventListener('click', function(e) {
+      var href = item.getAttribute('href');
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', href);
+      }
+    });
+  });
+
+  // Mobile TOC links update URL bar too
+  tocLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var href = link.getAttribute('href');
+      var target = document.querySelector(href);
+      if (target) {
+        e.preventDefault();
+        closeToc();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', href);
+      }
+    });
+  });
+})();
