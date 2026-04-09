@@ -757,19 +757,20 @@ if (mcpSectionEl) {
 
   if (!sideNav) return;
 
-  // Section IDs in order
+  // Section IDs in order (matches page flow)
   var sectionIds = [
     'scan-demo', 'features', 'ai-demo', 'ai-consultation',
-    'how-it-works', 'dashboard', 'benefits', 'integrations', 'mcp'
+    'providers', 'benefits', 'how-it-works', 'dashboard', 'integrations', 'mcp'
   ];
 
   // Map section IDs to top nav hrefs
   var navLinkMap = {
     'features': '#features',
-    'ai-consultation': '#ai-consultation',
+    'ai-demo': '#ai-demo',
+    'providers': '#providers',
     'how-it-works': '#how-it-works',
     'integrations': '#integrations',
-    'benefits': '#benefits'
+    'mcp': '#mcp'
   };
 
   var sideNavItems = sideNav.querySelectorAll('.side-nav-item');

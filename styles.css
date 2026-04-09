@@ -2364,6 +2364,133 @@ img { max-width: 100%; }
   .gh-timeline { grid-template-columns: 32px 1fr; padding: 0.75rem; }
 }
 
+/* ─── LLM Providers ─── */
+.llm-providers {
+  padding: 5rem 0;
+}
+
+.providers-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  max-width: 880px;
+  margin: 0 auto;
+}
+
+.provider-card {
+  display: flex;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-elevated);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.provider-card:hover {
+  border-color: var(--border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+.provider-featured {
+  border-color: rgba(96, 165, 250, 0.25);
+  background: linear-gradient(135deg, var(--bg-elevated) 0%, rgba(96, 165, 250, 0.04) 100%);
+}
+
+.provider-featured:hover {
+  border-color: rgba(96, 165, 250, 0.4);
+}
+
+.provider-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-xs);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--fg-muted);
+  flex-shrink: 0;
+}
+
+.provider-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.provider-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.provider-desc {
+  font-size: 0.75rem;
+  color: var(--fg-faint);
+}
+
+.provider-badge {
+  position: absolute;
+  top: -0.5rem;
+  right: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.125rem 0.5rem;
+  border-radius: 3px;
+}
+
+.provider-badge-primary {
+  color: var(--accent);
+  background: var(--blue-bg);
+  border: 1px solid rgba(96, 165, 250, 0.2);
+}
+
+.providers-note {
+  text-align: center;
+  font-size: 0.8125rem;
+  color: var(--fg-faint);
+  margin-top: 1.75rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+[data-theme="light"] .provider-card {
+  background: #fff;
+}
+
+[data-theme="light"] .provider-featured {
+  background: linear-gradient(135deg, #fff 0%, rgba(37, 99, 235, 0.03) 100%);
+}
+
+[data-theme="light"] .provider-icon {
+  background: rgba(0, 0, 0, 0.03);
+  border-color: rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 768px) {
+  .providers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .providers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ─── Benefits ─── */
 .benefits {
   padding: 6rem 0;
   background: var(--bg-elevated);
