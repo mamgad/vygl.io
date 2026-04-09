@@ -2417,14 +2417,6 @@ img { max-width: 100%; }
   flex-shrink: 0;
 }
 
-.provider-logo-text {
-  font-family: var(--font-display);
-  font-size: 0.6875rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  color: var(--fg-muted);
-}
-
 .provider-info {
   display: flex;
   flex-direction: column;
