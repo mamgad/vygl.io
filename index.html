@@ -1027,18 +1027,48 @@
             </div>
           </div>
           <div class="dash-main">
-            <!-- Posture banner -->
-            <div class="dash-posture">
-              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
-              <span><strong>293 open findings</strong> &nbsp;·&nbsp; 8 projects &nbsp;·&nbsp; 56 scans (30d)</span>
-              <span class="dash-posture-btn">View all &rarr;</span>
+            <!-- Key Metrics Strip -->
+            <div class="dash-metrics">
+              <div class="dash-metric">
+                <div class="dash-metric-top">
+                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                  <span class="dash-metric-label">Open</span>
+                </div>
+                <span class="dash-metric-value dash-metric-val-red">293</span>
+              </div>
+              <div class="dash-metric">
+                <div class="dash-metric-top">
+                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                  <span class="dash-metric-label">MTTR</span>
+                </div>
+                <span class="dash-metric-value">4.2h</span>
+              </div>
+              <div class="dash-metric">
+                <div class="dash-metric-top">
+                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                  <span class="dash-metric-label">Scan Success</span>
+                </div>
+                <span class="dash-metric-value dash-metric-val-green">94%</span>
+              </div>
+              <div class="dash-metric">
+                <div class="dash-metric-top">
+                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                  <span class="dash-metric-label">AI Cleared</span>
+                </div>
+                <span class="dash-metric-value dash-metric-val-green">47</span>
+              </div>
             </div>
             <!-- Area chart -->
             <div class="dash-chart-card">
               <div class="dash-chart-head">
                 <span class="dash-chart-title">Findings Over Time</span>
-                <div class="dash-chart-range">
-                  <span>7D</span><span class="dash-range-active">1M</span><span>3M</span><span>6M</span>
+                <div class="dash-chart-controls">
+                  <div class="dash-chart-toggle">
+                    <span class="dash-toggle-active">Status</span><span>Type</span>
+                  </div>
+                  <div class="dash-chart-range">
+                    <span>7D</span><span class="dash-range-active">1M</span><span>3M</span><span>6M</span>
+                  </div>
                 </div>
               </div>
               <div class="dash-area-chart">
@@ -1047,10 +1077,8 @@
                     <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ef4444" stop-opacity="0.25"/><stop offset="100%" stop-color="#ef4444" stop-opacity="0"/></linearGradient>
                     <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#22c55e" stop-opacity="0.2"/><stop offset="100%" stop-color="#22c55e" stop-opacity="0"/></linearGradient>
                   </defs>
-                  <!-- New findings area -->
                   <path d="M0,85 L30,80 L70,75 L110,78 L150,60 L190,55 L230,50 L270,35 L310,20 L350,30 L400,25 L400,100 L0,100Z" fill="url(#redGrad)"/>
                   <polyline points="0,85 30,80 70,75 110,78 150,60 190,55 230,50 270,35 310,20 350,30 400,25" fill="none" stroke="#ef4444" stroke-width="2"/>
-                  <!-- Resolved area -->
                   <path d="M0,90 L30,88 L70,85 L110,80 L150,82 L190,75 L230,70 L270,65 L310,55 L350,50 L400,45 L400,100 L0,100Z" fill="url(#greenGrad)"/>
                   <polyline points="0,90 30,88 70,85 110,80 150,82 190,75 230,70 270,65 310,55 350,50 400,45" fill="none" stroke="#22c55e" stroke-width="2"/>
                 </svg>
@@ -1060,36 +1088,51 @@
                 <span><span class="dash-legend-line dash-legend-green"></span> Resolved</span>
               </div>
             </div>
-            <!-- Bottom: severity + table side by side -->
+            <!-- Bottom: AI Insights + Top Rules -->
             <div class="dash-bottom">
-              <div class="dash-severity-card">
-                <div class="dash-sev-title">Severity Distribution</div>
-                <div class="dash-donut-wrap">
-                  <svg aria-hidden="true" viewBox="0 0 100 100" class="dash-donut">
-                    <circle cx="50" cy="50" r="38" fill="none" stroke="var(--border)" stroke-width="10"/>
-                    <circle cx="50" cy="50" r="38" fill="none" stroke="#ef4444" stroke-width="10" stroke-dasharray="30 209" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
-                    <circle cx="50" cy="50" r="38" fill="none" stroke="#fb923c" stroke-width="10" stroke-dasharray="58 181" stroke-dashoffset="-30" transform="rotate(-90 50 50)"/>
-                    <circle cx="50" cy="50" r="38" fill="none" stroke="#eab308" stroke-width="10" stroke-dasharray="80 159" stroke-dashoffset="-88" transform="rotate(-90 50 50)"/>
-                    <circle cx="50" cy="50" r="38" fill="none" stroke="#60a5fa" stroke-width="10" stroke-dasharray="30 209" stroke-dashoffset="-168" transform="rotate(-90 50 50)"/>
-                    <text x="50" y="47" text-anchor="middle" class="dash-donut-num">293</text>
-                    <text x="50" y="58" text-anchor="middle" class="dash-donut-label">findings</text>
-                  </svg>
+              <div class="dash-ai-card">
+                <div class="dash-ai-header">
+                  <div class="dash-ai-title">
+                    <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                    AI Insights
+                  </div>
+                  <span class="dash-ai-status"><span class="dash-ai-dot"></span> Active</span>
                 </div>
-                <div class="dash-sev-list">
-                  <div><span class="dash-sev-dot" style="background:#ef4444"></span>Critical <strong>42</strong></div>
-                  <div><span class="dash-sev-dot" style="background:#fb923c"></span>High <strong>87</strong></div>
-                  <div><span class="dash-sev-dot" style="background:#eab308"></span>Medium <strong>121</strong></div>
-                  <div><span class="dash-sev-dot" style="background:#60a5fa"></span>Low <strong>43</strong></div>
+                <!-- Coverage bar -->
+                <div class="dash-ai-coverage">
+                  <div class="dash-ai-coverage-row">
+                    <span>251 of 293 analyzed</span>
+                    <span class="dash-ai-pct">86%</span>
+                  </div>
+                  <div class="dash-ai-bar">
+                    <div class="dash-ai-bar-seg" style="width:64.5%;background:#ef4444"></div>
+                    <div class="dash-ai-bar-seg" style="width:16%;background:#22c55e"></div>
+                    <div class="dash-ai-bar-seg" style="width:5.1%;background:#eab308"></div>
+                  </div>
+                </div>
+                <!-- Verdict rows -->
+                <div class="dash-ai-verdicts">
+                  <div class="dash-ai-verdict"><span class="dash-ai-vdot" style="background:#ef4444"></span>True Positive<strong>189</strong><span class="dash-ai-vpct">64%</span></div>
+                  <div class="dash-ai-verdict"><span class="dash-ai-vdot" style="background:#22c55e"></span>False Positive<strong>47</strong><span class="dash-ai-vpct">16%</span></div>
+                  <div class="dash-ai-verdict"><span class="dash-ai-vdot" style="background:#eab308"></span>Uncertain<strong>15</strong><span class="dash-ai-vpct">5%</span></div>
+                  <div class="dash-ai-verdict"><span class="dash-ai-vdot" style="background:var(--fg-faint)"></span>Pending<strong>42</strong><span class="dash-ai-vpct">14%</span></div>
+                </div>
+                <!-- Confidence -->
+                <div class="dash-ai-confidence">
+                  <span class="dash-ai-conf-label">Confidence</span>
+                  <span class="dash-ai-conf-val dash-ai-conf-green">198 High</span>
+                  <span class="dash-ai-conf-val dash-ai-conf-yellow">41 Med</span>
+                  <span class="dash-ai-conf-val dash-ai-conf-red">12 Low</span>
                 </div>
               </div>
               <div class="dash-table-card">
-                <div class="dash-table-title">Top Vulnerabilities</div>
+                <div class="dash-table-title">Top Rules</div>
                 <div class="dash-table">
-                  <div class="dash-table-head"><span>Rule</span><span>Severity</span><span>Type</span><span>Count</span></div>
-                  <div class="dash-table-row"><span>gitleaks.generic-api-key</span><span class="dash-sev-red">High</span><span class="dash-type-red">Secrets</span><span>87</span></div>
-                  <div class="dash-table-row"><span>sql-injection-fstring</span><span class="dash-sev-red">Critical</span><span class="dash-type-purple">SAST</span><span>23</span></div>
-                  <div class="dash-table-row"><span>CVE-2021-44228</span><span class="dash-sev-red">Critical</span><span class="dash-type-blue">SCA</span><span>16</span></div>
-                  <div class="dash-table-row"><span>s3-bucket-public-access</span><span class="dash-sev-orange">High</span><span class="dash-type-emerald">IaC</span><span>12</span></div>
+                  <div class="dash-table-head"><span>Rule</span><span>Sev</span><span>TP</span><span>FP</span><span>Count</span></div>
+                  <div class="dash-table-row"><span>gitleaks.generic-api-key</span><span class="dash-sev-orange">High</span><span class="dash-tp">54</span><span class="dash-fp">33</span><span>87</span></div>
+                  <div class="dash-table-row"><span>sql-injection-fstring</span><span class="dash-sev-red">Crit</span><span class="dash-tp">21</span><span class="dash-fp">2</span><span>23</span></div>
+                  <div class="dash-table-row"><span>CVE-2021-44228</span><span class="dash-sev-red">Crit</span><span class="dash-tp">16</span><span class="dash-fp">0</span><span>16</span></div>
+                  <div class="dash-table-row"><span>s3-bucket-public-access</span><span class="dash-sev-orange">High</span><span class="dash-tp">8</span><span class="dash-fp">4</span><span>12</span></div>
                 </div>
               </div>
             </div>
