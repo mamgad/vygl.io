@@ -20,17 +20,55 @@ window.addEventListener('scroll', () => {
 // ─── Mobile menu toggle ───
 const menuBtn = document.getElementById('mobile-menu-btn');
 const mobileNav = document.getElementById('mobile-nav');
+const mobileOverlay = document.getElementById('mobile-nav-overlay');
+
+function openMobileNav() {
+  mobileNav.classList.add('open');
+  mobileOverlay.classList.add('active');
+  menuBtn.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeMobileNav() {
+  mobileNav.classList.remove('open');
+  mobileOverlay.classList.remove('active');
+  menuBtn.classList.remove('active');
+  document.body.style.overflow = '';
+}
 
 menuBtn.addEventListener('click', () => {
-  mobileNav.classList.toggle('open');
+  if (mobileNav.classList.contains('open')) {
+    closeMobileNav();
+  } else {
+    openMobileNav();
+  }
 });
 
-// Close mobile nav on link click
+// Close on overlay click
+mobileOverlay.addEventListener('click', closeMobileNav);
+
+// Close on link click
 mobileNav.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
-    mobileNav.classList.remove('open');
-  });
+  link.addEventListener('click', closeMobileNav);
 });
+
+// Close on Escape key
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && mobileNav.classList.contains('open')) {
+    closeMobileNav();
+  }
+});
+
+// Mobile theme toggle
+const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+if (mobileThemeToggle) {
+  mobileThemeToggle.addEventListener('click', () => {
+    const current = document.documentElement.getAttribute('data-theme');
+    const next = current === 'light' ? 'dark' : 'light';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('vygl_landing_theme', next);
+  });
+}
 
 // ─── Scroll reveal (IntersectionObserver) ───
 const revealElements = document.querySelectorAll('.reveal');
