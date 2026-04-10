@@ -2739,6 +2739,15 @@ body::before {
    ═══════════════════════════════════════════ */
 
 @media (max-width: 1024px) {
+  .nav-links,
+  .nav-actions {
+    display: none;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
   .hero-inner {
     grid-template-columns: 1fr;
     max-width: 720px;
@@ -2794,15 +2803,6 @@ body::before {
 }
 
 @media (max-width: 768px) {
-  .nav-links,
-  .nav-actions {
-    display: none;
-  }
-
-  .mobile-menu-btn {
-    display: block;
-  }
-
   .hero {
     padding: 5rem 0 3rem;
   }
