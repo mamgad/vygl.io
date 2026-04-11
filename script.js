@@ -573,15 +573,12 @@ if (consultSection && consultIdle && consultLoading && consultResult && consultB
 // ─── MCP IDE Demo ───
 var mcpClaudeGen = 0;
 var mcpCodexGen = 0;
-var mcpClaudeAiGen = 0;
 var mcpCursorGen = 0;
 var mcpClaudeAnimating = false;
 var mcpCodexAnimating = false;
-var mcpClaudeAiAnimating = false;
 var mcpCursorAnimating = false;
 var mcpClaudeOutput = document.getElementById('mcp-claude-output');
 var mcpCodexOutput = document.getElementById('mcp-codex-output');
-var mcpClaudeAiChat = document.getElementById('mcp-claude-ai-chat');
 var mcpCursorChat = document.getElementById('mcp-cursor-chat');
 
 var mcpTabs = document.querySelectorAll('.mcp-tab');
@@ -599,15 +596,12 @@ mcpTabs.forEach(function(tab) {
     // Cancel old animations and start fresh
     mcpClaudeGen++;
     mcpCodexGen++;
-    mcpClaudeAiGen++;
     mcpCursorGen++;
     mcpClaudeAnimating = false;
     mcpCodexAnimating = false;
-    mcpClaudeAiAnimating = false;
     mcpCursorAnimating = false;
     if (mcpClaudeOutput) mcpClaudeOutput.innerHTML = '';
     if (mcpCodexOutput) mcpCodexOutput.innerHTML = '';
-    if (mcpClaudeAiChat) mcpClaudeAiChat.innerHTML = '';
     if (mcpCursorChat) mcpCursorChat.innerHTML = '';
     // Clear any typing text from input boxes
     var typingText = document.querySelector('.mcp-claude-typing-text');
@@ -617,8 +611,7 @@ mcpTabs.forEach(function(tab) {
 
     if (idx === '0') runMcpClaudeDemo();
     if (idx === '1') runMcpCodexDemo();
-    if (idx === '2') runMcpClaudeAiDemo();
-    if (idx === '3') runMcpCursorDemo();
+    if (idx === '2') runMcpCursorDemo();
   });
 });
 
@@ -857,49 +850,6 @@ function runMcpCodexDemo() {
   }
 
   processNext();
-}
-
-var mcpClaudeAiMessages = [
-  { type: 'user', html: 'List all my projects and show their health scores.' },
-  { type: 'tool', html: '<span class="mcp-tool-name">vygl:list_projects</span> <span class="mcp-tool-status">✓</span>' },
-  { type: 'tool', html: '<span class="mcp-tool-name">vygl:get_project_health</span> <span class="mcp-tool-status">✓</span> <span class="t-muted">×3</span>' },
-  { type: 'assistant', html: 'Here are your projects and their health scores:<br><br><strong>acme-api</strong> — <span class="t-orange">62/100</span> · 2 critical, 8 high<br><strong>payments-svc</strong> — <span class="t-green">89/100</span> · 0 critical, 1 high<br><strong>frontend-app</strong> — <span class="t-green">94/100</span> · 0 critical, 0 high<br><br><strong>acme-api</strong> needs the most attention — it has an SQL injection and a Log4Shell vulnerability flagged as critical.' },
-  { type: 'user', html: 'Check the overall security posture for acme-api.' },
-  { type: 'tool', html: '<span class="mcp-tool-name">vygl:get_security_posture</span> <span class="mcp-tool-status">✓</span>' },
-  { type: 'assistant', html: '<strong>acme-api</strong> security posture:<br><br><span class="t-red">● 2 critical</span> · <span class="t-orange">8 high</span> · <span class="t-yellow">12 medium</span> · <span class="t-blue">3 low</span><br><br>AI triage cleared <strong>9 false positives</strong>. The remaining 16 actionable findings should be prioritized, starting with the two criticals.' },
-];
-
-function runMcpClaudeAiDemo() {
-  if (mcpClaudeAiAnimating) return;
-  mcpClaudeAiAnimating = true;
-  var gen = ++mcpClaudeAiGen;
-
-  if (mcpClaudeAiChat) mcpClaudeAiChat.innerHTML = '';
-
-  var delays = [300, 400, 300, 800, 1500, 400, 800];
-  var totalDelay = 0;
-
-  mcpClaudeAiMessages.forEach(function(msg, i) {
-    totalDelay += delays[i] || 500;
-    setTimeout(function() {
-      if (gen !== mcpClaudeAiGen) return;
-      var div = document.createElement('div');
-      div.className = 'mcp-chat-msg mcp-chat-' + msg.type;
-      div.innerHTML = msg.html;
-      div.style.animation = 'cli-fade-in 0.3s ease-out both';
-      if (mcpClaudeAiChat) {
-        mcpClaudeAiChat.appendChild(div);
-        mcpClaudeAiChat.scrollTop = mcpClaudeAiChat.scrollHeight;
-      }
-    }, totalDelay);
-  });
-
-  setTimeout(function() {
-    if (gen !== mcpClaudeAiGen) return;
-    mcpClaudeAiAnimating = false;
-    if (mcpClaudeAiChat) mcpClaudeAiChat.innerHTML = '';
-    runMcpClaudeAiDemo();
-  }, totalDelay + 6000);
 }
 
 var mcpCursorMessages = [
