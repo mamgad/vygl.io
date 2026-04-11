@@ -1383,7 +1383,7 @@
       <div class="section-header reveal">
         <span class="section-badge">AI IDE Integration</span>
         <h2 class="section-title">Your Security Data, Inside Your IDE</h2>
-        <p class="section-subtitle">Query findings, verify issues, and check project health — directly from Claude Code, Codex, Cursor, or any MCP-compatible IDE. Zero context switching.</p>
+        <p class="section-subtitle">Query findings, verify issues, and check project health — directly from Claude Code, Codex, Claude.ai, Cursor, or any MCP-compatible IDE. Zero context switching.</p>
       </div>
 
       <div class="mcp-demo reveal">
@@ -1408,6 +1408,10 @@
                 Codex
               </button>
               <button class="mcp-tab" data-mcp-tab="2">
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                Claude.ai
+              </button>
+              <button class="mcp-tab" data-mcp-tab="3">
                 <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
                 Cursor
               </button>
@@ -1452,8 +1456,23 @@
             </div>
           </div>
 
-          <!-- Cursor Panel -->
+          <!-- Claude.ai Panel -->
           <div class="mcp-panel" data-mcp-panel="2">
+            <div class="mcp-claude-ai-body">
+              <div class="mcp-claude-ai-header">
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                <span>Claude</span>
+                <span class="mcp-chat-mcp-badge">MCP</span>
+              </div>
+              <div class="mcp-claude-ai-messages" id="mcp-claude-ai-chat"></div>
+              <div class="mcp-claude-ai-input-bar">
+                <span class="mcp-claude-ai-input-placeholder">Message Claude...</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cursor Panel -->
+          <div class="mcp-panel" data-mcp-panel="3">
             <div class="mcp-ide-body">
               <!-- Sidebar -->
               <div class="mcp-ide-sidebar">
@@ -1517,6 +1536,10 @@
           <div class="mcp-supported-item">
             <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
             Codex
+          </div>
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+            Claude.ai
           </div>
           <div class="mcp-supported-item">
             <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
