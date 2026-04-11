@@ -3887,6 +3887,85 @@ body::before {
   opacity: 0.6;
 }
 
+/* Codex terminal input */
+.mcp-codex-input {
+  background: #080b14;
+  padding: 0 1.5rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.mcp-codex-input-line {
+  height: 1px;
+  background: var(--border);
+  width: 100%;
+}
+
+.mcp-codex-input-area {
+  padding: 0.625rem 0;
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.mcp-codex-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 18px;
+  background: var(--emerald);
+  opacity: 0.7;
+  border-radius: 1px;
+  animation: ai-blink 1s step-end infinite;
+}
+
+.mcp-codex-typing-text {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--fg);
+  font-weight: 400;
+  white-space: pre;
+}
+
+.mcp-codex-input-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding-top: 0.5rem;
+}
+
+.mcp-codex-model-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--fg-faint);
+  font-family: var(--font-sans);
+}
+
+.mcp-codex-model-badge svg {
+  color: var(--emerald);
+  opacity: 0.7;
+}
+
+.mcp-codex-project {
+  font-size: 0.625rem;
+  color: var(--fg-faint);
+  font-family: var(--font-mono);
+  opacity: 0.6;
+}
+
+.mcp-codex-prompt {
+  color: var(--emerald);
+  font-weight: 700;
+}
+
+.mcp-codex-assistant {
+  color: var(--emerald);
+  font-weight: 700;
+}
+
 /* Cursor IDE layout */
 .mcp-ide-body {
   display: grid;
@@ -4136,6 +4215,14 @@ body::before {
 
 [data-theme="light"] .mcp-claude-cursor {
   background: #2563eb;
+}
+
+[data-theme="light"] .mcp-codex-input {
+  background: #ffffff;
+}
+
+[data-theme="light"] .mcp-codex-cursor {
+  background: #059669;
 }
 
 [data-theme="light"] .mcp-ide-body {
