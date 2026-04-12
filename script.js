@@ -627,14 +627,11 @@ mcpTabs.forEach(function(tab) {
 var mcpClaudeScript = [
   // Startup ASCII art banner
   { type: 'line', text: '', delay: 50 },
-  { type: 'line', text: '<span class="t-violet">     ╲  │  ╱</span>', delay: 60 },
-  { type: 'line', text: '<span class="t-violet">      ╲ │ ╱</span>', delay: 60 },
-  { type: 'line', text: '<span class="t-violet">   ── ─ ✻ ─ ──</span>  <span class="t-white t-bold">Claude Code</span>', delay: 60 },
-  { type: 'line', text: '<span class="t-violet">      ╱ │ ╲</span>', delay: 60 },
-  { type: 'line', text: '<span class="t-violet">     ╱  │  ╲</span>', delay: 60 },
+  { type: 'line', text: ' <span class="t-claude">▐▛███▜▌</span>   <span class="t-white t-bold">Claude Code</span>', delay: 60 },
+  { type: 'line', text: '<span class="t-claude">▝▜█████▛▘</span>  <span class="t-muted">Sonnet 4.6 · acme-api</span>', delay: 60 },
+  { type: 'line', text: '  <span class="t-claude">▘▘ ▝▝</span>', delay: 60 },
   { type: 'line', text: '', delay: 60 },
-  { type: 'line', text: '  <span class="t-muted">Project:</span> <span class="t-white">acme-api</span>     <span class="t-muted">Model:</span> <span class="t-violet">claude-sonnet-4</span>', delay: 80 },
-  { type: 'line', text: '  <span class="t-muted">Type</span> <span class="t-accent">/help</span> <span class="t-muted">for help</span>', delay: 80 },
+  { type: 'line', text: '<span class="t-muted">──────────────────────────────</span>', delay: 80 },
   { type: 'line', text: '', delay: 400 },
   // First interaction — typed in input box, then response in output
   { type: 'typing', text: 'what critical findings do we have in acme-api?', speed: 35 },

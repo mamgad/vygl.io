@@ -2124,6 +2124,7 @@ img { max-width: 100%; }
 .t-muted { color: #475569; }
 .t-violet { color: #c4b5fd; }
 .t-accent { color: var(--accent); }
+.t-claude { color: #da7756; }
 .t-opencode { color: #fab283; }
 .t-bold { font-weight: 700; }
 .t-underline { text-decoration: underline; }
