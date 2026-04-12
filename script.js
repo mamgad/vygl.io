@@ -875,9 +875,7 @@ function runMcpCodexDemo() {
 var mcpOpenCodeScript = [
   // Startup ASCII art banner
   { type: 'line', text: '', delay: 50 },
-  { type: 'line', text: '<span class="t-opencode">        ╱ ▲ ╲</span>', delay: 60 },
-  { type: 'line', text: '<span class="t-opencode">      ◀─ ◉ ─▶</span>    <span class="t-white t-bold">opencode</span>', delay: 60 },
-  { type: 'line', text: '<span class="t-opencode">        ╲ ▼ ╱</span>    <span class="t-muted">v0.2</span>', delay: 60 },
+  { type: 'line', text: '  <span class="t-opencode">⌬</span> <span class="t-white t-bold">OpenCode</span>', delay: 60 },
   { type: 'line', text: '', delay: 60 },
   { type: 'line', text: '  <span class="t-muted">Session:</span> <span class="t-white">default</span>    <span class="t-muted">Agent:</span> <span class="t-opencode">build</span>', delay: 80 },
   { type: 'line', text: '  <span class="t-muted">Type a message or</span> <span class="t-opencode">@</span> <span class="t-muted">to reference files</span>', delay: 80 },
