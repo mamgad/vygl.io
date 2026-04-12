@@ -625,10 +625,10 @@ mcpTabs.forEach(function(tab) {
 });
 
 var mcpClaudeScript = [
-  // Startup ASCII art banner
+  // Startup ASCII art banner — matches real Claude Code CLI
   { type: 'line', text: '', delay: 50 },
   { type: 'line', text: ' <span class="t-claude">▐▛███▜▌</span>   <span class="t-white t-bold">Claude Code</span>', delay: 60 },
-  { type: 'line', text: '<span class="t-claude">▝▜█████▛▘</span>  <span class="t-muted">Sonnet 4.6 · acme-api</span>', delay: 60 },
+  { type: 'line', text: '<span class="t-claude">▝▜█████▛▘</span>  <span class="t-muted">Opus · acme-api</span>', delay: 60 },
   { type: 'line', text: '  <span class="t-claude">▘▘ ▝▝</span>', delay: 60 },
   { type: 'line', text: '', delay: 60 },
   { type: 'line', text: '<span class="t-muted">──────────────────────────────</span>', delay: 80 },
@@ -875,7 +875,7 @@ function runMcpCodexDemo() {
 var mcpOpenCodeScript = [
   // Startup header — matches real OpenCode TUI
   { type: 'line', text: '', delay: 50 },
-  { type: 'line', text: '  <span class="t-opencode">⌬</span> <span class="t-white t-bold">OpenCode</span>  <span class="t-muted">v0.2</span>', delay: 60 },
+  { type: 'line', text: '  <span class="t-white">⌬</span> <span class="t-white t-bold">OpenCode</span>', delay: 60 },
   { type: 'line', text: '  <span class="t-muted">https://github.com/opencode-ai/opencode</span>', delay: 60 },
   { type: 'line', text: '', delay: 60 },
   { type: 'line', text: '  <span class="t-muted">cwd: ~/projects/acme-api</span>', delay: 80 },
