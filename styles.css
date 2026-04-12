@@ -3802,6 +3802,10 @@ body::before {
   margin: 0;
 }
 
+.cli-ascii-line {
+  line-height: 1.1;
+}
+
 .mcp-prompt {
   color: var(--accent);
   font-weight: 700;

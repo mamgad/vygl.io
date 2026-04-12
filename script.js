@@ -627,9 +627,9 @@ mcpTabs.forEach(function(tab) {
 var mcpClaudeScript = [
   // Startup ASCII art banner — matches real Claude Code CLI
   { type: 'line', text: '', delay: 50 },
-  { type: 'line', text: ' <span class="t-claude">▐▛███▜▌</span>   <span class="t-white t-bold">Claude Code</span>', delay: 60 },
-  { type: 'line', text: '<span class="t-claude">▝▜█████▛▘</span>  <span class="t-muted">Opus · acme-api</span>', delay: 60 },
-  { type: 'line', text: '  <span class="t-claude">▘▘ ▝▝</span>', delay: 60 },
+  { type: 'line', text: ' <span class="t-claude cli-ascii">▐▛███▜▌</span>   <span class="t-white t-bold">Claude Code</span>', delay: 60, cls: 'cli-ascii-line' },
+  { type: 'line', text: '<span class="t-claude cli-ascii">▝▜█████▛▘</span>  <span class="t-muted">Opus · acme-api</span>', delay: 60, cls: 'cli-ascii-line' },
+  { type: 'line', text: '  <span class="t-claude cli-ascii">▘▘ ▝▝</span>', delay: 60, cls: 'cli-ascii-line' },
   { type: 'line', text: '', delay: 60 },
   { type: 'line', text: '<span class="t-muted">──────────────────────────────</span>', delay: 80 },
   { type: 'line', text: '', delay: 400 },
@@ -744,7 +744,7 @@ function runMcpClaudeDemo() {
       setTimeout(function() {
         if (gen !== mcpClaudeGen) return;
         var div = document.createElement('div');
-        div.className = 'cli-line';
+        div.className = 'cli-line' + (item.cls ? ' ' + item.cls : '');
         div.innerHTML = item.text || '&nbsp;';
         pre.appendChild(div);
         if (mcpClaudeOutput) mcpClaudeOutput.scrollTop = mcpClaudeOutput.scrollHeight;
