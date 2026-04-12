@@ -4794,6 +4794,120 @@ body::before {
 [data-theme="light"] .t-violet { color: #7c3aed; }
 [data-theme="light"] .t-bold { color: #0f172a; }
 
+/* GitHub PR Showcase — light theme (mimics github.com light) */
+[data-theme="light"] .pr-showcase-glow-1,
+[data-theme="light"] .pr-showcase-glow-2 { opacity: 0.03; }
+
+[data-theme="light"] .gh-pr-window {
+  background: #ffffff;
+  border-color: #d0d7de;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+}
+
+[data-theme="light"] .gh-pr-titlebar {
+  background: #f6f8fa;
+  border-bottom-color: #d0d7de;
+}
+[data-theme="light"] .gh-pr-url { color: #656d76; }
+
+[data-theme="light"] .gh-pr-header {
+  border-bottom-color: #d0d7de;
+}
+[data-theme="light"] .gh-pr-state {
+  background: #1a7f37;
+  color: #fff;
+}
+[data-theme="light"] .gh-pr-title { color: #1f2328; }
+[data-theme="light"] .gh-pr-meta { color: #656d76; }
+[data-theme="light"] .gh-pr-branch {
+  background: rgba(9,105,218,0.1);
+  color: #0550ae;
+}
+
+[data-theme="light"] .gh-pr-tab { color: #656d76; }
+[data-theme="light"] .gh-pr-tab:first-child { color: #1f2328; border-bottom-color: #fd8c73; }
+[data-theme="light"] .gh-pr-tab-count {
+  background: rgba(175,184,193,0.3);
+  color: #1f2328;
+}
+
+[data-theme="light"] .gh-timeline-line { background: #d0d7de; }
+[data-theme="light"] .gh-bot-avatar { box-shadow: 0 0 0 2px #ffffff; }
+
+[data-theme="light"] .gh-comment { border-color: #d0d7de; }
+[data-theme="light"] .gh-comment-header {
+  background: #f6f8fa;
+  border-bottom-color: #d0d7de;
+}
+[data-theme="light"] .gh-comment-author { color: #1f2328; }
+[data-theme="light"] .gh-comment-badge {
+  color: #656d76;
+  border-color: #d0d7de;
+}
+[data-theme="light"] .gh-comment-time { color: #656d76; }
+
+[data-theme="light"] .gh-comment-body { background: #ffffff; }
+[data-theme="light"] .gh-comment-h3 {
+  color: #1f2328;
+  border-bottom-color: #d0d7de;
+}
+[data-theme="light"] .gh-comment-subhead { color: #656d76; }
+[data-theme="light"] .gh-comment-subhead strong { color: #1f2328; }
+[data-theme="light"] .gh-comment-summary { color: #1f2328; }
+
+[data-theme="light"] .gh-text-crit { color: #cf222e; }
+[data-theme="light"] .gh-text-high { color: #bc4c00; }
+[data-theme="light"] .gh-text-med { color: #9a6700; }
+[data-theme="light"] .gh-text-low { color: #0969da; }
+[data-theme="light"] .gh-text-new { color: #1a7f37; }
+
+[data-theme="light"] .gh-sev-segment.gh-sev-crit { background: #cf222e; }
+[data-theme="light"] .gh-sev-segment.gh-sev-high { background: #bc4c00; }
+[data-theme="light"] .gh-sev-segment.gh-sev-med { background: #9a6700; }
+[data-theme="light"] .gh-sev-segment.gh-sev-low { background: #0969da; }
+
+[data-theme="light"] .gh-table-heading { color: #1f2328; }
+
+[data-theme="light"] .gh-findings-table { border-color: #d0d7de; }
+[data-theme="light"] .gh-findings-table th {
+  color: #1f2328;
+  background: #f6f8fa;
+  border-bottom-color: #d0d7de;
+}
+[data-theme="light"] .gh-findings-table td {
+  color: #1f2328;
+  border-bottom-color: #d0d7de;
+}
+[data-theme="light"] .gh-findings-table code {
+  background: rgba(175,184,193,0.2);
+  color: #0550ae;
+}
+[data-theme="light"] .gh-finding-link { color: #0969da; }
+
+[data-theme="light"] .gh-sev-badge-crit { background: rgba(207,34,46,0.1); color: #cf222e; }
+[data-theme="light"] .gh-sev-badge-high { background: rgba(188,76,0,0.1); color: #bc4c00; }
+[data-theme="light"] .gh-sev-badge-med { background: rgba(154,103,0,0.1); color: #9a6700; }
+[data-theme="light"] .gh-sev-badge-low { background: rgba(9,105,218,0.1); color: #0969da; }
+
+[data-theme="light"] .gh-details summary { color: #1f2328; }
+[data-theme="light"] .gh-details summary::before { color: #656d76; }
+
+[data-theme="light"] .gh-ai-row {
+  color: #1f2328;
+  background: rgba(0,0,0,0.02);
+}
+[data-theme="light"] .gh-ai-tp { background: rgba(207,34,46,0.1); color: #cf222e; }
+[data-theme="light"] .gh-ai-fp { background: rgba(26,127,55,0.1); color: #1a7f37; }
+[data-theme="light"] .gh-ai-desc { color: #656d76; }
+
+[data-theme="light"] .gh-comment-footer { border-top-color: #d0d7de; }
+[data-theme="light"] .gh-comment-footer span { color: #0969da; }
+[data-theme="light"] .gh-comment-branding {
+  color: #656d76;
+  border-top-color: #d0d7de;
+}
+[data-theme="light"] .gh-comment-branding strong { color: #1f2328; }
+
 /* CTA */
 [data-theme="light"] .cta-card { background: rgba(0,0,0,0.015); }
 [data-theme="light"] .cli-install-box { box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
