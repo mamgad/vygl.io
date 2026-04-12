@@ -573,12 +573,15 @@ if (consultSection && consultIdle && consultLoading && consultResult && consultB
 // ─── MCP IDE Demo ───
 var mcpClaudeGen = 0;
 var mcpCodexGen = 0;
+var mcpOpenCodeGen = 0;
 var mcpCursorGen = 0;
 var mcpClaudeAnimating = false;
 var mcpCodexAnimating = false;
+var mcpOpenCodeAnimating = false;
 var mcpCursorAnimating = false;
 var mcpClaudeOutput = document.getElementById('mcp-claude-output');
 var mcpCodexOutput = document.getElementById('mcp-codex-output');
+var mcpOpenCodeOutput = document.getElementById('mcp-opencode-output');
 var mcpCursorChat = document.getElementById('mcp-cursor-chat');
 
 var mcpTabs = document.querySelectorAll('.mcp-tab');
@@ -596,22 +599,28 @@ mcpTabs.forEach(function(tab) {
     // Cancel old animations and start fresh
     mcpClaudeGen++;
     mcpCodexGen++;
+    mcpOpenCodeGen++;
     mcpCursorGen++;
     mcpClaudeAnimating = false;
     mcpCodexAnimating = false;
+    mcpOpenCodeAnimating = false;
     mcpCursorAnimating = false;
     if (mcpClaudeOutput) mcpClaudeOutput.innerHTML = '';
     if (mcpCodexOutput) mcpCodexOutput.innerHTML = '';
+    if (mcpOpenCodeOutput) mcpOpenCodeOutput.innerHTML = '';
     if (mcpCursorChat) mcpCursorChat.innerHTML = '';
     // Clear any typing text from input boxes
     var typingText = document.querySelector('.mcp-claude-typing-text');
     if (typingText) typingText.remove();
-    var codexTypingText = document.querySelector('.mcp-codex-typing-text');
+    var codexTypingText = document.querySelector('.codex-typing-text');
     if (codexTypingText) codexTypingText.remove();
+    var openCodeTypingText = document.querySelector('.opencode-typing-text');
+    if (openCodeTypingText) openCodeTypingText.remove();
 
     if (idx === '0') runMcpClaudeDemo();
     if (idx === '1') runMcpCodexDemo();
-    if (idx === '2') runMcpCursorDemo();
+    if (idx === '2') runMcpOpenCodeDemo();
+    if (idx === '3') runMcpCursorDemo();
   });
 });
 
@@ -740,45 +749,47 @@ function runMcpClaudeDemo() {
 }
 
 var mcpCodexScript = [
-  // First interaction — typed in input box, then response in output
+  // First interaction — Codex CLI style with approval flow
   { type: 'typing', text: 'show me the security posture for acme-api', speed: 35 },
   { type: 'line', text: '', delay: 200 },
-  { type: 'line', text: '<span class="mcp-codex-assistant">⏵</span> Pulling your project\'s security posture.', delay: 400 },
+  { type: 'line', text: '<span class="codex-assistant">⏵</span> I\'ll query the security posture via MCP.', delay: 400 },
   { type: 'line', text: '', delay: 200 },
-  { type: 'line', text: '  <span class="mcp-tool-call">vygl:get_security_posture</span><span class="t-muted">(project: </span><span class="t-emerald">"acme-api"</span><span class="t-muted">)</span>', delay: 300 },
+  { type: 'line', text: '  <span class="codex-approval">⬡ mcp</span> <span class="t-muted">call</span> <span class="mcp-tool-call">vygl:get_security_posture</span>', delay: 300 },
+  { type: 'line', text: '  <span class="t-muted">args:</span> <span class="t-emerald">{ project: "acme-api" }</span>', delay: 200 },
   { type: 'line', text: '', delay: 600 },
-  { type: 'line', text: '  <span class="t-white t-bold">Security Posture: acme-api</span>', delay: 300 },
+  { type: 'line', text: '  <span class="t-white t-bold">Security Posture — acme-api</span>', delay: 300 },
   { type: 'line', text: '', delay: 150 },
   { type: 'line', text: '  Score: <span class="t-orange t-bold">62/100</span> <span class="t-muted">(Needs Attention)</span>', delay: 250 },
   { type: 'line', text: '', delay: 100 },
   { type: 'line', text: '  <span class="t-red">● 2 critical</span> · <span class="t-orange">8 high</span> · <span class="t-yellow">12 medium</span> · <span class="t-blue">3 low</span>', delay: 250 },
   { type: 'line', text: '  <span class="t-green">✓ 9 false positives</span> cleared by AI triage', delay: 200 },
   { type: 'line', text: '', delay: 100 },
-  { type: 'line', text: '  <span class="t-muted">Top risk: SQL Injection in users.py:42</span>', delay: 200 },
+  { type: 'line', text: '  <span class="t-muted">Top risk:</span> SQL Injection in <span class="t-orange">users.py:42</span>', delay: 200 },
   { type: 'line', text: '', delay: 800 },
-  // Second interaction — typed in input box
+  // Second interaction
   { type: 'typing', text: 'get details on the Log4Shell finding', speed: 35 },
   { type: 'line', text: '', delay: 200 },
-  { type: 'line', text: '<span class="mcp-codex-assistant">⏵</span> Fetching finding details.', delay: 400 },
+  { type: 'line', text: '<span class="codex-assistant">⏵</span> Fetching that finding now.', delay: 400 },
   { type: 'line', text: '', delay: 200 },
-  { type: 'line', text: '  <span class="mcp-tool-call">vygl:get_finding_detail</span><span class="t-muted">(finding_id: </span><span class="t-emerald">"log4shell-b7c2d"</span><span class="t-muted">)</span>', delay: 300 },
+  { type: 'line', text: '  <span class="codex-approval">⬡ mcp</span> <span class="t-muted">call</span> <span class="mcp-tool-call">vygl:get_finding_detail</span>', delay: 300 },
+  { type: 'line', text: '  <span class="t-muted">args:</span> <span class="t-emerald">{ finding_id: "log4shell-b7c2d" }</span>', delay: 200 },
   { type: 'line', text: '', delay: 800 },
   { type: 'line', text: '  <span class="t-red">●</span> <span class="t-red t-bold">CRITICAL</span>  <span class="t-white">Log4Shell — CVE-2021-44228</span>', delay: 400 },
   { type: 'line', text: '', delay: 150 },
   { type: 'line', text: '  <span class="t-cyan">SCA</span> · <span class="t-muted">pom.xml:7 · log4j-core@2.14.1</span>', delay: 200 },
   { type: 'line', text: '  CVSS: <span class="t-red t-bold">10.0</span> · Exploitability: <span class="t-red">Very High</span>', delay: 200 },
   { type: 'line', text: '', delay: 200 },
-  { type: 'line', text: '  <span class="t-muted">Fix — upgrade to log4j-core@2.17.1 or later</span>', delay: 200 },
+  { type: 'line', text: '  <span class="t-muted">Fix:</span> upgrade to <span class="t-green">log4j-core@2.17.1</span> or later', delay: 200 },
 ];
 
-function typeInCodexInputBox(inputArea, text, speed, gen, callback) {
-  var cursor = inputArea.querySelector('.mcp-codex-cursor');
+function typeInCodexComposer(composerArea, text, speed, gen, callback) {
+  var cursor = composerArea.querySelector('.codex-composer-cursor');
   var textSpan = document.createElement('span');
-  textSpan.className = 'mcp-codex-typing-text';
+  textSpan.className = 'codex-typing-text';
   if (cursor) {
-    inputArea.insertBefore(textSpan, cursor);
+    composerArea.insertBefore(textSpan, cursor);
   } else {
-    inputArea.appendChild(textSpan);
+    composerArea.appendChild(textSpan);
   }
 
   var i = 0;
@@ -808,7 +819,7 @@ function runMcpCodexDemo() {
   var pre = document.createElement('pre');
   if (mcpCodexOutput) mcpCodexOutput.appendChild(pre);
 
-  var inputArea = document.querySelector('.mcp-codex-input-area');
+  var composerArea = document.querySelector('.codex-composer-area');
   var idx = 0;
 
   function processNext() {
@@ -826,12 +837,12 @@ function runMcpCodexDemo() {
     var item = mcpCodexScript[idx];
     idx++;
 
-    if (item.type === 'typing' && inputArea) {
-      typeInCodexInputBox(inputArea, item.text, item.speed || 35, gen, function() {
+    if (item.type === 'typing' && composerArea) {
+      typeInCodexComposer(composerArea, item.text, item.speed || 35, gen, function() {
         if (gen !== mcpCodexGen) return;
         var div = document.createElement('div');
         div.className = 'cli-line';
-        div.innerHTML = '<span class="mcp-codex-prompt">❯</span> <span class="t-white">' + item.text + '</span>';
+        div.innerHTML = '<span class="codex-prompt">❯</span> <span class="t-white">' + item.text + '</span>';
         pre.appendChild(div);
         if (mcpCodexOutput) mcpCodexOutput.scrollTop = mcpCodexOutput.scrollHeight;
         processNext();
@@ -844,6 +855,126 @@ function runMcpCodexDemo() {
         div.innerHTML = item.text || '&nbsp;';
         pre.appendChild(div);
         if (mcpCodexOutput) mcpCodexOutput.scrollTop = mcpCodexOutput.scrollHeight;
+        processNext();
+      }, item.delay || 100);
+    }
+  }
+
+  processNext();
+}
+
+// ── OpenCode Demo ──
+var mcpOpenCodeScript = [
+  // First interaction — OpenCode style with orange accents
+  { type: 'typing', text: 'what critical findings do we have in acme-api?', speed: 35 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '<span class="opencode-assistant-marker">◆</span> I\'ll search for critical findings in your project.', delay: 400 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '  <span class="opencode-tool-badge">vygl:search_findings</span><span class="t-muted">(project: </span><span class="t-emerald">"acme-api"</span><span class="t-muted">, severity: </span><span class="t-emerald">"critical"</span><span class="t-muted">)</span>', delay: 300 },
+  { type: 'line', text: '', delay: 600 },
+  { type: 'line', text: '  Found <span class="t-white t-bold">2</span> critical findings:', delay: 300 },
+  { type: 'line', text: '', delay: 150 },
+  { type: 'line', text: '  <span class="t-red">●</span> <span class="t-red t-bold">CRITICAL</span>  <span class="t-white">SQL Injection via f-string</span>', delay: 250 },
+  { type: 'line', text: '    <span class="t-purple">SAST</span> · <span class="t-muted">backend/views/users.py:42</span>', delay: 150 },
+  { type: 'line', text: '', delay: 100 },
+  { type: 'line', text: '  <span class="t-red">●</span> <span class="t-red t-bold">CRITICAL</span>  <span class="t-white">Log4Shell CVE-2021-44228</span>', delay: 250 },
+  { type: 'line', text: '    <span class="t-cyan">SCA</span> · <span class="t-muted">pom.xml:7 · log4j-core@2.14.1</span>', delay: 150 },
+  { type: 'line', text: '', delay: 100 },
+  { type: 'line', text: '  Both require immediate attention.', delay: 200 },
+  { type: 'line', text: '', delay: 800 },
+  // Second interaction
+  { type: 'typing', text: 'verify the SQL injection — is it a real issue?', speed: 35 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '<span class="opencode-assistant-marker">◆</span> Running AI verification on that finding.', delay: 400 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '  <span class="opencode-tool-badge">vygl:ai_verify_finding</span><span class="t-muted">(finding_id: </span><span class="t-emerald">"sql-inj-a3e7f"</span><span class="t-muted">)</span>', delay: 300 },
+  { type: 'line', text: '', delay: 800 },
+  { type: 'line', text: '  <span class="t-green">✓</span> <span class="t-white t-bold">True Positive</span> · <span class="t-green">High confidence</span>', delay: 400 },
+  { type: 'line', text: '', delay: 150 },
+  { type: 'line', text: '  User input from <span class="t-orange">request.GET.get("q")</span> is directly', delay: 200 },
+  { type: 'line', text: '  interpolated into raw SQL via f-string. An attacker', delay: 150 },
+  { type: 'line', text: '  can inject arbitrary SQL.', delay: 150 },
+  { type: 'line', text: '', delay: 200 },
+  { type: 'line', text: '  <span class="t-muted">Suggested fix — use Django ORM:</span>', delay: 200 },
+  { type: 'line', text: '', delay: 100 },
+  { type: 'line', text: '    <span class="t-blue">users</span> = User.objects.filter(', delay: 100 },
+  { type: 'line', text: '        name__icontains=query', delay: 100 },
+  { type: 'line', text: '    )', delay: 100 },
+];
+
+function typeInOpenCodeInput(inputArea, text, speed, gen, callback) {
+  var cursor = inputArea.querySelector('.opencode-input-cursor');
+  var textSpan = document.createElement('span');
+  textSpan.className = 'opencode-typing-text';
+  if (cursor) {
+    inputArea.insertBefore(textSpan, cursor);
+  } else {
+    inputArea.appendChild(textSpan);
+  }
+
+  var i = 0;
+  function tick() {
+    if (gen !== mcpOpenCodeGen) { textSpan.remove(); return; }
+    if (i < text.length) {
+      textSpan.textContent += text[i];
+      i++;
+      setTimeout(tick, speed);
+    } else {
+      setTimeout(function() {
+        if (gen !== mcpOpenCodeGen) { textSpan.remove(); return; }
+        textSpan.remove();
+        if (callback) callback();
+      }, 300);
+    }
+  }
+  tick();
+}
+
+function runMcpOpenCodeDemo() {
+  if (mcpOpenCodeAnimating) return;
+  mcpOpenCodeAnimating = true;
+  var gen = ++mcpOpenCodeGen;
+
+  if (mcpOpenCodeOutput) mcpOpenCodeOutput.innerHTML = '';
+  var pre = document.createElement('pre');
+  if (mcpOpenCodeOutput) mcpOpenCodeOutput.appendChild(pre);
+
+  var inputArea = document.querySelector('.opencode-input-area');
+  var idx = 0;
+
+  function processNext() {
+    if (gen !== mcpOpenCodeGen) return;
+    if (idx >= mcpOpenCodeScript.length) {
+      setTimeout(function() {
+        if (gen !== mcpOpenCodeGen) return;
+        mcpOpenCodeAnimating = false;
+        pre.remove();
+        runMcpOpenCodeDemo();
+      }, 5000);
+      return;
+    }
+
+    var item = mcpOpenCodeScript[idx];
+    idx++;
+
+    if (item.type === 'typing' && inputArea) {
+      typeInOpenCodeInput(inputArea, item.text, item.speed || 35, gen, function() {
+        if (gen !== mcpOpenCodeGen) return;
+        var div = document.createElement('div');
+        div.className = 'cli-line';
+        div.innerHTML = '<span class="opencode-prompt">❯</span> <span class="t-white">' + item.text + '</span>';
+        pre.appendChild(div);
+        if (mcpOpenCodeOutput) mcpOpenCodeOutput.scrollTop = mcpOpenCodeOutput.scrollHeight;
+        processNext();
+      });
+    } else {
+      setTimeout(function() {
+        if (gen !== mcpOpenCodeGen) return;
+        var div = document.createElement('div');
+        div.className = 'cli-line';
+        div.innerHTML = item.text || '&nbsp;';
+        pre.appendChild(div);
+        if (mcpOpenCodeOutput) mcpOpenCodeOutput.scrollTop = mcpOpenCodeOutput.scrollHeight;
         processNext();
       }, item.delay || 100);
     }
