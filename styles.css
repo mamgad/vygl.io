@@ -2125,7 +2125,6 @@ img { max-width: 100%; }
 .t-violet { color: #c4b5fd; }
 .t-accent { color: var(--accent); }
 .t-claude { color: #da7756; }
-.t-opencode { color: #fab283; }
 .t-bold { font-weight: 700; }
 .t-underline { text-decoration: underline; }
 
@@ -4021,7 +4020,7 @@ body::before {
 }
 
 .opencode-sidebar {
-  border-right: 1px solid rgba(250,178,131,0.1);
+  border-right: 1px solid var(--border);
   background: #0a0c12;
   display: flex;
   flex-direction: column;
@@ -4030,13 +4029,13 @@ body::before {
 
 .opencode-sidebar-header {
   padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid rgba(250,178,131,0.1);
+  border-bottom: 1px solid var(--border);
 }
 
 .opencode-sidebar-title {
   font-size: 0.625rem;
   font-weight: 700;
-  color: #fab283;
+  color: var(--fg);
   text-transform: uppercase;
   letter-spacing: 0.06em;
   font-family: var(--font-sans);
@@ -4072,7 +4071,7 @@ body::before {
 
 .opencode-sidebar-divider {
   height: 1px;
-  background: rgba(250,178,131,0.08);
+  background: rgba(255,255,255,0.06);
   margin: 0.5rem 0;
 }
 
@@ -4086,7 +4085,7 @@ body::before {
 
 .opencode-ctx-fill {
   height: 100%;
-  background: #fab283;
+  background: var(--fg-muted);
   border-radius: 2px;
   opacity: 0.7;
 }
@@ -4110,7 +4109,7 @@ body::before {
 }
 
 .opencode-tool-count {
-  color: #fab283;
+  color: var(--fg-muted);
   opacity: 0.7;
 }
 
@@ -4138,7 +4137,7 @@ body::before {
 }
 
 .opencode-prompt {
-  color: #fab283;
+  color: var(--fg);
   font-weight: 700;
 }
 
@@ -4148,12 +4147,12 @@ body::before {
 }
 
 .opencode-tool-badge {
-  color: #fab283;
+  color: var(--accent);
   font-weight: 600;
-  background: rgba(250,178,131,0.08);
+  background: rgba(96, 165, 250, 0.08);
   padding: 0.1rem 0.35rem;
   border-radius: 3px;
-  border: 1px solid rgba(250,178,131,0.15);
+  border: 1px solid rgba(96, 165, 250, 0.15);
   font-size: 0.8125rem;
 }
 
@@ -4167,7 +4166,7 @@ body::before {
 
 .opencode-input-border {
   height: 1px;
-  background: rgba(250,178,131,0.15);
+  background: var(--border);
   width: 100%;
 }
 
@@ -4182,7 +4181,7 @@ body::before {
   display: inline-block;
   width: 8px;
   height: 18px;
-  background: #fab283;
+  background: var(--fg-muted);
   opacity: 0.7;
   border-radius: 1px;
   animation: ai-blink 1s step-end infinite;
@@ -4209,13 +4208,13 @@ body::before {
   gap: 0.25rem;
   font-size: 0.625rem;
   font-weight: 600;
-  color: #fab283;
+  color: var(--fg-faint);
   font-family: var(--font-sans);
   opacity: 0.7;
 }
 
 .opencode-input-badge svg {
-  color: #fab283;
+  color: var(--fg-faint);
 }
 
 .opencode-input-hint {
@@ -4557,12 +4556,8 @@ body::before {
   background: #ffffff;
 }
 
-[data-theme="light"] .opencode-input-border {
-  background: rgba(234,136,60,0.2);
-}
-
 [data-theme="light"] .opencode-input-cursor {
-  background: #ea883c;
+  background: #64748b;
 }
 
 [data-theme="light"] .mcp-ide-body {
@@ -4797,7 +4792,6 @@ body::before {
 [data-theme="light"] .t-white { color: #1e293b; }
 [data-theme="light"] .t-muted { color: #64748b; }
 [data-theme="light"] .t-violet { color: #7c3aed; }
-[data-theme="light"] .t-opencode { color: #c2650a; }
 [data-theme="light"] .t-bold { color: #0f172a; }
 
 /* CTA */
