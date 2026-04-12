@@ -4224,45 +4224,15 @@ body::before {
 /* Cursor IDE layout */
 .mcp-ide-body {
   display: grid;
-  grid-template-columns: 36px 140px 1fr 300px;
+  grid-template-columns: 140px 1fr 300px;
   height: 480px;
-  background: #1e1e1e;
-}
-
-/* VS Code activity bar */
-.mcp-ide-activitybar {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.125rem;
-  padding: 0.375rem 0;
-  background: #181818;
-  border-right: 1px solid rgba(255,255,255,0.06);
-}
-
-.mcp-ide-activitybar-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 32px;
-  color: rgba(255,255,255,0.35);
-  cursor: default;
-}
-
-.mcp-ide-activitybar-active {
-  color: var(--fg);
-  border-left: 2px solid var(--fg);
-}
-
-.mcp-ide-activitybar-chat {
-  margin-top: auto;
+  background: #080b14;
 }
 
 .mcp-ide-sidebar {
   border-right: 1px solid var(--border);
   padding: 0.5rem 0;
-  background: #252526;
+  background: #0a0e1a;
   overflow: hidden;
 }
 
@@ -4320,7 +4290,7 @@ body::before {
 .mcp-ide-chat {
   display: flex;
   flex-direction: column;
-  background: #1e1e1e;
+  background: #0a0e1a;
   overflow: hidden;
 }
 
@@ -4450,7 +4420,6 @@ body::before {
     grid-template-columns: 1fr;
   }
 
-  .mcp-ide-activitybar,
   .mcp-ide-sidebar,
   .mcp-ide-editor {
     display: none;
@@ -4596,25 +4565,9 @@ body::before {
   background: #ffffff;
 }
 
-[data-theme="light"] .mcp-ide-activitybar {
-  background: #f3f3f3;
-}
-
-[data-theme="light"] .mcp-ide-activitybar-icon {
-  color: rgba(0,0,0,0.3);
-}
-
-[data-theme="light"] .mcp-ide-activitybar-active {
-  color: #1e1e1e;
-  border-left-color: #1e1e1e;
-}
-
-[data-theme="light"] .mcp-ide-sidebar {
-  background: #f3f3f3;
-}
-
+[data-theme="light"] .mcp-ide-sidebar,
 [data-theme="light"] .mcp-ide-chat {
-  background: #ffffff;
+  background: #f8fafc;
 }
 
 [data-theme="light"] .mcp-ide-editor-tab {
