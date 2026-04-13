@@ -2239,63 +2239,12 @@ img { max-width: 100%; }
   flex-shrink: 0;
 }
 
-/* Pipeline flow with continuous track */
+/* Pipeline flow with animated connectors */
 .ms-flow {
-  position: relative;
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
-  padding: 2.75rem 3.5rem;
-}
-
-.ms-flow-track {
-  position: absolute;
-  top: calc(2.75rem + 23px);
-  left: calc(3.5rem + 24px);
-  right: calc(3.5rem + 24px);
-  height: 2px;
-  background: linear-gradient(90deg,
-    rgba(96,165,250,0.5),
-    rgba(167,139,250,0.5),
-    rgba(34,211,233,0.5),
-    rgba(52,211,153,0.5),
-    rgba(251,146,60,0.5)
-  );
-  border-radius: 1px;
-}
-
-.ms-flow-track::before {
-  content: '';
-  position: absolute;
-  inset: -4px 0;
-  background: linear-gradient(90deg,
-    rgba(96,165,250,0.1),
-    rgba(167,139,250,0.1),
-    rgba(34,211,233,0.1),
-    rgba(52,211,153,0.1),
-    rgba(251,146,60,0.1)
-  );
-  filter: blur(8px);
-  border-radius: 4px;
-}
-
-.ms-flow-track::after {
-  content: '';
-  position: absolute;
-  top: -1px;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
-  background-size: 30% 100%;
-  background-repeat: no-repeat;
-  animation: ms-shimmer 3.5s ease-in-out infinite;
-  border-radius: 2px;
-}
-
-@keyframes ms-shimmer {
-  0% { background-position: -30% center; }
-  100% { background-position: 130% center; }
+  justify-content: center;
+  padding: 2.75rem 2.5rem;
 }
 
 .ms-flow-step {
@@ -2303,9 +2252,64 @@ img { max-width: 100%; }
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
-  z-index: 1;
-  flex: 1;
+  flex: 0 0 100px;
 }
+
+/* Connector segments between icons */
+.ms-flow-conn {
+  flex: 1 1 0;
+  height: 2px;
+  border-radius: 1px;
+  margin: 23px 6px 0;
+  position: relative;
+  min-width: 24px;
+}
+
+/* Glow behind each connector */
+.ms-flow-conn::before {
+  content: '';
+  position: absolute;
+  inset: -4px -2px;
+  background: inherit;
+  filter: blur(8px);
+  opacity: 0.7;
+  border-radius: 6px;
+}
+
+/* Animated particle — one ball flows across all connectors in sequence */
+.ms-flow-conn::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.8);
+  filter: blur(1px);
+  box-shadow: 0 0 6px rgba(255,255,255,0.4);
+  animation: ms-particle 5s linear infinite;
+}
+
+@keyframes ms-particle {
+  0%  { left: 0;                  opacity: 0;   }
+  3%  {                           opacity: 0.9; }
+  13% {                           opacity: 0.9; }
+  16% { left: calc(100% - 6px);  opacity: 0;   }
+  17%, 100% { left: calc(100% - 6px); opacity: 0; }
+}
+
+/* Per-connector gradients (left-node color → right-node color) */
+.ms-flow-conn-1 { background: linear-gradient(90deg, rgba(96,165,250,0.45), rgba(167,139,250,0.45)); }
+.ms-flow-conn-2 { background: linear-gradient(90deg, rgba(167,139,250,0.45), rgba(34,211,233,0.45)); }
+.ms-flow-conn-3 { background: linear-gradient(90deg, rgba(34,211,233,0.45), rgba(52,211,153,0.45)); }
+.ms-flow-conn-4 { background: linear-gradient(90deg, rgba(52,211,153,0.45), rgba(251,146,60,0.45)); }
+
+/* Stagger so each particle hands off to the next — 0.8s per connector */
+.ms-flow-conn-1::after { animation-delay: 0s; }
+.ms-flow-conn-2::after { animation-delay: 0.8s; }
+.ms-flow-conn-3::after { animation-delay: 1.6s; }
+.ms-flow-conn-4::after { animation-delay: 2.4s; }
 
 .ms-flow-node {
   width: 48px;
@@ -2316,6 +2320,26 @@ img { max-width: 100%; }
   justify-content: center;
   border: 1.5px solid;
   transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Glow ring — hidden by default, animated in sync with the particle cascade */
+.ms-flow-node::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  animation: ms-node-pulse 5s linear infinite;
+}
+
+@keyframes ms-node-pulse {
+  0%  { opacity: 0; }
+  3%  { opacity: 1; }
+  9%  { opacity: 1; }
+  12% { opacity: 0; }
+  13%, 100% { opacity: 0; }
 }
 
 .ms-flow-step:hover .ms-flow-node {
@@ -2328,36 +2352,60 @@ img { max-width: 100%; }
   color: var(--blue);
   box-shadow: 0 0 12px rgba(96,165,250,0.06);
 }
+.ms-node-blue::before {
+  box-shadow: 0 0 20px 4px rgba(96,165,250,0.45);
+  animation-delay: -0.15s;
+}
+
 .ms-node-purple {
   background: rgba(167,139,250,0.08);
   border-color: rgba(167,139,250,0.35);
   color: var(--purple);
   box-shadow: 0 0 12px rgba(167,139,250,0.06);
 }
+.ms-node-purple::before {
+  box-shadow: 0 0 20px 4px rgba(167,139,250,0.45);
+  animation-delay: 0.65s;
+}
+
 .ms-node-cyan {
   background: rgba(34,211,233,0.08);
   border-color: rgba(34,211,233,0.35);
   color: var(--cyan);
   box-shadow: 0 0 12px rgba(34,211,233,0.06);
 }
+.ms-node-cyan::before {
+  box-shadow: 0 0 20px 4px rgba(34,211,233,0.45);
+  animation-delay: 1.45s;
+}
+
 .ms-node-emerald {
   background: rgba(52,211,153,0.08);
   border-color: rgba(52,211,153,0.35);
   color: var(--emerald);
   box-shadow: 0 0 12px rgba(52,211,153,0.06);
 }
+.ms-node-emerald::before {
+  box-shadow: 0 0 20px 4px rgba(52,211,153,0.45);
+  animation-delay: 2.25s;
+}
+
 .ms-node-orange {
   background: rgba(251,146,60,0.08);
   border-color: rgba(251,146,60,0.35);
   color: var(--orange);
   box-shadow: 0 0 12px rgba(251,146,60,0.06);
 }
+.ms-node-orange::before {
+  box-shadow: 0 0 20px 4px rgba(251,146,60,0.45);
+  animation-delay: 3.05s;
+}
 
-.ms-flow-step:hover .ms-node-blue { box-shadow: 0 0 24px rgba(96,165,250,0.2); }
-.ms-flow-step:hover .ms-node-purple { box-shadow: 0 0 24px rgba(167,139,250,0.2); }
-.ms-flow-step:hover .ms-node-cyan { box-shadow: 0 0 24px rgba(34,211,233,0.2); }
-.ms-flow-step:hover .ms-node-emerald { box-shadow: 0 0 24px rgba(52,211,153,0.2); }
-.ms-flow-step:hover .ms-node-orange { box-shadow: 0 0 24px rgba(251,146,60,0.2); }
+.ms-flow-step:hover .ms-node-blue { box-shadow: 0 0 24px rgba(96,165,250,0.3); }
+.ms-flow-step:hover .ms-node-purple { box-shadow: 0 0 24px rgba(167,139,250,0.3); }
+.ms-flow-step:hover .ms-node-cyan { box-shadow: 0 0 24px rgba(34,211,233,0.3); }
+.ms-flow-step:hover .ms-node-emerald { box-shadow: 0 0 24px rgba(52,211,153,0.3); }
+.ms-flow-step:hover .ms-node-orange { box-shadow: 0 0 24px rgba(251,146,60,0.3); }
 
 .ms-flow-label {
   font-size: 0.75rem;
@@ -2480,15 +2528,13 @@ img { max-width: 100%; }
     flex-wrap: wrap;
     gap: 0.75rem;
     padding: 2rem 1.5rem;
-    justify-content: center;
   }
 
-  .ms-flow-track {
+  .ms-flow-conn {
     display: none;
   }
 
   .ms-flow-step {
-    flex: none;
     width: calc(33.33% - 0.5rem);
   }
 
@@ -2523,6 +2569,322 @@ img { max-width: 100%; }
 
   .managed-scans {
     padding: 4rem 0;
+  }
+}
+
+/* ─── CVE Watch ─── */
+
+.cve-watch {
+  padding: 6rem 0;
+}
+
+.cve-showcase {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+/* Left: feature info */
+.cve-info {
+  padding-top: 0.5rem;
+}
+
+.cve-stats-row {
+  display: flex;
+  gap: 3rem;
+  margin-bottom: 2.5rem;
+}
+
+.cve-stat {
+  display: flex;
+  flex-direction: column;
+}
+
+.cve-stat-value {
+  font-size: 2.25rem;
+  font-weight: 800;
+  font-family: var(--font-display);
+  background: linear-gradient(135deg, var(--accent), var(--purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.cve-stat-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--fg-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 0.25rem;
+}
+
+.cve-features {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.cve-feat {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.cve-feat-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.cve-feat-emerald { background: var(--emerald-bg); color: var(--emerald); }
+.cve-feat-blue { background: var(--blue-bg); color: var(--blue); }
+.cve-feat-purple { background: var(--purple-bg); color: var(--purple); }
+
+.cve-feat h4 {
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.cve-feat p {
+  font-size: 0.8125rem;
+  color: var(--fg-muted);
+  line-height: 1.55;
+}
+
+/* Right: Alert feed mock */
+.cve-mock {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg);
+  overflow: hidden;
+}
+
+.cve-mock-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-elevated);
+}
+
+.cve-mock-title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+.cve-mock-title svg {
+  color: var(--fg-muted);
+}
+
+.cve-mock-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.6rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ef4444;
+}
+
+.cve-live-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.5);
+  animation: cve-live-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes cve-live-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.8); }
+}
+
+/* Alert items */
+.cve-alert {
+  display: flex;
+  gap: 0.875rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s ease;
+}
+
+.cve-alert:last-child {
+  border-bottom: none;
+}
+
+.cve-alert:hover {
+  background: rgba(255,255,255,0.015);
+}
+
+.cve-alert-new {
+  background: rgba(239, 68, 68, 0.03);
+  border-left: 2px solid #ef4444;
+  padding-left: calc(1.25rem - 2px);
+}
+
+.cve-alert-new:hover {
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.cve-alert-severity {
+  font-size: 0.575rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: 0.125rem;
+  line-height: 1.4;
+}
+
+.cve-sev-critical {
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+}
+
+.cve-sev-high {
+  background: rgba(251, 146, 60, 0.12);
+  color: var(--orange);
+}
+
+.cve-sev-medium {
+  background: rgba(250, 204, 21, 0.12);
+  color: var(--yellow);
+}
+
+.cve-alert-body {
+  flex: 1;
+  min-width: 0;
+}
+
+.cve-alert-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+
+.cve-alert-id {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--fg);
+}
+
+.cve-alert-time {
+  font-size: 0.6875rem;
+  color: var(--fg-faint);
+}
+
+.cve-alert-new .cve-alert-time {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.cve-alert-desc {
+  font-size: 0.8125rem;
+  color: var(--fg-muted);
+  margin-bottom: 0.375rem;
+  line-height: 1.4;
+}
+
+.cve-alert-meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.6875rem;
+  color: var(--fg-faint);
+}
+
+.cve-alert-pkg {
+  font-family: var(--font-mono);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.cve-alert-pkg svg {
+  opacity: 0.5;
+}
+
+.cve-alert-channels {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: var(--fg-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.cve-alert-channels svg {
+  opacity: 0.6;
+}
+
+/* CVE Watch — Light theme */
+[data-theme="light"] .cve-mock {
+  background: #fff;
+}
+
+[data-theme="light"] .cve-mock-header {
+  background: #f8fafc;
+}
+
+[data-theme="light"] .cve-alert-new {
+  background: rgba(239, 68, 68, 0.04);
+}
+
+[data-theme="light"] .cve-alert:hover {
+  background: rgba(0,0,0,0.015);
+}
+
+[data-theme="light"] .cve-alert-new:hover {
+  background: rgba(239, 68, 68, 0.06);
+}
+
+/* CVE Watch — Responsive */
+@media (max-width: 768px) {
+  .cve-showcase {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cve-stats-row {
+    gap: 2rem;
+  }
+
+  .cve-stat-value {
+    font-size: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .cve-watch {
+    padding: 4rem 0;
+  }
+
+  .cve-alert-meta {
+    flex-direction: column;
+    gap: 0.25rem;
   }
 }
 
