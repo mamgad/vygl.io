@@ -2328,8 +2328,8 @@ img { max-width: 100%; }
 .pipeline-connector-line {
   width: 40px;
   height: 1px;
-  background: linear-gradient(90deg, var(--border-hover), var(--fg-faint), var(--border-hover));
-  opacity: 0.6;
+  background: var(--fg-faint);
+  opacity: 0.4;
 }
 
 .pipeline-connector-dot {
