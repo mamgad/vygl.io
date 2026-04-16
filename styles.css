@@ -468,6 +468,104 @@ img { max-width: 100%; }
   50% { transform: translate(20px, -20px); }
 }
 
+/* ─── Reusable section background patterns ─── */
+
+/* Dot grid — same as hero, different mask positions */
+.section-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, var(--fg-faint) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.18;
+  pointer-events: none;
+}
+
+.section-grid-center {
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 65%);
+}
+
+.section-grid-right {
+  mask-image: radial-gradient(ellipse 60% 70% at 70% 50%, black 20%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 70% 50%, black 20%, transparent 65%);
+}
+
+.section-grid-left {
+  mask-image: radial-gradient(ellipse 60% 70% at 30% 50%, black 20%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse 60% 70% at 30% 50%, black 20%, transparent 65%);
+}
+
+/* Floating particles — reusable sparkle pattern */
+.section-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.section-particles::before,
+.section-particles::after {
+  content: '';
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  opacity: 0;
+  animation: sparkle-float 6s ease-in-out infinite;
+}
+
+/* Blue-themed particles (for AI Demo) */
+.particles-blue::before {
+  top: 25%;
+  left: 10%;
+  background: var(--blue);
+  animation-delay: 0s;
+  box-shadow:
+    150px 30px 0 0 rgba(96,165,250,0.25),
+    350px -20px 0 0 rgba(96,165,250,0.2),
+    550px 50px 0 0 rgba(167,139,250,0.2),
+    750px -10px 0 0 rgba(96,165,250,0.15);
+}
+
+.particles-blue::after {
+  top: 65%;
+  right: 15%;
+  background: var(--purple);
+  animation-delay: 3s;
+  box-shadow:
+    -120px 20px 0 0 rgba(167,139,250,0.2),
+    -320px -40px 0 0 rgba(96,165,250,0.25),
+    -520px 30px 0 0 rgba(167,139,250,0.15),
+    -100px -100px 0 0 rgba(96,165,250,0.2);
+}
+
+/* Emerald-themed particles (for Benefits) */
+.particles-emerald::before {
+  top: 20%;
+  left: 12%;
+  background: var(--emerald);
+  animation-delay: 1s;
+  box-shadow:
+    180px 25px 0 0 rgba(52,211,153,0.2),
+    400px -15px 0 0 rgba(34,211,233,0.2),
+    620px 40px 0 0 rgba(52,211,153,0.15),
+    840px -25px 0 0 rgba(34,211,233,0.18);
+}
+
+.particles-emerald::after {
+  top: 70%;
+  right: 10%;
+  background: var(--cyan);
+  animation-delay: 4s;
+  box-shadow:
+    -150px 15px 0 0 rgba(34,211,233,0.2),
+    -370px -35px 0 0 rgba(52,211,153,0.2),
+    -80px -90px 0 0 rgba(34,211,233,0.15);
+}
+
+[data-theme="light"] .section-grid { opacity: 0.1; }
+[data-theme="light"] .section-particles { opacity: 0; }
+
 .hero-inner {
   position: relative;
   max-width: 1400px;
@@ -964,6 +1062,8 @@ img { max-width: 100%; }
 /* ─── Features / Layers ─── */
 .features {
   padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Engines layout */
@@ -1227,6 +1327,27 @@ img { max-width: 100%; }
 /* ─── How It Works ─── */
 .how-it-works {
   padding: 6rem 0;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.dash-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.dash-glow-1 {
+  width: 500px;
+  height: 500px;
+  background: rgba(96, 165, 250, 0.035);
+  top: -10%;
+  right: -8%;
+  animation: glow-drift 10s ease-in-out infinite;
 }
 
 /* Dashboard mock */
@@ -1667,9 +1788,8 @@ img { max-width: 100%; }
 /* ─── AI Demo ─── */
 .ai-demo-section {
   padding: 6rem 0;
-  background: var(--bg-elevated);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
 }
 
 .ai-demo-mock {
@@ -2035,9 +2155,6 @@ img { max-width: 100%; }
 /* ─── Terminal ─── */
 .terminal-section {
   padding: 6rem 0;
-  background: var(--bg-elevated);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
 }
 
 .terminal {
@@ -2134,9 +2251,7 @@ img { max-width: 100%; }
 
 .managed-scans {
   padding: 6rem 0;
-  background: var(--bg-elevated);
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+  position: relative;
   overflow: hidden;
 }
 
@@ -2576,6 +2691,36 @@ img { max-width: 100%; }
 
 .cve-watch {
   padding: 6rem 0;
+  background: var(--bg-elevated);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.cve-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.cve-glow-1 {
+  width: 450px;
+  height: 450px;
+  background: rgba(239, 68, 68, 0.03);
+  top: -10%;
+  left: -5%;
+  animation: glow-drift 10s ease-in-out infinite;
+}
+
+.cve-glow-2 {
+  width: 350px;
+  height: 350px;
+  background: rgba(251, 146, 60, 0.025);
+  bottom: -10%;
+  right: -5%;
+  animation: glow-drift 8s ease-in-out infinite reverse;
 }
 
 .cve-showcase {
@@ -2841,6 +2986,8 @@ img { max-width: 100%; }
 }
 
 /* CVE Watch — Light theme */
+[data-theme="light"] .cve-glow { opacity: 0; }
+
 [data-theme="light"] .cve-mock {
   background: #fff;
 }
@@ -2884,6 +3031,33 @@ img { max-width: 100%; }
   background: var(--bg-elevated);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  pointer-events: none;
+}
+
+.cs-glow-1 {
+  width: 500px;
+  height: 500px;
+  background: rgba(34, 211, 233, 0.04);
+  top: -15%;
+  right: -8%;
+  animation: glow-drift 10s ease-in-out infinite;
+}
+
+.cs-glow-2 {
+  width: 350px;
+  height: 350px;
+  background: rgba(96, 165, 250, 0.03);
+  bottom: -10%;
+  left: -5%;
+  animation: glow-drift 8s ease-in-out infinite reverse;
 }
 
 .cs-showcase {
@@ -3165,6 +3339,8 @@ img { max-width: 100%; }
   background: #f8fafc;
 }
 
+[data-theme="light"] .cs-glow { opacity: 0; }
+
 [data-theme="light"] .cs-mock {
   background: #fff;
 }
@@ -3229,6 +3405,8 @@ img { max-width: 100%; }
 
 .integrations {
   padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
 }
 
 .integrations-grid {
@@ -3919,6 +4097,8 @@ img { max-width: 100%; }
   background: var(--bg-elevated);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
 }
 
 .benefits-grid {
@@ -4353,7 +4533,7 @@ body::before {
 /* ─── AI Security Consultation ─── */
 .ai-consult-section {
   padding: 6rem 0;
-  background: var(--bg);
+  background: var(--bg-elevated);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   position: relative;
@@ -5792,6 +5972,8 @@ body::before {
 }
 
 /* Dashboard mock */
+[data-theme="light"] .dash-glow { opacity: 0; }
+
 [data-theme="light"] .dash-mock,
 [data-theme="light"] .dash-mock * {
   --fg: #0f172a;
