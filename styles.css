@@ -3127,6 +3127,7 @@ img { max-width: 100%; }
 .cs-feat-cyan { background: rgba(34, 211, 233, 0.1); color: var(--cyan); }
 .cs-feat-blue { background: var(--blue-bg); color: var(--blue); }
 .cs-feat-purple { background: var(--purple-bg); color: var(--purple); }
+.cs-feat-violet { background: var(--violet-bg); color: var(--violet); }
 
 .cs-feat h4 {
   font-size: 0.875rem;
