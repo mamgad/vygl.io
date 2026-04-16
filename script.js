@@ -1065,8 +1065,9 @@ if (mcpSectionEl) {
 
   // Section IDs in order (matches page flow)
   var sectionIds = [
-    'scan-demo', 'features', 'ai-demo', 'ai-consultation',
-    'providers', 'benefits', 'how-it-works', 'dashboard', 'integrations', 'mcp'
+    'scan-demo', 'features', 'container-scan', 'managed-scans', 'cve-watch',
+    'ai-demo', 'ai-consultation', 'providers',
+    'dashboard', 'how-it-works', 'mcp', 'integrations', 'benefits'
   ];
 
   // Map section IDs to top nav hrefs

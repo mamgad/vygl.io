@@ -598,6 +598,413 @@
     </div>
   </section>
 
+  <!-- ─── Container Scanning ─── -->
+  <section class="container-scan" id="container-scan">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Container Scanning</span>
+        <h2 class="section-title">Scan Images. See Every Layer.</h2>
+        <p class="section-subtitle">Scan container images from the CLI or connect your registry. Vygl finds vulnerable OS and application packages across every layer — and correlates them with your source code findings.</p>
+      </div>
+
+      <div class="cs-showcase reveal">
+        <!-- Left: feature info -->
+        <div class="cs-info">
+          <div class="cs-stats-row">
+            <div class="cs-stat">
+              <span class="cs-stat-value">OS + App</span>
+              <span class="cs-stat-label">Package Coverage</span>
+            </div>
+            <div class="cs-stat">
+              <span class="cs-stat-value">Every Layer</span>
+              <span class="cs-stat-label">Deep Image Analysis</span>
+            </div>
+          </div>
+
+          <div class="cs-features">
+            <div class="cs-feat">
+              <div class="cs-feat-icon cs-feat-cyan">
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              </div>
+              <div>
+                <h4>CLI Scanning</h4>
+                <p>One command to scan any image. <code>vygl scan --image harbor.io/app:latest</code> with <code>--fail-on</code> severity gating for CI/CD.</p>
+              </div>
+            </div>
+            <div class="cs-feat">
+              <div class="cs-feat-icon cs-feat-blue">
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+              </div>
+              <div>
+                <h4>Registry Integration</h4>
+                <p>Connect Harbor with auto-scan on push via webhooks. ECR, Google Artifact Registry, and Docker Hub coming soon.</p>
+              </div>
+            </div>
+            <div class="cs-feat">
+              <div class="cs-feat-icon cs-feat-purple">
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"/><line x1="4" y1="20" x2="21" y2="3"/><polyline points="21 16 21 21 16 21"/><line x1="15" y1="15" x2="21" y2="21"/><line x1="4" y1="4" x2="9" y2="9"/></svg>
+              </div>
+              <div>
+                <h4>Source ↔ Container Correlation</h4>
+                <p>Match SCA findings in your source code with the same CVEs in your built image. See the full supply chain picture.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Container scan result mock -->
+        <div class="cs-mock">
+          <div class="cs-mock-header">
+            <span class="cs-mock-title">
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              Image Scan
+            </span>
+            <span class="cs-mock-complete"><span class="cs-complete-dot"></span>Complete</span>
+          </div>
+
+          <div class="cs-image-strip">
+            <span class="cs-image-ref">harbor.internal.io/acme-api:v2.4.1</span>
+            <div class="cs-image-meta">
+              <span class="cs-meta-item">Debian 12</span>
+              <span class="cs-meta-sep">·</span>
+              <span class="cs-meta-item">10 Layers</span>
+              <span class="cs-meta-sep">·</span>
+              <span class="cs-meta-item">142 Packages</span>
+            </div>
+          </div>
+
+          <div class="cs-severity-summary">
+            <span class="cs-sev-pill cs-pill-critical">2 Critical</span>
+            <span class="cs-sev-pill cs-pill-high">1 High</span>
+            <span class="cs-sev-pill cs-pill-medium">2 Medium</span>
+            <span class="cs-sev-pill cs-pill-low">1 Low</span>
+          </div>
+
+          <div class="cs-findings">
+            <div class="cs-findings-group">
+              <span class="cs-group-label">OS Packages</span>
+              <div class="cs-finding cs-finding-critical">
+                <span class="cs-pkg"><span class="cs-pkg-name">openssl</span><span class="cs-pkg-ver">@3.0.13</span></span>
+                <div class="cs-finding-end">
+                  <span class="cs-finding-sev cve-sev-critical">Critical</span>
+                  <span class="cs-finding-fix">→ 3.0.15</span>
+                </div>
+              </div>
+              <div class="cs-finding">
+                <span class="cs-pkg"><span class="cs-pkg-name">libcurl</span><span class="cs-pkg-ver">@7.88.1</span></span>
+                <div class="cs-finding-end">
+                  <span class="cs-finding-sev cve-sev-high">High</span>
+                  <span class="cs-finding-fix">→ 8.5.0</span>
+                </div>
+              </div>
+              <div class="cs-finding">
+                <span class="cs-pkg"><span class="cs-pkg-name">zlib</span><span class="cs-pkg-ver">@1.2.13</span></span>
+                <div class="cs-finding-end">
+                  <span class="cs-finding-sev cve-sev-medium">Medium</span>
+                  <span class="cs-finding-fix">→ 1.3.1</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-findings-group">
+              <span class="cs-group-label">App Packages</span>
+              <div class="cs-finding cs-finding-critical">
+                <span class="cs-pkg"><span class="cs-pkg-name">setuptools</span><span class="cs-pkg-ver">@68.0.0</span></span>
+                <div class="cs-finding-end">
+                  <span class="cs-finding-sev cve-sev-critical">Critical</span>
+                  <span class="cs-finding-fix">→ 70.0.0</span>
+                </div>
+              </div>
+              <div class="cs-finding">
+                <span class="cs-pkg"><span class="cs-pkg-name">requests</span><span class="cs-pkg-ver">@2.28.0</span></span>
+                <div class="cs-finding-end">
+                  <span class="cs-finding-sev cve-sev-medium">Medium</span>
+                  <span class="cs-finding-fix">→ 2.31.0</span>
+                </div>
+              </div>
+              <div class="cs-finding">
+                <span class="cs-pkg"><span class="cs-pkg-name">pillow</span><span class="cs-pkg-ver">@9.5.0</span></span>
+                <div class="cs-finding-end">
+                  <span class="cs-finding-sev cve-sev-low">Low</span>
+                  <span class="cs-finding-fix">→ 10.2.0</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── Managed Scans ─── -->
+  <section class="managed-scans" id="managed-scans">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">Managed Scans</span>
+        <h2 class="section-title">Connect Your Repos. Scanning Starts Automatically.</h2>
+        <p class="section-subtitle">Link your GitHub, GitLab, or Bitbucket account — Vygl installs webhooks, clones on every push or PR, runs all engines, and posts results back. No CI/CD config required.</p>
+      </div>
+
+      <!-- Unified scan showcase -->
+      <div class="ms-showcase reveal">
+        <div class="ms-showcase-glow" aria-hidden="true"></div>
+
+        <!-- Connected providers strip -->
+        <div class="ms-connections">
+          <div class="ms-conn">
+            <div class="ms-conn-icon">
+              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+            </div>
+            <div class="ms-conn-info">
+              <span class="ms-conn-name">GitHub</span>
+              <span class="ms-conn-auth">GitHub App</span>
+            </div>
+            <span class="ms-conn-badge"><span class="ms-conn-dot"></span>Connected</span>
+          </div>
+
+          <div class="ms-conn-sep" aria-hidden="true"></div>
+
+          <div class="ms-conn">
+            <div class="ms-conn-icon">
+              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 380 380"><path d="M282.83 170.73l-.27-.69-26.14-68.22a6.81 6.81 0 00-2.69-3.24 7 7 0 00-8 .43 7 7 0 00-2.32 3.52l-17.65 54h-71.47l-17.65-54a6.86 6.86 0 00-2.32-3.53 7 7 0 00-8-.43 6.87 6.87 0 00-2.69 3.24L97.44 170l-.26.69a48.54 48.54 0 0016.1 56.1l.09.07.24.17 39.82 29.82 19.7 14.91 12 9.06a8.07 8.07 0 009.76 0l12-9.06 19.7-14.91 40.06-30 .1-.08a48.56 48.56 0 0016.08-56.04z" fill="#e24329"/><path d="M282.83 170.73l-.27-.69a88.3 88.3 0 00-35.15 15.8L190 229.25c19.55 14.79 36.57 27.64 36.57 27.64l40.06-30 .1-.08a48.56 48.56 0 0016.1-56.08z" fill="#fc6d26"/><path d="M153.43 256.89l19.7 14.91 12 9.06a8.07 8.07 0 009.76 0l12-9.06 19.7-14.91S209.55 244 190 229.25c-19.55 14.75-36.57 27.64-36.57 27.64z" fill="#fca326"/><path d="M97.44 170.04l-.26.69a48.54 48.54 0 0016.1 56.1l.09.07.24.17 39.82 29.82L190 229.21l-57.41-43.41a88.3 88.3 0 00-35.15-15.76z" fill="#fc6d26"/></svg>
+            </div>
+            <div class="ms-conn-info">
+              <span class="ms-conn-name">GitLab</span>
+              <span class="ms-conn-auth">OAuth 2.0</span>
+            </div>
+            <span class="ms-conn-badge"><span class="ms-conn-dot"></span>Connected</span>
+          </div>
+
+          <div class="ms-conn-sep" aria-hidden="true"></div>
+
+          <div class="ms-conn">
+            <div class="ms-conn-icon">
+              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 512 512"><defs><linearGradient id="bb-grad" x1="104.953" y1="275.429" x2="27.581" y2="211.428" gradientTransform="matrix(1 0 0 -1 0 502)" gradientUnits="userSpaceOnUse"><stop offset="0.18" stop-color="#0052cc"/><stop offset="1" stop-color="#2684ff"/></linearGradient></defs><path d="M19.1 58.7c-6.9 0-12.2 6.2-11.2 13.1l67.4 408.9c1.4 8.7 8.9 15.1 17.8 15.1h330c6.6 0 12.3-4.8 13.3-11.3L503.9 71.8c1-6.9-4.3-13.1-11.2-13.1H19.1zm288 288.5H206.5l-22.1-115.7h145.4l-22.7 115.7z" fill="#2684ff"/><path d="M456.8 231.5H329.8l-22.7 115.7H206.5l-131.1 155c3.5 3.1 8 4.8 12.8 4.8h330c6.6 0 12.3-4.8 13.3-11.3L456.8 231.5z" fill="url(#bb-grad)"/></svg>
+            </div>
+            <div class="ms-conn-info">
+              <span class="ms-conn-name">Bitbucket</span>
+              <span class="ms-conn-auth">OAuth 2.0</span>
+            </div>
+            <span class="ms-conn-badge"><span class="ms-conn-dot"></span>Connected</span>
+          </div>
+        </div>
+
+        <!-- Pipeline flow -->
+        <div class="ms-flow">
+          <div class="ms-flow-step">
+            <div class="ms-flow-node ms-node-blue">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            </div>
+            <span class="ms-flow-label">Push / PR</span>
+          </div>
+
+          <div class="ms-flow-conn ms-flow-conn-1" aria-hidden="true"></div>
+
+          <div class="ms-flow-step">
+            <div class="ms-flow-node ms-node-purple">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"/><path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06"/><path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8H12"/></svg>
+            </div>
+            <span class="ms-flow-label">Webhook</span>
+          </div>
+
+          <div class="ms-flow-conn ms-flow-conn-2" aria-hidden="true"></div>
+
+          <div class="ms-flow-step">
+            <div class="ms-flow-node ms-node-cyan">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
+            </div>
+            <span class="ms-flow-label">Clone</span>
+          </div>
+
+          <div class="ms-flow-conn ms-flow-conn-3" aria-hidden="true"></div>
+
+          <div class="ms-flow-step">
+            <div class="ms-flow-node ms-node-emerald">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+            </div>
+            <span class="ms-flow-label">SAST · SCA · Secrets · IaC</span>
+          </div>
+
+          <div class="ms-flow-conn ms-flow-conn-4" aria-hidden="true"></div>
+
+          <div class="ms-flow-step">
+            <div class="ms-flow-node ms-node-orange">
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </div>
+            <span class="ms-flow-label">PR Comment + Status Check</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Capabilities grid -->
+      <div class="ms-caps reveal reveal-delay-1">
+        <div class="ms-cap ms-cap-blue">
+          <div class="ms-cap-icon">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h4>Zero CI/CD Config</h4>
+          <p>No YAML, no pipelines, no Docker setup. Connect your account and scanning begins on the next push.</p>
+        </div>
+        <div class="ms-cap ms-cap-purple">
+          <div class="ms-cap-icon">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h4>Ephemeral Cloning</h4>
+          <p>Source code is cloned to a temp directory and deleted immediately after scanning. Nothing persists.</p>
+        </div>
+        <div class="ms-cap ms-cap-emerald">
+          <div class="ms-cap-icon">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h4>Commit Status Gates</h4>
+          <p>Block merges when critical or high findings are detected. Configurable fail-on threshold per repo.</p>
+        </div>
+        <div class="ms-cap ms-cap-violet">
+          <div class="ms-cap-icon">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+          </div>
+          <h4>AI Triage on Every Scan</h4>
+          <p>Every finding is automatically verified by AI. True positives, false positives, and suggested fixes — right in the PR comment.</p>
+        </div>
+        <div class="ms-cap ms-cap-cyan">
+          <div class="ms-cap-icon">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h4>Self-Hosted Support</h4>
+          <p>Works with GitHub Enterprise, self-hosted GitLab, and Bitbucket Data Center. Not just cloud.</p>
+        </div>
+        <div class="ms-cap ms-cap-orange">
+          <div class="ms-cap-icon">
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Org-Wide Policies</h4>
+          <p>Cloud-managed rules apply to every managed scan. Enforce security policy across all repos from one place.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CVE Watch ─── -->
+  <section class="cve-watch" id="cve-watch">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-badge">CVE Watch</span>
+        <h2 class="section-title">New CVE Drops. You Know Instantly.</h2>
+        <p class="section-subtitle">Vygl continuously monitors every package in your SBOM against new vulnerability disclosures. When a CVE hits a dependency you ship — your team knows before it's exploited.</p>
+      </div>
+
+      <div class="cve-showcase reveal">
+        <!-- Left: feature info -->
+        <div class="cve-info">
+          <div class="cve-stats-row">
+            <div class="cve-stat">
+              <span class="cve-stat-value">24/7</span>
+              <span class="cve-stat-label">Continuous Monitoring</span>
+            </div>
+            <div class="cve-stat">
+              <span class="cve-stat-value">4&times;</span>
+              <span class="cve-stat-label">Daily Scan Cycles</span>
+            </div>
+          </div>
+
+          <div class="cve-features">
+            <div class="cve-feat">
+              <div class="cve-feat-icon cve-feat-emerald">
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+              </div>
+              <div>
+                <h4>SBOM-Aware</h4>
+                <p>Every dependency from your scans is automatically tracked against live CVE feeds. No manual package lists.</p>
+              </div>
+            </div>
+            <div class="cve-feat">
+              <div class="cve-feat-icon cve-feat-blue">
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              </div>
+              <div>
+                <h4>Instant Notifications</h4>
+                <p>Slack, email, or webhook alerts fire as soon as a new CVE matches a package in your SBOM.</p>
+              </div>
+            </div>
+            <div class="cve-feat">
+              <div class="cve-feat-icon cve-feat-purple">
+                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg>
+              </div>
+              <div>
+                <h4>Upgrade Guidance</h4>
+                <p>Every alert includes the affected version range, CVSS score, and recommended fix version.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Alert feed mock -->
+        <div class="cve-mock">
+          <div class="cve-mock-header">
+            <span class="cve-mock-title">
+              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              CVE Alerts
+            </span>
+            <span class="cve-mock-live"><span class="cve-live-dot"></span>Live</span>
+          </div>
+
+          <!-- Alert 1: Critical — just arrived -->
+          <div class="cve-alert cve-alert-new">
+            <div class="cve-alert-severity cve-sev-critical">Critical</div>
+            <div class="cve-alert-body">
+              <div class="cve-alert-top">
+                <span class="cve-alert-id">CVE-2026-31245</span>
+                <span class="cve-alert-time">2 min ago</span>
+              </div>
+              <p class="cve-alert-desc">Remote Code Execution in jsonwebtoken</p>
+              <div class="cve-alert-meta">
+                <span class="cve-alert-pkg"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> jsonwebtoken &lt;9.0.2</span>
+                <span class="cve-alert-projects">3 projects affected</span>
+              </div>
+              <div class="cve-alert-channels">
+                <span>Notified via</span>
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.166 0a2.528 2.528 0 0 1 2.521 2.522v6.312zm-2.521 10.124a2.528 2.528 0 0 1 2.521 2.52A2.528 2.528 0 0 1 15.166 24a2.528 2.528 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521h6.312A2.528 2.528 0 0 1 24 15.166a2.528 2.528 0 0 1-2.522 2.521h-6.312z"/></svg>
+                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert 2: High -->
+          <div class="cve-alert">
+            <div class="cve-alert-severity cve-sev-high">High</div>
+            <div class="cve-alert-body">
+              <div class="cve-alert-top">
+                <span class="cve-alert-id">CVE-2026-28891</span>
+                <span class="cve-alert-time">6 hours ago</span>
+              </div>
+              <p class="cve-alert-desc">Prototype Pollution in lodash.merge</p>
+              <div class="cve-alert-meta">
+                <span class="cve-alert-pkg"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> lodash &lt;4.17.22</span>
+                <span class="cve-alert-projects">7 projects affected</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Alert 3: Medium -->
+          <div class="cve-alert">
+            <div class="cve-alert-severity cve-sev-medium">Medium</div>
+            <div class="cve-alert-body">
+              <div class="cve-alert-top">
+                <span class="cve-alert-id">CVE-2026-27433</span>
+                <span class="cve-alert-time">1 day ago</span>
+              </div>
+              <p class="cve-alert-desc">ReDoS in semver range parsing</p>
+              <div class="cve-alert-meta">
+                <span class="cve-alert-pkg"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> semver &lt;7.5.5</span>
+                <span class="cve-alert-projects">12 projects affected</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ─── AI Verification Demo ─── -->
   <section class="ai-demo-section" id="ai-demo">
     <div class="container">
@@ -907,83 +1314,6 @@
     </div>
   </section>
 
-  <!-- ─── Benefits ─── -->
-  <section class="benefits" id="benefits">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-badge">Why Vygl</span>
-        <h2 class="section-title">Built for Security-Conscious Teams</h2>
-        <p class="section-subtitle">Comprehensive scanning, AI-assisted triage, and native integration into your AppSec and DevSecOps pipelines.</p>
-      </div>
-      <div class="benefits-grid">
-        <div class="benefit-card reveal">
-          <div class="benefit-icon">
-            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <h3>Your Code Stays Yours</h3>
-          <p>Scans run in your environment. Only findings metadata is sent to the cloud — not your source code.</p>
-        </div>
-        <div class="benefit-card reveal reveal-delay-1">
-          <div class="benefit-icon">
-            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
-          </div>
-          <h3>Comprehensive Coverage</h3>
-          <p>SAST, SCA, secrets, and IaC scanning in one platform. One scan covers your entire stack.</p>
-        </div>
-        <div class="benefit-card reveal reveal-delay-2">
-          <div class="benefit-icon">
-            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"/><path d="M5 19.5C5.5 18 6 15 6 12c0-.7.12-1.37.34-2"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M9 6.8a6 6 0 0 1 9 5.2c0 .47 0 1.17-.02 2"/></svg>
-          </div>
-          <h3>Smart Deduplication</h3>
-          <p>SHA-256 fingerprinting eliminates duplicates across scans. Focus on what actually matters.</p>
-        </div>
-        <div class="benefit-card reveal reveal-delay-1">
-          <div class="benefit-icon">
-            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <h3>Policy as Code</h3>
-          <p>Cloud-managed rules with monitor, block, and disable modes. Enforce security policies in CI/CD.</p>
-        </div>
-        <div class="benefit-card reveal reveal-delay-2">
-          <div class="benefit-icon">
-            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
-          </div>
-          <h3>CI/CD Native</h3>
-          <p>Runs in GitHub Actions, GitLab CI, or any Docker-compatible pipeline. Block merges on critical findings.</p>
-        </div>
-        <div class="benefit-card reveal reveal-delay-3">
-          <div class="benefit-icon">
-            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
-          </div>
-          <h3>AI-Assisted Triage</h3>
-          <p>AI reviews each finding to help identify false positives and prioritize real issues. Bring your own LLM provider or use ours.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── How It Works: CLI + Dashboard ─── -->
-  <section class="terminal-section" id="how-it-works">
-    <div class="container">
-      <div class="section-header reveal">
-        <h2 class="section-title">Run Anywhere. Review Everything.</h2>
-        <p class="section-subtitle">Run Vygl as a Docker container in your CI/CD pipeline or locally. Scan results are automatically pushed to the cloud dashboard where your team can triage, track, and manage findings across every project.</p>
-      </div>
-      <div class="terminal reveal">
-        <div class="terminal-chrome">
-          <div class="terminal-dots">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
-          </div>
-          <span class="terminal-title">CI/CD Pipeline</span>
-        </div>
-        <div class="terminal-body" id="cli-output">
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- ─── Dashboard ─── -->
   <section class="how-it-works" id="dashboard">
     <div class="container">
@@ -1142,269 +1472,256 @@
     </div>
   </section>
 
-  <!-- ─── Managed Scans ─── -->
-  <section class="managed-scans" id="managed-scans">
+  <!-- ─── How It Works: CLI + Dashboard ─── -->
+  <section class="terminal-section" id="how-it-works">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-badge">Managed Scans</span>
-        <h2 class="section-title">Connect Your Repos. Scanning Starts Automatically.</h2>
-        <p class="section-subtitle">Link your GitHub, GitLab, or Bitbucket account — Vygl installs webhooks, clones on every push or PR, runs all engines, and posts results back. No CI/CD config required.</p>
+        <h2 class="section-title">Run Anywhere. Review Everything.</h2>
+        <p class="section-subtitle">Run Vygl as a Docker container in your CI/CD pipeline or locally. Scan results are automatically pushed to the cloud dashboard where your team can triage, track, and manage findings across every project.</p>
       </div>
-
-      <!-- Unified scan showcase -->
-      <div class="ms-showcase reveal">
-        <div class="ms-showcase-glow" aria-hidden="true"></div>
-
-        <!-- Connected providers strip -->
-        <div class="ms-connections">
-          <div class="ms-conn">
-            <div class="ms-conn-icon">
-              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
-            </div>
-            <div class="ms-conn-info">
-              <span class="ms-conn-name">GitHub</span>
-              <span class="ms-conn-auth">GitHub App</span>
-            </div>
-            <span class="ms-conn-badge"><span class="ms-conn-dot"></span>Connected</span>
+      <div class="terminal reveal">
+        <div class="terminal-chrome">
+          <div class="terminal-dots">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
           </div>
-
-          <div class="ms-conn-sep" aria-hidden="true"></div>
-
-          <div class="ms-conn">
-            <div class="ms-conn-icon">
-              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 380 380"><path d="M282.83 170.73l-.27-.69-26.14-68.22a6.81 6.81 0 00-2.69-3.24 7 7 0 00-8 .43 7 7 0 00-2.32 3.52l-17.65 54h-71.47l-17.65-54a6.86 6.86 0 00-2.32-3.53 7 7 0 00-8-.43 6.87 6.87 0 00-2.69 3.24L97.44 170l-.26.69a48.54 48.54 0 0016.1 56.1l.09.07.24.17 39.82 29.82 19.7 14.91 12 9.06a8.07 8.07 0 009.76 0l12-9.06 19.7-14.91 40.06-30 .1-.08a48.56 48.56 0 0016.08-56.04z" fill="#e24329"/><path d="M282.83 170.73l-.27-.69a88.3 88.3 0 00-35.15 15.8L190 229.25c19.55 14.79 36.57 27.64 36.57 27.64l40.06-30 .1-.08a48.56 48.56 0 0016.1-56.08z" fill="#fc6d26"/><path d="M153.43 256.89l19.7 14.91 12 9.06a8.07 8.07 0 009.76 0l12-9.06 19.7-14.91S209.55 244 190 229.25c-19.55 14.75-36.57 27.64-36.57 27.64z" fill="#fca326"/><path d="M97.44 170.04l-.26.69a48.54 48.54 0 0016.1 56.1l.09.07.24.17 39.82 29.82L190 229.21l-57.41-43.41a88.3 88.3 0 00-35.15-15.76z" fill="#fc6d26"/></svg>
-            </div>
-            <div class="ms-conn-info">
-              <span class="ms-conn-name">GitLab</span>
-              <span class="ms-conn-auth">OAuth 2.0</span>
-            </div>
-            <span class="ms-conn-badge"><span class="ms-conn-dot"></span>Connected</span>
-          </div>
-
-          <div class="ms-conn-sep" aria-hidden="true"></div>
-
-          <div class="ms-conn">
-            <div class="ms-conn-icon">
-              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 512 512"><defs><linearGradient id="bb-grad" x1="104.953" y1="275.429" x2="27.581" y2="211.428" gradientTransform="matrix(1 0 0 -1 0 502)" gradientUnits="userSpaceOnUse"><stop offset="0.18" stop-color="#0052cc"/><stop offset="1" stop-color="#2684ff"/></linearGradient></defs><path d="M19.1 58.7c-6.9 0-12.2 6.2-11.2 13.1l67.4 408.9c1.4 8.7 8.9 15.1 17.8 15.1h330c6.6 0 12.3-4.8 13.3-11.3L503.9 71.8c1-6.9-4.3-13.1-11.2-13.1H19.1zm288 288.5H206.5l-22.1-115.7h145.4l-22.7 115.7z" fill="#2684ff"/><path d="M456.8 231.5H329.8l-22.7 115.7H206.5l-131.1 155c3.5 3.1 8 4.8 12.8 4.8h330c6.6 0 12.3-4.8 13.3-11.3L456.8 231.5z" fill="url(#bb-grad)"/></svg>
-            </div>
-            <div class="ms-conn-info">
-              <span class="ms-conn-name">Bitbucket</span>
-              <span class="ms-conn-auth">OAuth 2.0</span>
-            </div>
-            <span class="ms-conn-badge"><span class="ms-conn-dot"></span>Connected</span>
-          </div>
+          <span class="terminal-title">CI/CD Pipeline</span>
         </div>
-
-        <!-- Pipeline flow -->
-        <div class="ms-flow">
-          <div class="ms-flow-step">
-            <div class="ms-flow-node ms-node-blue">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
-            </div>
-            <span class="ms-flow-label">Push / PR</span>
-          </div>
-
-          <div class="ms-flow-conn ms-flow-conn-1" aria-hidden="true"></div>
-
-          <div class="ms-flow-step">
-            <div class="ms-flow-node ms-node-purple">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2"/><path d="m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06"/><path d="m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8H12"/></svg>
-            </div>
-            <span class="ms-flow-label">Webhook</span>
-          </div>
-
-          <div class="ms-flow-conn ms-flow-conn-2" aria-hidden="true"></div>
-
-          <div class="ms-flow-step">
-            <div class="ms-flow-node ms-node-cyan">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg>
-            </div>
-            <span class="ms-flow-label">Clone</span>
-          </div>
-
-          <div class="ms-flow-conn ms-flow-conn-3" aria-hidden="true"></div>
-
-          <div class="ms-flow-step">
-            <div class="ms-flow-node ms-node-emerald">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <span class="ms-flow-label">SAST · SCA · Secrets · IaC</span>
-          </div>
-
-          <div class="ms-flow-conn ms-flow-conn-4" aria-hidden="true"></div>
-
-          <div class="ms-flow-step">
-            <div class="ms-flow-node ms-node-orange">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-            </div>
-            <span class="ms-flow-label">PR Comment + Status Check</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Capabilities grid -->
-      <div class="ms-caps reveal reveal-delay-1">
-        <div class="ms-cap ms-cap-blue">
-          <div class="ms-cap-icon">
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-          <h4>Zero CI/CD Config</h4>
-          <p>No YAML, no pipelines, no Docker setup. Connect your account and scanning begins on the next push.</p>
-        </div>
-        <div class="ms-cap ms-cap-purple">
-          <div class="ms-cap-icon">
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <h4>Ephemeral Cloning</h4>
-          <p>Source code is cloned to a temp directory and deleted immediately after scanning. Nothing persists.</p>
-        </div>
-        <div class="ms-cap ms-cap-emerald">
-          <div class="ms-cap-icon">
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <h4>Commit Status Gates</h4>
-          <p>Block merges when critical or high findings are detected. Configurable fail-on threshold per repo.</p>
-        </div>
-        <div class="ms-cap ms-cap-violet">
-          <div class="ms-cap-icon">
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
-          </div>
-          <h4>AI Triage on Every Scan</h4>
-          <p>Every finding is automatically verified by AI. True positives, false positives, and suggested fixes — right in the PR comment.</p>
-        </div>
-        <div class="ms-cap ms-cap-cyan">
-          <div class="ms-cap-icon">
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          </div>
-          <h4>Self-Hosted Support</h4>
-          <p>Works with GitHub Enterprise, self-hosted GitLab, and Bitbucket Data Center. Not just cloud.</p>
-        </div>
-        <div class="ms-cap ms-cap-orange">
-          <div class="ms-cap-icon">
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          </div>
-          <h4>Org-Wide Policies</h4>
-          <p>Cloud-managed rules apply to every managed scan. Enforce security policy across all repos from one place.</p>
+        <div class="terminal-body" id="cli-output">
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ─── CVE Watch ─── -->
-  <section class="cve-watch" id="cve-watch">
+  <!-- ─── MCP IDE Integration ─── -->
+  <section class="mcp-section" id="mcp">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-badge">CVE Watch</span>
-        <h2 class="section-title">New CVE Drops. You Know Instantly.</h2>
-        <p class="section-subtitle">Vygl continuously monitors every package in your SBOM against new vulnerability disclosures. When a CVE hits a dependency you ship — your team knows before it's exploited.</p>
+        <span class="section-badge">AI IDE Integration</span>
+        <h2 class="section-title">Your Security Data, Inside Your IDE</h2>
+        <p class="section-subtitle">Query findings, verify issues, and check project health — directly from Claude Code, Codex, OpenCode, Cursor, or any MCP-compatible IDE. Zero context switching.</p>
       </div>
 
-      <div class="cve-showcase reveal">
-        <!-- Left: feature info -->
-        <div class="cve-info">
-          <div class="cve-stats-row">
-            <div class="cve-stat">
-              <span class="cve-stat-value">24/7</span>
-              <span class="cve-stat-label">Continuous Monitoring</span>
+      <div class="mcp-demo reveal">
+        <div class="mcp-demo-glow-1" aria-hidden="true"></div>
+        <div class="mcp-demo-glow-2" aria-hidden="true"></div>
+
+        <div class="mcp-window">
+          <!-- Chrome with IDE tabs -->
+          <div class="terminal-chrome">
+            <div class="terminal-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
             </div>
-            <div class="cve-stat">
-              <span class="cve-stat-value">4&times;</span>
-              <span class="cve-stat-label">Daily Scan Cycles</span>
+            <div class="mcp-tab-bar">
+              <button class="mcp-tab active" data-mcp-tab="0">
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
+                Claude Code
+              </button>
+              <button class="mcp-tab" data-mcp-tab="1">
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 320 320" fill="currentColor"><path d="M297.06 130.97c7.26-21.79 4.76-45.66-6.85-65.48-17.46-30.4-52.56-46.04-86.84-38.68C189.21 10.12 168.4.01 146.91 0c-35.18-.01-66.14 22.87-76.21 56.17C48.56 60.83 29.24 75.68 19.12 96.97c-17.47 30.39-14.21 67.8 8.08 94.92-7.27 21.79-4.76 45.66 6.85 65.48 17.46 30.4 52.56 46.04 86.84 38.68 14.17 16.67 34.98 26.78 56.47 26.79 35.18.01 66.14-22.87 76.21-56.17 22.14-4.65 41.47-19.51 51.58-40.79 17.46-30.4 14.21-67.81-8.09-94.91zM150.93 290.08c-14.26.01-27.64-6.35-36.73-17.41 .46-.25 1.27-.69 1.8-1.01l60.99-35.22c3.11-1.77 5.03-5.08 5.02-8.65v-85.97l25.78 14.89c.27.15.46.42.5.72v71.22c-.03 33.96-27.5 61.49-57.36 61.43zM42.94 236.89c-7.16-12.36-9.72-26.88-7.15-40.89.44.27 1.22.74 1.77 1.08l60.99 35.22c3.07 1.81 6.87 1.81 9.95 0l74.48-42.99v29.77c.01.3-.12.59-.37.79l-61.65 35.6c-29.42 16.99-67.06 6.92-84.02-22.58zM27.67 105.28c7.12-12.41 18.53-21.59 31.99-25.72v72.55c-.01 3.56 1.89 6.85 4.99 8.64l74.48 42.99-25.78 14.89c-.26.17-.58.19-.87.07L50.83 183.09c-29.35-17.07-39.39-54.75-23.16-77.81zm224.26 52.17l-74.48-42.99 25.78-14.89c.26-.17.58-.19.87-.07l61.65 35.6c29.39 16.97 39.43 54.71 23.07 84.11-7.13 12.4-18.53 21.58-31.99 25.71v-72.55c.04-3.59-1.86-6.91-4.9-8.72zm25.67-41.09c-.44-.27-1.22-.74-1.77-1.08l-60.99-35.22c-3.07-1.81-6.87-1.81-9.95 0l-74.48 42.99V93.28c-.01-.3.12-.59.37-.79l61.65-35.6c29.42-16.98 67.07-6.91 84.02 22.59 7.14 12.37 9.71 26.87 7.15 40.88zM111.28 164.5l-25.78-14.89c-.27-.15-.46-.42-.5-.72V77.67c.03-33.98 27.56-61.5 61.52-61.44 14.28.02 27.64 6.38 36.73 17.42-.46.25-1.27.69-1.8 1.01l-60.99 35.22c-3.11 1.77-5.03 5.08-5.02 8.65l-.16 85.97zm14.01-30.11l33.18-19.15 33.18 19.15v38.3l-33.18 19.15-33.18-19.15V134.39z"/></svg>
+                Codex
+              </button>
+              <button class="mcp-tab" data-mcp-tab="2">
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
+                OpenCode
+              </button>
+              <button class="mcp-tab" data-mcp-tab="3">
+                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg>
+                Cursor
+              </button>
             </div>
           </div>
 
-          <div class="cve-features">
-            <div class="cve-feat">
-              <div class="cve-feat-icon cve-feat-emerald">
-                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+          <!-- Claude Code Panel -->
+          <div class="mcp-panel active" data-mcp-panel="0">
+            <div class="mcp-terminal-body" id="mcp-claude-output"></div>
+            <div class="mcp-claude-input">
+              <div class="mcp-claude-input-line"></div>
+              <div class="mcp-claude-input-area">
+                <span class="mcp-claude-cursor"></span>
               </div>
-              <div>
-                <h4>SBOM-Aware</h4>
-                <p>Every dependency from your scans is automatically tracked against live CVE feeds. No manual package lists.</p>
-              </div>
-            </div>
-            <div class="cve-feat">
-              <div class="cve-feat-icon cve-feat-blue">
-                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-              </div>
-              <div>
-                <h4>Instant Notifications</h4>
-                <p>Slack, email, or webhook alerts fire as soon as a new CVE matches a package in your SBOM.</p>
+              <div class="mcp-claude-input-line"></div>
+              <div class="mcp-claude-input-meta">
+                <span class="mcp-claude-model-badge">
+                  <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                  Claude Code
+                </span>
+                <span class="mcp-claude-project">acme-api</span>
               </div>
             </div>
-            <div class="cve-feat">
-              <div class="cve-feat-icon cve-feat-purple">
-                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/></svg>
+          </div>
+
+          <!-- Codex Panel -->
+          <div class="mcp-panel" data-mcp-panel="1">
+            <div class="codex-tui">
+              <!-- Codex TUI header bar -->
+              <div class="codex-header">
+                <span class="codex-header-path">~/projects/acme-api</span>
+                <span class="codex-header-model">codex-1</span>
+                <span class="codex-header-mode">full-auto</span>
               </div>
-              <div>
-                <h4>Upgrade Guidance</h4>
-                <p>Every alert includes the affected version range, CVSS score, and recommended fix version.</p>
+              <!-- Codex conversation area -->
+              <div class="mcp-terminal-body codex-terminal-body" id="mcp-codex-output"></div>
+              <!-- Codex composer -->
+              <div class="codex-composer">
+                <div class="codex-composer-border"></div>
+                <div class="codex-composer-area">
+                  <span class="codex-composer-cursor"></span>
+                </div>
+                <div class="codex-composer-footer">
+                  <span class="codex-composer-hint">↑↓ history</span>
+                  <span class="codex-composer-hint">@ files</span>
+                  <span class="codex-composer-hint">/ commands</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- OpenCode Panel -->
+          <div class="mcp-panel" data-mcp-panel="2">
+            <div class="opencode-tui">
+              <!-- OpenCode sidebar -->
+              <div class="opencode-sidebar">
+                <div class="opencode-sidebar-header">
+                  <span class="opencode-sidebar-title">Session</span>
+                </div>
+                <div class="opencode-sidebar-content">
+                  <div class="opencode-sidebar-section">
+                    <span class="opencode-sidebar-label">Model</span>
+                    <span class="opencode-sidebar-value">Claude Sonnet</span>
+                  </div>
+                  <div class="opencode-sidebar-section">
+                    <span class="opencode-sidebar-label">Provider</span>
+                    <span class="opencode-sidebar-value">Anthropic</span>
+                  </div>
+                  <div class="opencode-sidebar-section">
+                    <span class="opencode-sidebar-label">Context</span>
+                    <div class="opencode-ctx-bar">
+                      <div class="opencode-ctx-fill" style="width: 34%"></div>
+                    </div>
+                    <span class="opencode-sidebar-value opencode-ctx-label">34k / 100k</span>
+                  </div>
+                  <div class="opencode-sidebar-divider"></div>
+                  <div class="opencode-sidebar-section">
+                    <span class="opencode-sidebar-label">Files</span>
+                    <div class="opencode-file-list">
+                      <span class="opencode-file">users.py</span>
+                      <span class="opencode-file">models.py</span>
+                      <span class="opencode-file">pom.xml</span>
+                      <span class="opencode-file">main.tf</span>
+                    </div>
+                  </div>
+                  <div class="opencode-sidebar-divider"></div>
+                  <div class="opencode-sidebar-section">
+                    <span class="opencode-sidebar-label">Tools</span>
+                    <span class="opencode-sidebar-value opencode-tool-count">4 available</span>
+                  </div>
+                </div>
+              </div>
+              <!-- OpenCode main chat area -->
+              <div class="opencode-main">
+                <div class="opencode-chat" id="mcp-opencode-output"></div>
+                <div class="opencode-input">
+                  <div class="opencode-input-border"></div>
+                  <div class="opencode-input-area">
+                    <span class="opencode-input-cursor"></span>
+                  </div>
+                  <div class="opencode-input-footer">
+                    <span class="opencode-input-badge">
+                      <svg aria-hidden="true" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
+                      opencode
+                    </span>
+                    <span class="opencode-input-hint">@ files · / commands · Tab agent</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cursor Panel -->
+          <div class="mcp-panel" data-mcp-panel="3">
+            <div class="mcp-ide-body">
+              <!-- Sidebar -->
+              <div class="mcp-ide-sidebar">
+                <div class="mcp-ide-sidebar-section">EXPLORER</div>
+                <div class="mcp-ide-file mcp-ide-file-active">
+                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
+                  users.py
+                </div>
+                <div class="mcp-ide-file">
+                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--fg-faint)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
+                  models.py
+                </div>
+                <div class="mcp-ide-file">
+                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--fg-faint)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
+                  pom.xml
+                </div>
+                <div class="mcp-ide-file">
+                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--fg-faint)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
+                  main.tf
+                </div>
+              </div>
+              <!-- Editor -->
+              <div class="mcp-ide-editor">
+                <div class="mcp-ide-editor-tab">users.py</div>
+                <div class="mcp-ide-code">
+                  <div class="ai-code-line"><span class="ai-ln">38</span> <span class="t-purple">@</span><span class="t-blue">login_required</span></div>
+                  <div class="ai-code-line"><span class="ai-ln">39</span> <span class="t-purple">@</span><span class="t-blue">require_GET</span></div>
+                  <div class="ai-code-line"><span class="ai-ln">40</span> <span class="t-purple">def </span><span class="t-blue">search_users</span>(request):</div>
+                  <div class="ai-code-line"><span class="ai-ln">41</span>     <span class="t-emerald">"""Search users."""</span></div>
+                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">42</span>     query = request.GET.get(<span class="t-emerald">"q"</span>)</div>
+                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">43</span>     users = User.objects.raw(</div>
+                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">44</span>         <span class="t-emerald">f"...%</span><span class="t-red">{query}</span><span class="t-emerald">%'"</span></div>
+                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">45</span>     )</div>
+                  <div class="ai-code-line"><span class="ai-ln">46</span>     results = [{<span class="t-emerald">"id"</span>: u.id}</div>
+                  <div class="ai-code-line"><span class="ai-ln">47</span>         <span class="t-purple">for </span>u <span class="t-purple">in </span>users]</div>
+                  <div class="ai-code-line"><span class="ai-ln">48</span>     <span class="t-purple">return </span>JsonResponse(..)</div>
+                </div>
+              </div>
+              <!-- Chat Panel -->
+              <div class="mcp-ide-chat">
+                <div class="mcp-chat-header">
+                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                  AI Chat
+                  <span class="mcp-chat-mcp-badge">MCP</span>
+                </div>
+                <div class="mcp-chat-messages" id="mcp-cursor-chat"></div>
               </div>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- Right: Alert feed mock -->
-        <div class="cve-mock">
-          <div class="cve-mock-header">
-            <span class="cve-mock-title">
-              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-              CVE Alerts
-            </span>
-            <span class="cve-mock-live"><span class="cve-live-dot"></span>Live</span>
+      <!-- Supported IDEs -->
+      <div class="mcp-supported reveal">
+        <span class="mcp-supported-label">Works with any MCP-compatible IDE</span>
+        <div class="mcp-supported-list">
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
+            Claude Code
           </div>
-
-          <!-- Alert 1: Critical — just arrived -->
-          <div class="cve-alert cve-alert-new">
-            <div class="cve-alert-severity cve-sev-critical">Critical</div>
-            <div class="cve-alert-body">
-              <div class="cve-alert-top">
-                <span class="cve-alert-id">CVE-2026-31245</span>
-                <span class="cve-alert-time">2 min ago</span>
-              </div>
-              <p class="cve-alert-desc">Remote Code Execution in jsonwebtoken</p>
-              <div class="cve-alert-meta">
-                <span class="cve-alert-pkg"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> jsonwebtoken &lt;9.0.2</span>
-                <span class="cve-alert-projects">3 projects affected</span>
-              </div>
-              <div class="cve-alert-channels">
-                <span>Notified via</span>
-                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zm1.271 0a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313zM8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zm0 1.271a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312zm10.124 2.521a2.528 2.528 0 0 1 2.52-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.52V8.834zm-1.271 0a2.528 2.528 0 0 1-2.521 2.521 2.528 2.528 0 0 1-2.521-2.521V2.522A2.528 2.528 0 0 1 15.166 0a2.528 2.528 0 0 1 2.521 2.522v6.312zm-2.521 10.124a2.528 2.528 0 0 1 2.521 2.52A2.528 2.528 0 0 1 15.166 24a2.528 2.528 0 0 1-2.521-2.522v-2.52h2.521zm0-1.271a2.528 2.528 0 0 1-2.521-2.521 2.528 2.528 0 0 1 2.521-2.521h6.312A2.528 2.528 0 0 1 24 15.166a2.528 2.528 0 0 1-2.522 2.521h-6.312z"/></svg>
-                <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-              </div>
-            </div>
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 320 320" fill="currentColor"><path d="M297.06 130.97c7.26-21.79 4.76-45.66-6.85-65.48-17.46-30.4-52.56-46.04-86.84-38.68C189.21 10.12 168.4.01 146.91 0c-35.18-.01-66.14 22.87-76.21 56.17C48.56 60.83 29.24 75.68 19.12 96.97c-17.47 30.39-14.21 67.8 8.08 94.92-7.27 21.79-4.76 45.66 6.85 65.48 17.46 30.4 52.56 46.04 86.84 38.68 14.17 16.67 34.98 26.78 56.47 26.79 35.18.01 66.14-22.87 76.21-56.17 22.14-4.65 41.47-19.51 51.58-40.79 17.46-30.4 14.21-67.81-8.09-94.91zM150.93 290.08c-14.26.01-27.64-6.35-36.73-17.41 .46-.25 1.27-.69 1.8-1.01l60.99-35.22c3.11-1.77 5.03-5.08 5.02-8.65v-85.97l25.78 14.89c.27.15.46.42.5.72v71.22c-.03 33.96-27.5 61.49-57.36 61.43zM42.94 236.89c-7.16-12.36-9.72-26.88-7.15-40.89.44.27 1.22.74 1.77 1.08l60.99 35.22c3.07 1.81 6.87 1.81 9.95 0l74.48-42.99v29.77c.01.3-.12.59-.37.79l-61.65 35.6c-29.42 16.99-67.06 6.92-84.02-22.58zM27.67 105.28c7.12-12.41 18.53-21.59 31.99-25.72v72.55c-.01 3.56 1.89 6.85 4.99 8.64l74.48 42.99-25.78 14.89c-.26.17-.58.19-.87.07L50.83 183.09c-29.35-17.07-39.39-54.75-23.16-77.81zm224.26 52.17l-74.48-42.99 25.78-14.89c.26-.17.58-.19.87-.07l61.65 35.6c29.39 16.97 39.43 54.71 23.07 84.11-7.13 12.4-18.53 21.58-31.99 25.71v-72.55c.04-3.59-1.86-6.91-4.9-8.72zm25.67-41.09c-.44-.27-1.22-.74-1.77-1.08l-60.99-35.22c-3.07-1.81-6.87-1.81-9.95 0l-74.48 42.99V93.28c-.01-.3.12-.59.37-.79l61.65-35.6c29.42-16.98 67.07-6.91 84.02 22.59 7.14 12.37 9.71 26.87 7.15 40.88zM111.28 164.5l-25.78-14.89c-.27-.15-.46-.42-.5-.72V77.67c.03-33.98 27.56-61.5 61.52-61.44 14.28.02 27.64 6.38 36.73 17.42-.46.25-1.27.69-1.8 1.01l-60.99 35.22c-3.11 1.77-5.03 5.08-5.02 8.65l-.16 85.97zm14.01-30.11l33.18-19.15 33.18 19.15v38.3l-33.18 19.15-33.18-19.15V134.39z"/></svg>
+            Codex
           </div>
-
-          <!-- Alert 2: High -->
-          <div class="cve-alert">
-            <div class="cve-alert-severity cve-sev-high">High</div>
-            <div class="cve-alert-body">
-              <div class="cve-alert-top">
-                <span class="cve-alert-id">CVE-2026-28891</span>
-                <span class="cve-alert-time">6 hours ago</span>
-              </div>
-              <p class="cve-alert-desc">Prototype Pollution in lodash.merge</p>
-              <div class="cve-alert-meta">
-                <span class="cve-alert-pkg"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> lodash &lt;4.17.22</span>
-                <span class="cve-alert-projects">7 projects affected</span>
-              </div>
-            </div>
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
+            OpenCode
           </div>
-
-          <!-- Alert 3: Medium -->
-          <div class="cve-alert">
-            <div class="cve-alert-severity cve-sev-medium">Medium</div>
-            <div class="cve-alert-body">
-              <div class="cve-alert-top">
-                <span class="cve-alert-id">CVE-2026-27433</span>
-                <span class="cve-alert-time">1 day ago</span>
-              </div>
-              <p class="cve-alert-desc">ReDoS in semver range parsing</p>
-              <div class="cve-alert-meta">
-                <span class="cve-alert-pkg"><svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M16.5 9.4l-9-5.19M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg> semver &lt;7.5.5</span>
-                <span class="cve-alert-projects">12 projects affected</span>
-              </div>
-            </div>
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg>
+            Cursor
+          </div>
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>
+            Windsurf
+          </div>
+          <div class="mcp-supported-item">
+            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Any MCP Client
           </div>
         </div>
       </div>
@@ -1646,235 +1963,56 @@
     </div>
   </section>
 
-  <!-- ─── MCP IDE Integration ─── -->
-  <section class="mcp-section" id="mcp">
+  <!-- ─── Benefits ─── -->
+  <section class="benefits" id="benefits">
     <div class="container">
       <div class="section-header reveal">
-        <span class="section-badge">AI IDE Integration</span>
-        <h2 class="section-title">Your Security Data, Inside Your IDE</h2>
-        <p class="section-subtitle">Query findings, verify issues, and check project health — directly from Claude Code, Codex, OpenCode, Cursor, or any MCP-compatible IDE. Zero context switching.</p>
+        <span class="section-badge">Why Vygl</span>
+        <h2 class="section-title">Built for Security-Conscious Teams</h2>
+        <p class="section-subtitle">Comprehensive scanning, AI-assisted triage, and native integration into your AppSec and DevSecOps pipelines.</p>
       </div>
-
-      <div class="mcp-demo reveal">
-        <div class="mcp-demo-glow-1" aria-hidden="true"></div>
-        <div class="mcp-demo-glow-2" aria-hidden="true"></div>
-
-        <div class="mcp-window">
-          <!-- Chrome with IDE tabs -->
-          <div class="terminal-chrome">
-            <div class="terminal-dots">
-              <span class="dot dot-red"></span>
-              <span class="dot dot-yellow"></span>
-              <span class="dot dot-green"></span>
-            </div>
-            <div class="mcp-tab-bar">
-              <button class="mcp-tab active" data-mcp-tab="0">
-                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
-                Claude Code
-              </button>
-              <button class="mcp-tab" data-mcp-tab="1">
-                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 320 320" fill="currentColor"><path d="M297.06 130.97c7.26-21.79 4.76-45.66-6.85-65.48-17.46-30.4-52.56-46.04-86.84-38.68C189.21 10.12 168.4.01 146.91 0c-35.18-.01-66.14 22.87-76.21 56.17C48.56 60.83 29.24 75.68 19.12 96.97c-17.47 30.39-14.21 67.8 8.08 94.92-7.27 21.79-4.76 45.66 6.85 65.48 17.46 30.4 52.56 46.04 86.84 38.68 14.17 16.67 34.98 26.78 56.47 26.79 35.18.01 66.14-22.87 76.21-56.17 22.14-4.65 41.47-19.51 51.58-40.79 17.46-30.4 14.21-67.81-8.09-94.91zM150.93 290.08c-14.26.01-27.64-6.35-36.73-17.41 .46-.25 1.27-.69 1.8-1.01l60.99-35.22c3.11-1.77 5.03-5.08 5.02-8.65v-85.97l25.78 14.89c.27.15.46.42.5.72v71.22c-.03 33.96-27.5 61.49-57.36 61.43zM42.94 236.89c-7.16-12.36-9.72-26.88-7.15-40.89.44.27 1.22.74 1.77 1.08l60.99 35.22c3.07 1.81 6.87 1.81 9.95 0l74.48-42.99v29.77c.01.3-.12.59-.37.79l-61.65 35.6c-29.42 16.99-67.06 6.92-84.02-22.58zM27.67 105.28c7.12-12.41 18.53-21.59 31.99-25.72v72.55c-.01 3.56 1.89 6.85 4.99 8.64l74.48 42.99-25.78 14.89c-.26.17-.58.19-.87.07L50.83 183.09c-29.35-17.07-39.39-54.75-23.16-77.81zm224.26 52.17l-74.48-42.99 25.78-14.89c.26-.17.58-.19.87-.07l61.65 35.6c29.39 16.97 39.43 54.71 23.07 84.11-7.13 12.4-18.53 21.58-31.99 25.71v-72.55c.04-3.59-1.86-6.91-4.9-8.72zm25.67-41.09c-.44-.27-1.22-.74-1.77-1.08l-60.99-35.22c-3.07-1.81-6.87-1.81-9.95 0l-74.48 42.99V93.28c-.01-.3.12-.59.37-.79l61.65-35.6c29.42-16.98 67.07-6.91 84.02 22.59 7.14 12.37 9.71 26.87 7.15 40.88zM111.28 164.5l-25.78-14.89c-.27-.15-.46-.42-.5-.72V77.67c.03-33.98 27.56-61.5 61.52-61.44 14.28.02 27.64 6.38 36.73 17.42-.46.25-1.27.69-1.8 1.01l-60.99 35.22c-3.11 1.77-5.03 5.08-5.02 8.65l-.16 85.97zm14.01-30.11l33.18-19.15 33.18 19.15v38.3l-33.18 19.15-33.18-19.15V134.39z"/></svg>
-                Codex
-              </button>
-              <button class="mcp-tab" data-mcp-tab="2">
-                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
-                OpenCode
-              </button>
-              <button class="mcp-tab" data-mcp-tab="3">
-                <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg>
-                Cursor
-              </button>
-            </div>
+      <div class="benefits-grid">
+        <div class="benefit-card reveal">
+          <div class="benefit-icon">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
           </div>
-
-          <!-- Claude Code Panel -->
-          <div class="mcp-panel active" data-mcp-panel="0">
-            <div class="mcp-terminal-body" id="mcp-claude-output"></div>
-            <div class="mcp-claude-input">
-              <div class="mcp-claude-input-line"></div>
-              <div class="mcp-claude-input-area">
-                <span class="mcp-claude-cursor"></span>
-              </div>
-              <div class="mcp-claude-input-line"></div>
-              <div class="mcp-claude-input-meta">
-                <span class="mcp-claude-model-badge">
-                  <svg aria-hidden="true" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
-                  Claude Code
-                </span>
-                <span class="mcp-claude-project">acme-api</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Codex Panel -->
-          <div class="mcp-panel" data-mcp-panel="1">
-            <div class="codex-tui">
-              <!-- Codex TUI header bar -->
-              <div class="codex-header">
-                <span class="codex-header-path">~/projects/acme-api</span>
-                <span class="codex-header-model">codex-1</span>
-                <span class="codex-header-mode">full-auto</span>
-              </div>
-              <!-- Codex conversation area -->
-              <div class="mcp-terminal-body codex-terminal-body" id="mcp-codex-output"></div>
-              <!-- Codex composer -->
-              <div class="codex-composer">
-                <div class="codex-composer-border"></div>
-                <div class="codex-composer-area">
-                  <span class="codex-composer-cursor"></span>
-                </div>
-                <div class="codex-composer-footer">
-                  <span class="codex-composer-hint">↑↓ history</span>
-                  <span class="codex-composer-hint">@ files</span>
-                  <span class="codex-composer-hint">/ commands</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- OpenCode Panel -->
-          <div class="mcp-panel" data-mcp-panel="2">
-            <div class="opencode-tui">
-              <!-- OpenCode sidebar -->
-              <div class="opencode-sidebar">
-                <div class="opencode-sidebar-header">
-                  <span class="opencode-sidebar-title">Session</span>
-                </div>
-                <div class="opencode-sidebar-content">
-                  <div class="opencode-sidebar-section">
-                    <span class="opencode-sidebar-label">Model</span>
-                    <span class="opencode-sidebar-value">Claude Sonnet</span>
-                  </div>
-                  <div class="opencode-sidebar-section">
-                    <span class="opencode-sidebar-label">Provider</span>
-                    <span class="opencode-sidebar-value">Anthropic</span>
-                  </div>
-                  <div class="opencode-sidebar-section">
-                    <span class="opencode-sidebar-label">Context</span>
-                    <div class="opencode-ctx-bar">
-                      <div class="opencode-ctx-fill" style="width: 34%"></div>
-                    </div>
-                    <span class="opencode-sidebar-value opencode-ctx-label">34k / 100k</span>
-                  </div>
-                  <div class="opencode-sidebar-divider"></div>
-                  <div class="opencode-sidebar-section">
-                    <span class="opencode-sidebar-label">Files</span>
-                    <div class="opencode-file-list">
-                      <span class="opencode-file">users.py</span>
-                      <span class="opencode-file">models.py</span>
-                      <span class="opencode-file">pom.xml</span>
-                      <span class="opencode-file">main.tf</span>
-                    </div>
-                  </div>
-                  <div class="opencode-sidebar-divider"></div>
-                  <div class="opencode-sidebar-section">
-                    <span class="opencode-sidebar-label">Tools</span>
-                    <span class="opencode-sidebar-value opencode-tool-count">4 available</span>
-                  </div>
-                </div>
-              </div>
-              <!-- OpenCode main chat area -->
-              <div class="opencode-main">
-                <div class="opencode-chat" id="mcp-opencode-output"></div>
-                <div class="opencode-input">
-                  <div class="opencode-input-border"></div>
-                  <div class="opencode-input-area">
-                    <span class="opencode-input-cursor"></span>
-                  </div>
-                  <div class="opencode-input-footer">
-                    <span class="opencode-input-badge">
-                      <svg aria-hidden="true" width="8" height="8" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
-                      opencode
-                    </span>
-                    <span class="opencode-input-hint">@ files · / commands · Tab agent</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Cursor Panel -->
-          <div class="mcp-panel" data-mcp-panel="3">
-            <div class="mcp-ide-body">
-              <!-- Sidebar -->
-              <div class="mcp-ide-sidebar">
-                <div class="mcp-ide-sidebar-section">EXPLORER</div>
-                <div class="mcp-ide-file mcp-ide-file-active">
-                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--purple)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
-                  users.py
-                </div>
-                <div class="mcp-ide-file">
-                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--fg-faint)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
-                  models.py
-                </div>
-                <div class="mcp-ide-file">
-                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--fg-faint)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
-                  pom.xml
-                </div>
-                <div class="mcp-ide-file">
-                  <svg aria-hidden="true" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="var(--fg-faint)" stroke-width="2"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/></svg>
-                  main.tf
-                </div>
-              </div>
-              <!-- Editor -->
-              <div class="mcp-ide-editor">
-                <div class="mcp-ide-editor-tab">users.py</div>
-                <div class="mcp-ide-code">
-                  <div class="ai-code-line"><span class="ai-ln">38</span> <span class="t-purple">@</span><span class="t-blue">login_required</span></div>
-                  <div class="ai-code-line"><span class="ai-ln">39</span> <span class="t-purple">@</span><span class="t-blue">require_GET</span></div>
-                  <div class="ai-code-line"><span class="ai-ln">40</span> <span class="t-purple">def </span><span class="t-blue">search_users</span>(request):</div>
-                  <div class="ai-code-line"><span class="ai-ln">41</span>     <span class="t-emerald">"""Search users."""</span></div>
-                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">42</span>     query = request.GET.get(<span class="t-emerald">"q"</span>)</div>
-                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">43</span>     users = User.objects.raw(</div>
-                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">44</span>         <span class="t-emerald">f"...%</span><span class="t-red">{query}</span><span class="t-emerald">%'"</span></div>
-                  <div class="ai-code-line ai-code-flagged"><span class="ai-ln">45</span>     )</div>
-                  <div class="ai-code-line"><span class="ai-ln">46</span>     results = [{<span class="t-emerald">"id"</span>: u.id}</div>
-                  <div class="ai-code-line"><span class="ai-ln">47</span>         <span class="t-purple">for </span>u <span class="t-purple">in </span>users]</div>
-                  <div class="ai-code-line"><span class="ai-ln">48</span>     <span class="t-purple">return </span>JsonResponse(..)</div>
-                </div>
-              </div>
-              <!-- Chat Panel -->
-              <div class="mcp-ide-chat">
-                <div class="mcp-chat-header">
-                  <svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
-                  AI Chat
-                  <span class="mcp-chat-mcp-badge">MCP</span>
-                </div>
-                <div class="mcp-chat-messages" id="mcp-cursor-chat"></div>
-              </div>
-            </div>
-          </div>
+          <h3>Your Code Stays Yours</h3>
+          <p>Scans run in your environment. Only findings metadata is sent to the cloud — not your source code.</p>
         </div>
-      </div>
-
-      <!-- Supported IDEs -->
-      <div class="mcp-supported reveal">
-        <span class="mcp-supported-label">Works with any MCP-compatible IDE</span>
-        <div class="mcp-supported-list">
-          <div class="mcp-supported-item">
-            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>
-            Claude Code
+        <div class="benefit-card reveal reveal-delay-1">
+          <div class="benefit-icon">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
           </div>
-          <div class="mcp-supported-item">
-            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 320 320" fill="currentColor"><path d="M297.06 130.97c7.26-21.79 4.76-45.66-6.85-65.48-17.46-30.4-52.56-46.04-86.84-38.68C189.21 10.12 168.4.01 146.91 0c-35.18-.01-66.14 22.87-76.21 56.17C48.56 60.83 29.24 75.68 19.12 96.97c-17.47 30.39-14.21 67.8 8.08 94.92-7.27 21.79-4.76 45.66 6.85 65.48 17.46 30.4 52.56 46.04 86.84 38.68 14.17 16.67 34.98 26.78 56.47 26.79 35.18.01 66.14-22.87 76.21-56.17 22.14-4.65 41.47-19.51 51.58-40.79 17.46-30.4 14.21-67.81-8.09-94.91zM150.93 290.08c-14.26.01-27.64-6.35-36.73-17.41 .46-.25 1.27-.69 1.8-1.01l60.99-35.22c3.11-1.77 5.03-5.08 5.02-8.65v-85.97l25.78 14.89c.27.15.46.42.5.72v71.22c-.03 33.96-27.5 61.49-57.36 61.43zM42.94 236.89c-7.16-12.36-9.72-26.88-7.15-40.89.44.27 1.22.74 1.77 1.08l60.99 35.22c3.07 1.81 6.87 1.81 9.95 0l74.48-42.99v29.77c.01.3-.12.59-.37.79l-61.65 35.6c-29.42 16.99-67.06 6.92-84.02-22.58zM27.67 105.28c7.12-12.41 18.53-21.59 31.99-25.72v72.55c-.01 3.56 1.89 6.85 4.99 8.64l74.48 42.99-25.78 14.89c-.26.17-.58.19-.87.07L50.83 183.09c-29.35-17.07-39.39-54.75-23.16-77.81zm224.26 52.17l-74.48-42.99 25.78-14.89c.26-.17.58-.19.87-.07l61.65 35.6c29.39 16.97 39.43 54.71 23.07 84.11-7.13 12.4-18.53 21.58-31.99 25.71v-72.55c.04-3.59-1.86-6.91-4.9-8.72zm25.67-41.09c-.44-.27-1.22-.74-1.77-1.08l-60.99-35.22c-3.07-1.81-6.87-1.81-9.95 0l-74.48 42.99V93.28c-.01-.3.12-.59.37-.79l61.65-35.6c29.42-16.98 67.07-6.91 84.02 22.59 7.14 12.37 9.71 26.87 7.15 40.88zM111.28 164.5l-25.78-14.89c-.27-.15-.46-.42-.5-.72V77.67c.03-33.98 27.56-61.5 61.52-61.44 14.28.02 27.64 6.38 36.73 17.42-.46.25-1.27.69-1.8 1.01l-60.99 35.22c-3.11 1.77-5.03 5.08-5.02 8.65l-.16 85.97zm14.01-30.11l33.18-19.15 33.18 19.15v38.3l-33.18 19.15-33.18-19.15V134.39z"/></svg>
-            Codex
+          <h3>Comprehensive Coverage</h3>
+          <p>SAST, SCA, secrets, and IaC scanning in one platform. One scan covers your entire stack.</p>
+        </div>
+        <div class="benefit-card reveal reveal-delay-2">
+          <div class="benefit-icon">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12C2 6.5 6.5 2 12 2a10 10 0 0 1 8 4"/><path d="M5 19.5C5.5 18 6 15 6 12c0-.7.12-1.37.34-2"/><path d="M17.29 21.02c.12-.6.43-2.3.5-3.02"/><path d="M12 10a2 2 0 0 0-2 2c0 1.02-.1 2.51-.26 4"/><path d="M8.65 22c.21-.66.45-1.32.57-2"/><path d="M14 13.12c0 2.38 0 6.38-1 8.88"/><path d="M2 16h.01"/><path d="M21.8 16c.2-2 .131-5.354 0-6"/><path d="M9 6.8a6 6 0 0 1 9 5.2c0 .47 0 1.17-.02 2"/></svg>
           </div>
-          <div class="mcp-supported-item">
-            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="m4.93 19.07 2.83-2.83"/><path d="m16.24 7.76 2.83-2.83"/></svg>
-            OpenCode
+          <h3>Smart Deduplication</h3>
+          <p>SHA-256 fingerprinting eliminates duplicates across scans. Focus on what actually matters.</p>
+        </div>
+        <div class="benefit-card reveal reveal-delay-1">
+          <div class="benefit-icon">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           </div>
-          <div class="mcp-supported-item">
-            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M11.503.131 1.891 5.678a.84.84 0 0 0-.42.726v11.188c0 .3.162.575.42.724l9.609 5.55a1 1 0 0 0 .998 0l9.61-5.55a.84.84 0 0 0 .42-.724V6.404a.84.84 0 0 0-.42-.726L12.497.131a1.01 1.01 0 0 0-.996 0M2.657 6.338h18.55c.263 0 .43.287.297.515L12.23 22.918c-.062.107-.229.064-.229-.06V12.335a.59.59 0 0 0-.295-.51l-9.11-5.257c-.109-.063-.064-.23.061-.23"/></svg>
-            Cursor
+          <h3>Policy as Code</h3>
+          <p>Cloud-managed rules with monitor, block, and disable modes. Enforce security policies in CI/CD.</p>
+        </div>
+        <div class="benefit-card reveal reveal-delay-2">
+          <div class="benefit-icon">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="3" x2="6" y2="15"/><circle cx="18" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M18 9a9 9 0 0 1-9 9"/></svg>
           </div>
-          <div class="mcp-supported-item">
-            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.7 7.7a2.5 2.5 0 1 1 1.8 4.3H2"/><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/></svg>
-            Windsurf
+          <h3>CI/CD Native</h3>
+          <p>Runs in GitHub Actions, GitLab CI, or any Docker-compatible pipeline. Block merges on critical findings.</p>
+        </div>
+        <div class="benefit-card reveal reveal-delay-3">
+          <div class="benefit-icon">
+            <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg>
           </div>
-          <div class="mcp-supported-item">
-            <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Any MCP Client
-          </div>
+          <h3>AI-Assisted Triage</h3>
+          <p>AI reviews each finding to help identify false positives and prioritize real issues. Bring your own LLM provider or use ours.</p>
         </div>
       </div>
     </div>
@@ -2009,6 +2147,18 @@
             <span class="side-nav-node"></span>
             <span class="side-nav-label">Features</span>
           </a>
+          <a href="#container-scan" class="side-nav-item" data-section="container-scan">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">Containers</span>
+          </a>
+          <a href="#managed-scans" class="side-nav-item" data-section="managed-scans">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">Managed</span>
+          </a>
+          <a href="#cve-watch" class="side-nav-item" data-section="cve-watch">
+            <span class="side-nav-node"></span>
+            <span class="side-nav-label">CVE Watch</span>
+          </a>
           <a href="#ai-demo" class="side-nav-item" data-section="ai-demo">
             <span class="side-nav-node"></span>
             <span class="side-nav-label">AI Triage</span>
@@ -2021,25 +2171,25 @@
             <span class="side-nav-node"></span>
             <span class="side-nav-label">Providers</span>
           </a>
-          <a href="#benefits" class="side-nav-item" data-section="benefits">
+          <a href="#dashboard" class="side-nav-item" data-section="dashboard">
             <span class="side-nav-node"></span>
-            <span class="side-nav-label">Why Vygl</span>
+            <span class="side-nav-label">Dashboard</span>
           </a>
           <a href="#how-it-works" class="side-nav-item" data-section="how-it-works">
             <span class="side-nav-node"></span>
             <span class="side-nav-label">CLI</span>
           </a>
-          <a href="#dashboard" class="side-nav-item" data-section="dashboard">
+          <a href="#mcp" class="side-nav-item" data-section="mcp">
             <span class="side-nav-node"></span>
-            <span class="side-nav-label">Dashboard</span>
+            <span class="side-nav-label">MCP IDE</span>
           </a>
           <a href="#integrations" class="side-nav-item" data-section="integrations">
             <span class="side-nav-node"></span>
             <span class="side-nav-label">Integrations</span>
           </a>
-          <a href="#mcp" class="side-nav-item" data-section="mcp">
+          <a href="#benefits" class="side-nav-item" data-section="benefits">
             <span class="side-nav-node"></span>
-            <span class="side-nav-label">MCP IDE</span>
+            <span class="side-nav-label">Why Vygl</span>
           </a>
         </div>
       </div>
@@ -2072,6 +2222,21 @@
           <span class="toc-link-text">Features</span>
           <span class="toc-link-desc">SAST, SCA, Secrets, IaC</span>
         </a>
+        <a href="#container-scan" class="toc-link" data-section="container-scan">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">Containers</span>
+          <span class="toc-link-desc">Image vulnerability scanning</span>
+        </a>
+        <a href="#managed-scans" class="toc-link" data-section="managed-scans">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">Managed Scans</span>
+          <span class="toc-link-desc">Auto-scan repos on push</span>
+        </a>
+        <a href="#cve-watch" class="toc-link" data-section="cve-watch">
+          <span class="toc-link-dot"></span>
+          <span class="toc-link-text">CVE Watch</span>
+          <span class="toc-link-desc">Continuous CVE monitoring</span>
+        </a>
         <a href="#ai-demo" class="toc-link" data-section="ai-demo">
           <span class="toc-link-dot"></span>
           <span class="toc-link-text">AI Triage</span>
@@ -2087,30 +2252,30 @@
           <span class="toc-link-text">LLM Providers</span>
           <span class="toc-link-desc">Local, OpenAI, Anthropic</span>
         </a>
-        <a href="#benefits" class="toc-link" data-section="benefits">
+        <a href="#dashboard" class="toc-link" data-section="dashboard">
           <span class="toc-link-dot"></span>
-          <span class="toc-link-text">Why Vygl</span>
-          <span class="toc-link-desc">Privacy, coverage, CI/CD</span>
+          <span class="toc-link-text">Dashboard</span>
+          <span class="toc-link-desc">Cloud results view</span>
         </a>
         <a href="#how-it-works" class="toc-link" data-section="how-it-works">
           <span class="toc-link-dot"></span>
           <span class="toc-link-text">CLI</span>
           <span class="toc-link-desc">Terminal & Docker usage</span>
         </a>
-        <a href="#dashboard" class="toc-link" data-section="dashboard">
+        <a href="#mcp" class="toc-link" data-section="mcp">
           <span class="toc-link-dot"></span>
-          <span class="toc-link-text">Dashboard</span>
-          <span class="toc-link-desc">Cloud results view</span>
+          <span class="toc-link-text">MCP IDE</span>
+          <span class="toc-link-desc">Claude Code, Cursor</span>
         </a>
         <a href="#integrations" class="toc-link" data-section="integrations">
           <span class="toc-link-dot"></span>
           <span class="toc-link-text">Integrations</span>
           <span class="toc-link-desc">GitHub, GitLab, Slack</span>
         </a>
-        <a href="#mcp" class="toc-link" data-section="mcp">
+        <a href="#benefits" class="toc-link" data-section="benefits">
           <span class="toc-link-dot"></span>
-          <span class="toc-link-text">MCP IDE</span>
-          <span class="toc-link-desc">Claude Code, Cursor</span>
+          <span class="toc-link-text">Why Vygl</span>
+          <span class="toc-link-desc">Privacy, coverage, CI/CD</span>
         </a>
       </div>
     </div>
