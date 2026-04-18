@@ -4376,6 +4376,29 @@ img { max-width: 100%; }
 .footer-bottom p {
   font-size: 0.8125rem;
   color: var(--fg-faint);
+  margin: 0;
+}
+
+.footer-legal {
+  margin-top: 0.5rem !important;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.footer-legal a {
+  color: var(--fg-faint);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.footer-legal a:hover {
+  color: var(--fg);
+}
+
+.footer-legal span {
+  color: var(--border);
 }
 
 /* ─── Scroll Reveal ─── */
