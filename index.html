@@ -145,7 +145,39 @@
         "name": "What CI/CD pipelines does Vygl support?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Vygl runs as a Docker container and works with GitHub Actions, GitLab CI/CD, and any Docker-compatible pipeline. It can also run locally for development. By default, Vygl reports findings without blocking your pipeline, but you can configure blocking behavior through Policy as Code rules."
+          "text": "Vygl runs as a Docker container and works with GitHub Actions, GitLab CI/CD, and any Docker-compatible pipeline. It can also run locally for development. With Managed Scans, Vygl scans every push to connected GitHub, GitLab, and Bitbucket repositories without any CI/CD configuration. By default, Vygl reports findings without blocking your pipeline, but you can configure blocking behavior through Policy as Code rules."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Vygl scan container images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Vygl scans container images from the CLI (vygl scan --image) or by connecting your container registry for auto-scan on push. It finds vulnerable OS packages and application dependencies across every image layer, correlates container CVEs with your source-code SCA findings, and generates per-image AI security briefs with base-image upgrade advice and priority fixes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which container registries does Vygl integrate with?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Harbor is supported today with auto-scan on push via webhooks. Amazon ECR, Google Artifact Registry, and Docker Hub are coming soon. You can also scan any image directly from the CLI without a registry integration."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What are Vygl Managed Scans?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Managed Scans let you connect source repositories (GitHub, GitLab, Bitbucket) and container registries (Harbor) so Vygl scans every push and image automatically. Findings flow straight to your IDE agents via MCP, Slack, and the dashboard — no CI/CD pipeline configuration required. Policy as Code applies across every managed scan, so you enforce security policy once and it propagates everywhere."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Does Vygl support SSO?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Vygl supports Single Sign-On via Google, GitHub, GitLab, and Microsoft Entra ID (formerly Azure AD), letting teams sign in with their existing identity provider."
         }
       },
       {
@@ -177,7 +209,7 @@
         "name": "What integrations does Vygl support?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Vygl integrates with GitHub (PR comments), GitLab (MR comments), Slack (real-time notifications), and AI IDEs via MCP (Model Context Protocol) — including Claude Code, Cursor, and Windsurf. Microsoft Teams and custom webhook integrations are coming soon. Vygl also exports CycloneDX SBOMs and provides a cloud dashboard for centralized finding management."
+          "text": "Source repositories via Managed Scans: GitHub, GitLab, and Bitbucket (cloud). Container registries: Harbor today; Amazon ECR, Google Artifact Registry, and Docker Hub coming soon. Code review: GitHub PR comments and GitLab MR comments. Notifications: Slack real-time alerts; Microsoft Teams and custom webhooks coming soon. AI IDEs via MCP (Model Context Protocol): Claude Code, Cursor, and Windsurf. Identity: Single Sign-On with Google, GitHub, GitLab, and Microsoft Entra ID. Vygl also exports CycloneDX SBOMs and provides a cloud dashboard for centralized finding management."
         }
       },
       {
@@ -976,10 +1008,10 @@
         </div>
         <div class="ms-cap ms-cap-cyan">
           <div class="ms-cap-icon">
-            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
           </div>
-          <h4>Self-Hosted Support</h4>
-          <p>Works with GitHub Enterprise, self-hosted GitLab, and Bitbucket Data Center. Not just cloud.</p>
+          <h4>Enterprise SSO</h4>
+          <p>Sign in with Google, GitHub, GitLab, or Microsoft Entra ID. Use your existing identity provider — no extra accounts.</p>
         </div>
         <div class="ms-cap ms-cap-orange">
           <div class="ms-cap-icon">
@@ -2174,15 +2206,23 @@
         <dd>Every finding is reviewed by an LLM that scores confidence, classifies true vs false positives, and suggests fixes. Supports bring-your-own-LLM.</dd>
         <dt>AI Security Brief</dt>
         <dd>One-click AI-generated security report with executive summary, priority actions, and quick wins across all findings.</dd>
+        <dt>Container Image Scanning</dt>
+        <dd>Scan container images from the CLI or by connecting a registry. Finds vulnerable OS and application packages across every layer, correlates image CVEs with source-code SCA findings, and generates per-image AI security briefs.</dd>
+        <dt>Managed Scans</dt>
+        <dd>Connect source repositories (GitHub, GitLab, Bitbucket) and container registries (Harbor) — Vygl scans every push and image automatically, no CI/CD configuration required. Findings flow to IDE agents, Slack, and the dashboard.</dd>
       </dl>
     </section>
     <section>
       <h3>Integrations</h3>
       <ul>
+        <li>Managed Scans for source repositories: GitHub, GitLab, Bitbucket (cloud)</li>
+        <li>Container registry integrations: Harbor (live); Amazon ECR, Google Artifact Registry, Docker Hub (coming soon)</li>
         <li>GitHub PR comments with scan results and AI triage summaries</li>
         <li>GitLab MR comments with scan results and AI triage summaries</li>
         <li>Slack real-time notifications with severity breakdowns and direct links</li>
         <li>CI/CD integration via Docker (GitHub Actions, GitLab CI, any Docker pipeline)</li>
+        <li>MCP (Model Context Protocol) servers for Claude Code, Cursor, and Windsurf</li>
+        <li>Single Sign-On with Google, GitHub, GitLab, and Microsoft Entra ID</li>
         <li>Microsoft Teams notifications (coming soon)</li>
         <li>Custom webhooks (coming soon)</li>
       </ul>
