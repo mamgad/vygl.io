@@ -758,113 +758,171 @@
         <p class="section-subtitle">Connect any repo or container registry. Vygl scans every push and image — findings flow straight to your IDE agents, Slack, and dashboard. No CI/CD config required.</p>
       </div>
 
-      <!-- Unified scan showcase -->
-      <div class="ms-showcase reveal">
-        <div class="ms-showcase-glow" aria-hidden="true"></div>
+      <!-- Hub & spokes showcase -->
+      <div class="ms-hub reveal">
+        <div class="ms-hub-bg" aria-hidden="true"></div>
 
-        <!-- Connected sources: repos + registries -->
-        <div class="ms-sources">
-          <div class="ms-source-row">
-            <span class="ms-source-label">Source Repos</span>
-            <div class="ms-source-chips">
-              <span class="ms-brand" title="GitHub (Cloud + Enterprise)">
-                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
-                GitHub
-              </span>
-              <span class="ms-brand" title="GitLab (SaaS + Self-Managed)">
-                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 380 380"><path d="M282.83 170.73l-.27-.69-26.14-68.22a6.81 6.81 0 00-2.69-3.24 7 7 0 00-8 .43 7 7 0 00-2.32 3.52l-17.65 54h-71.47l-17.65-54a6.86 6.86 0 00-2.32-3.53 7 7 0 00-8-.43 6.87 6.87 0 00-2.69 3.24L97.44 170l-.26.69a48.54 48.54 0 0016.1 56.1l.09.07.24.17 39.82 29.82 19.7 14.91 12 9.06a8.07 8.07 0 009.76 0l12-9.06 19.7-14.91 40.06-30 .1-.08a48.56 48.56 0 0016.08-56.04z" fill="#e24329"/><path d="M282.83 170.73l-.27-.69a88.3 88.3 0 00-35.15 15.8L190 229.25c19.55 14.79 36.57 27.64 36.57 27.64l40.06-30 .1-.08a48.56 48.56 0 0016.1-56.08z" fill="#fc6d26"/><path d="M153.43 256.89l19.7 14.91 12 9.06a8.07 8.07 0 009.76 0l12-9.06 19.7-14.91S209.55 244 190 229.25c-19.55 14.75-36.57 27.64-36.57 27.64z" fill="#fca326"/><path d="M97.44 170.04l-.26.69a48.54 48.54 0 0016.1 56.1l.09.07.24.17 39.82 29.82L190 229.21l-57.41-43.41a88.3 88.3 0 00-35.15-15.76z" fill="#fc6d26"/></svg>
-                GitLab
-              </span>
-              <span class="ms-brand" title="Bitbucket (Cloud + Data Center)">
-                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 512 512"><path d="M19.1 58.7c-6.9 0-12.2 6.2-11.2 13.1l67.4 408.9c1.4 8.7 8.9 15.1 17.8 15.1h330c6.6 0 12.3-4.8 13.3-11.3L503.9 71.8c1-6.9-4.3-13.1-11.2-13.1H19.1zm288 288.5H206.5l-22.1-115.7h145.4l-22.7 115.7z" fill="#2684ff"/></svg>
-                Bitbucket
-              </span>
-            </div>
+        <!-- Curved wires with animated pulses -->
+        <svg class="ms-hub-wires" viewBox="0 0 1000 520" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="ms-wire-in-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(148,163,184,0.12)"/>
+              <stop offset="100%" stop-color="rgba(34,211,233,0.55)"/>
+            </linearGradient>
+            <linearGradient id="ms-wire-out-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="rgba(167,139,250,0.55)"/>
+              <stop offset="100%" stop-color="rgba(148,163,184,0.12)"/>
+            </linearGradient>
+            <radialGradient id="ms-pulse-in-grad" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0%" stop-color="#7DF9FF"/>
+              <stop offset="60%" stop-color="#22D3E9"/>
+              <stop offset="100%" stop-color="rgba(34,211,233,0)"/>
+            </radialGradient>
+            <radialGradient id="ms-pulse-out-grad" cx="0.5" cy="0.5" r="0.5">
+              <stop offset="0%" stop-color="#DDD6FE"/>
+              <stop offset="60%" stop-color="#A78BFA"/>
+              <stop offset="100%" stop-color="rgba(167,139,250,0)"/>
+            </radialGradient>
+          </defs>
+
+          <!-- Inbound wires (source → hub) -->
+          <path id="ms-wire-i0" class="ms-wire" stroke="url(#ms-wire-in-grad)" fill="none" d="M 300 95 C 395 95, 395 260, 420 260"/>
+          <path id="ms-wire-i1" class="ms-wire" stroke="url(#ms-wire-in-grad)" fill="none" d="M 300 145 C 395 145, 395 260, 420 260"/>
+          <path id="ms-wire-i2" class="ms-wire" stroke="url(#ms-wire-in-grad)" fill="none" d="M 300 195 C 395 195, 395 260, 420 260"/>
+          <path id="ms-wire-i3" class="ms-wire" stroke="url(#ms-wire-in-grad)" fill="none" d="M 300 280 C 395 280, 395 260, 420 260"/>
+          <path id="ms-wire-i4" class="ms-wire" stroke="url(#ms-wire-in-grad)" fill="none" d="M 300 330 C 395 330, 395 260, 420 260"/>
+          <path id="ms-wire-i5" class="ms-wire" stroke="url(#ms-wire-in-grad)" fill="none" d="M 300 380 C 395 380, 395 260, 420 260"/>
+          <path id="ms-wire-i6" class="ms-wire" stroke="url(#ms-wire-in-grad)" fill="none" d="M 300 430 C 395 430, 395 260, 420 260"/>
+
+          <!-- Outbound wires (hub → delivery) -->
+          <path id="ms-wire-o0" class="ms-wire" stroke="url(#ms-wire-out-grad)" fill="none" d="M 580 260 C 605 260, 605 125, 700 125"/>
+          <path id="ms-wire-o1" class="ms-wire" stroke="url(#ms-wire-out-grad)" fill="none" d="M 580 260 C 605 260, 605 215, 700 215"/>
+          <path id="ms-wire-o2" class="ms-wire" stroke="url(#ms-wire-out-grad)" fill="none" d="M 580 260 C 605 260, 605 305, 700 305"/>
+          <path id="ms-wire-o3" class="ms-wire" stroke="url(#ms-wire-out-grad)" fill="none" d="M 580 260 C 605 260, 605 395, 700 395"/>
+
+          <!-- Inbound pulses -->
+          <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="0s"    repeatCount="indefinite"><mpath href="#ms-wire-i0"/></animateMotion></circle>
+          <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="0.35s" repeatCount="indefinite"><mpath href="#ms-wire-i1"/></animateMotion></circle>
+          <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="0.7s"  repeatCount="indefinite"><mpath href="#ms-wire-i2"/></animateMotion></circle>
+          <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="1.0s"  repeatCount="indefinite"><mpath href="#ms-wire-i3"/></animateMotion></circle>
+          <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="1.35s" repeatCount="indefinite"><mpath href="#ms-wire-i4"/></animateMotion></circle>
+          <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="1.7s"  repeatCount="indefinite"><mpath href="#ms-wire-i5"/></animateMotion></circle>
+          <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="2.05s" repeatCount="indefinite"><mpath href="#ms-wire-i6"/></animateMotion></circle>
+
+          <!-- Outbound pulses -->
+          <circle class="ms-pulse ms-pulse-out" r="5" fill="url(#ms-pulse-out-grad)"><animateMotion dur="2.4s" begin="1.3s"  repeatCount="indefinite"><mpath href="#ms-wire-o0"/></animateMotion></circle>
+          <circle class="ms-pulse ms-pulse-out" r="5" fill="url(#ms-pulse-out-grad)"><animateMotion dur="2.4s" begin="1.7s"  repeatCount="indefinite"><mpath href="#ms-wire-o1"/></animateMotion></circle>
+          <circle class="ms-pulse ms-pulse-out" r="5" fill="url(#ms-pulse-out-grad)"><animateMotion dur="2.4s" begin="2.1s"  repeatCount="indefinite"><mpath href="#ms-wire-o2"/></animateMotion></circle>
+          <circle class="ms-pulse ms-pulse-out" r="5" fill="url(#ms-pulse-out-grad)"><animateMotion dur="2.4s" begin="2.5s"  repeatCount="indefinite"><mpath href="#ms-wire-o3"/></animateMotion></circle>
+        </svg>
+
+        <!-- Sources column (left) -->
+        <div class="ms-hub-col ms-hub-left">
+          <span class="ms-hub-group-label ms-hub-group-scm">Source Code</span>
+          <div class="ms-hub-node" style="top:18.27%" data-pulse="i0">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0c4.42 0 8 3.58 8 8a8.013 8.013 0 0 1-5.45 7.59c-.4.08-.55-.17-.55-.38 0-.27.01-1.13.01-2.2 0-.75-.25-1.23-.54-1.48 1.78-.2 3.65-.88 3.65-3.95 0-.88-.31-1.59-.82-2.15.08-.2.36-1.02-.08-2.12 0 0-.67-.22-2.2.82-.64-.18-1.32-.27-2-.27-.68 0-1.36.09-2 .27-1.53-1.03-2.2-.82-2.2-.82-.44 1.1-.16 1.92-.08 2.12-.51.56-.82 1.28-.82 2.15 0 3.06 1.86 3.75 3.64 3.95-.23.2-.44.55-.51 1.07-.46.21-1.61.55-2.33-.66-.15-.24-.6-.83-1.23-.82-.67.01-.27.38.01.53.34.19.73.9.82 1.13.16.45.68 1.31 2.69.94 0 .67.01 1.3.01 1.49 0 .21-.15.45-.55.38A7.995 7.995 0 0 1 0 8c0-4.42 3.58-8 8-8Z"/></svg>
+            </span>
+            <span class="ms-hub-node-name">GitHub</span>
           </div>
-          <div class="ms-source-row">
-            <span class="ms-source-label">Container Registries</span>
-            <div class="ms-source-chips">
-              <span class="ms-brand" title="Harbor (self-hosted)">
-                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#60B5F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
-                Harbor
-              </span>
-              <span class="ms-brand" title="Amazon Elastic Container Registry">
-                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#FF9900"><path d="M12 2 3 7v10l9 5 9-5V7zm0 2.32L18.5 8 12 11.68 5.5 8zM4 9.41l7 3.89v7.3l-7-3.89zm16 0v7.3l-7 3.89v-7.3z"/></svg>
-                Amazon ECR
-              </span>
-              <span class="ms-brand" title="Google Artifact Registry">
-                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
-                Google Artifact
-              </span>
-              <span class="ms-brand" title="Docker Hub">
-                <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="#2496ED"><path d="M13.98 11.08h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.09.18.19.18m-2.95-5.43h2.12a.19.19 0 0 0 .19-.19V3.57a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.08.19.19.19m0 2.72h2.12a.19.19 0 0 0 .19-.19V6.29a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.08.19.19.19m-2.93 0h2.12a.19.19 0 0 0 .18-.19V6.29a.19.19 0 0 0-.18-.19H8.1a.19.19 0 0 0-.19.19v1.89c0 .1.09.19.19.19m-2.96 0h2.11a.19.19 0 0 0 .19-.19V6.29a.19.19 0 0 0-.19-.19H5.14a.19.19 0 0 0-.19.19v1.89c0 .1.09.19.19.19m5.89 2.71h2.12a.19.19 0 0 0 .19-.19V9a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.08.18.19.18m-2.93 0h2.12a.18.18 0 0 0 .18-.19V9a.18.18 0 0 0-.18-.19H8.1a.19.19 0 0 0-.19.19v1.89c0 .1.08.18.19.18m-2.96 0h2.11a.19.19 0 0 0 .19-.19V9a.19.19 0 0 0-.19-.19H5.14a.19.19 0 0 0-.19.19v1.89c0 .1.09.18.19.18m-2.92 0h2.12a.19.19 0 0 0 .18-.19V9a.19.19 0 0 0-.18-.19H2.22a.19.19 0 0 0-.19.19v1.89c0 .1.08.18.19.18m21.54-1.19c-.07-.05-.67-.51-1.95-.51-.34 0-.68.03-1.01.09-.25-1.7-1.65-2.53-1.72-2.57l-.34-.2-.23.33c-.28.44-.49.92-.61 1.43-.23.97-.09 1.88.4 2.66-.59.33-1.55.41-1.74.42H.75A.75.75 0 0 0 0 11.32c0 1.39.23 2.76.69 4.06.54 1.43 1.35 2.48 2.4 3.13 1.19.72 3.11 1.13 5.28 1.13.98 0 1.96-.09 2.93-.27a12.3 12.3 0 0 0 3.82-1.39c.98-.57 1.86-1.29 2.61-2.13 1.26-1.42 2-3 2.56-4.4h.22c1.37 0 2.21-.55 2.68-1.01.3-.29.55-.65.7-1.05z"/></svg>
-                Docker Hub
-              </span>
-            </div>
+          <div class="ms-hub-node" style="top:27.88%" data-pulse="i1">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 380 380"><path d="M282.83 170.73l-.27-.69-26.14-68.22a6.81 6.81 0 00-2.69-3.24 7 7 0 00-8 .43 7 7 0 00-2.32 3.52l-17.65 54h-71.47l-17.65-54a6.86 6.86 0 00-2.32-3.53 7 7 0 00-8-.43 6.87 6.87 0 00-2.69 3.24L97.44 170l-.26.69a48.54 48.54 0 0016.1 56.1l.09.07.24.17 39.82 29.82 19.7 14.91 12 9.06a8.07 8.07 0 009.76 0l12-9.06 19.7-14.91 40.06-30 .1-.08a48.56 48.56 0 0016.08-56.04z" fill="#e24329"/><path d="M282.83 170.73l-.27-.69a88.3 88.3 0 00-35.15 15.8L190 229.25c19.55 14.79 36.57 27.64 36.57 27.64l40.06-30 .1-.08a48.56 48.56 0 0016.1-56.08z" fill="#fc6d26"/><path d="M153.43 256.89l19.7 14.91 12 9.06a8.07 8.07 0 009.76 0l12-9.06 19.7-14.91S209.55 244 190 229.25c-19.55 14.75-36.57 27.64-36.57 27.64z" fill="#fca326"/><path d="M97.44 170.04l-.26.69a48.54 48.54 0 0016.1 56.1l.09.07.24.17 39.82 29.82L190 229.21l-57.41-43.41a88.3 88.3 0 00-35.15-15.76z" fill="#fc6d26"/></svg>
+            </span>
+            <span class="ms-hub-node-name">GitLab</span>
           </div>
-          <span class="ms-conn-badge"><span class="ms-conn-dot"></span>All Connected</span>
+          <div class="ms-hub-node" style="top:37.5%" data-pulse="i2">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 512 512"><path d="M19.1 58.7c-6.9 0-12.2 6.2-11.2 13.1l67.4 408.9c1.4 8.7 8.9 15.1 17.8 15.1h330c6.6 0 12.3-4.8 13.3-11.3L503.9 71.8c1-6.9-4.3-13.1-11.2-13.1H19.1zm288 288.5H206.5l-22.1-115.7h145.4l-22.7 115.7z" fill="#2684ff"/></svg>
+            </span>
+            <span class="ms-hub-node-name">Bitbucket</span>
+          </div>
+
+          <span class="ms-hub-group-label ms-hub-group-reg">Container Registry</span>
+          <div class="ms-hub-node" style="top:53.85%" data-pulse="i3">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#60B5F0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="3"/><line x1="12" y1="22" x2="12" y2="8"/><path d="M5 12H2a10 10 0 0 0 20 0h-3"/></svg>
+            </span>
+            <span class="ms-hub-node-name">Harbor</span>
+          </div>
+          <div class="ms-hub-node" style="top:63.46%" data-pulse="i4">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#FF9900"><path d="M12 2 3 7v10l9 5 9-5V7zm0 2.32L18.5 8 12 11.68 5.5 8zM4 9.41l7 3.89v7.3l-7-3.89zm16 0v7.3l-7 3.89v-7.3z"/></svg>
+            </span>
+            <span class="ms-hub-node-name">Amazon ECR</span>
+          </div>
+          <div class="ms-hub-node" style="top:73.08%" data-pulse="i5">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            </span>
+            <span class="ms-hub-node-name">Google Artifact</span>
+          </div>
+          <div class="ms-hub-node" style="top:82.69%" data-pulse="i6">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#2496ED"><path d="M13.98 11.08h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.09.18.19.18m-2.95-5.43h2.12a.19.19 0 0 0 .19-.19V3.57a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.08.19.19.19m0 2.72h2.12a.19.19 0 0 0 .19-.19V6.29a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.08.19.19.19m-2.93 0h2.12a.19.19 0 0 0 .18-.19V6.29a.19.19 0 0 0-.18-.19H8.1a.19.19 0 0 0-.19.19v1.89c0 .1.09.19.19.19m-2.96 0h2.11a.19.19 0 0 0 .19-.19V6.29a.19.19 0 0 0-.19-.19H5.14a.19.19 0 0 0-.19.19v1.89c0 .1.09.19.19.19m5.89 2.71h2.12a.19.19 0 0 0 .19-.19V9a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.08.18.19.18m-2.93 0h2.12a.18.18 0 0 0 .18-.19V9a.18.18 0 0 0-.18-.19H8.1a.19.19 0 0 0-.19.19v1.89c0 .1.08.18.19.18m-2.96 0h2.11a.19.19 0 0 0 .19-.19V9a.19.19 0 0 0-.19-.19H5.14a.19.19 0 0 0-.19.19v1.89c0 .1.09.18.19.18m-2.92 0h2.12a.19.19 0 0 0 .18-.19V9a.19.19 0 0 0-.18-.19H2.22a.19.19 0 0 0-.19.19v1.89c0 .1.08.18.19.18m21.54-1.19c-.07-.05-.67-.51-1.95-.51-.34 0-.68.03-1.01.09-.25-1.7-1.65-2.53-1.72-2.57l-.34-.2-.23.33c-.28.44-.49.92-.61 1.43-.23.97-.09 1.88.4 2.66-.59.33-1.55.41-1.74.42H.75A.75.75 0 0 0 0 11.32c0 1.39.23 2.76.69 4.06.54 1.43 1.35 2.48 2.4 3.13 1.19.72 3.11 1.13 5.28 1.13.98 0 1.96-.09 2.93-.27a12.3 12.3 0 0 0 3.82-1.39c.98-.57 1.86-1.29 2.61-2.13 1.26-1.42 2-3 2.56-4.4h.22c1.37 0 2.21-.55 2.68-1.01.3-.29.55-.65.7-1.05z"/></svg>
+            </span>
+            <span class="ms-hub-node-name">Docker Hub</span>
+          </div>
         </div>
 
-        <!-- Pipeline flow -->
-        <div class="ms-flow">
-          <div class="ms-flow-step">
-            <div class="ms-flow-node ms-node-blue">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+        <!-- Scan engine (center) -->
+        <div class="ms-hub-center">
+          <div class="ms-hub-engine">
+            <span class="ms-hub-engine-ring ms-hub-engine-ring-1"></span>
+            <span class="ms-hub-engine-ring ms-hub-engine-ring-2"></span>
+            <span class="ms-hub-engine-ring ms-hub-engine-ring-3"></span>
+            <div class="ms-hub-engine-core">
+              <svg aria-hidden="true" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                <path d="M9.937 12.5a1.4 1.4 0 0 0-1-1L5.5 10.6a.35.35 0 0 1 0-.67l3.44-.89a1.4 1.4 0 0 0 1-1l.89-3.44a.35.35 0 0 1 .67 0l.89 3.44a1.4 1.4 0 0 0 1 1l3.44.89a.35.35 0 0 1 0 .67l-3.44.89a1.4 1.4 0 0 0-1 1l-.89 3.44a.35.35 0 0 1-.67 0z"/>
+              </svg>
             </div>
-            <span class="ms-flow-label">You ship code<br/><em>or push an image</em></span>
           </div>
-
-          <div class="ms-flow-conn ms-flow-conn-1" aria-hidden="true"></div>
-
-          <div class="ms-flow-step">
-            <div class="ms-flow-node ms-node-cyan">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-            </div>
-            <span class="ms-flow-label">Vygl fetches<br/><em>source or image</em></span>
-          </div>
-
-          <div class="ms-flow-conn ms-flow-conn-2" aria-hidden="true"></div>
-
-          <div class="ms-flow-step">
-            <div class="ms-flow-node ms-node-emerald">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
-            </div>
-            <span class="ms-flow-label">Full security scan<br/><em>+ AI triage</em></span>
-          </div>
-
-          <div class="ms-flow-conn ms-flow-conn-3" aria-hidden="true"></div>
-
-          <div class="ms-flow-step">
-            <div class="ms-flow-node ms-node-orange">
-              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 2v20l2-2 2 2 2-2 2 2 2-2 2 2 2-2 2 2V2l-2 2-2-2-2 2-2-2-2 2-2-2-2 2-2-2z"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="14" y2="14"/></svg>
-            </div>
-            <span class="ms-flow-label">Results delivered<br/><em>instantly, everywhere</em></span>
+          <div class="ms-hub-engine-title">Vygl Scan Engine</div>
+          <div class="ms-hub-engine-sub">SAST · SCA · Secrets · IaC · Container</div>
+          <div class="ms-hub-engine-badge">
+            <span class="ms-hub-engine-dot"></span>
+            AI triage on every finding
           </div>
         </div>
 
-        <!-- Delivery channels -->
-        <div class="ms-delivery">
-          <span class="ms-delivery-label">Results land in</span>
-          <div class="ms-delivery-chips">
-            <span class="ms-channel ms-channel-violet" title="Claude Code, Cursor, Windsurf via MCP">
-              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
-              <span>AI IDE Agents</span>
-              <em>Claude · Cursor · Windsurf</em>
+        <!-- Delivery column (right) -->
+        <div class="ms-hub-col ms-hub-right">
+          <span class="ms-hub-group-label ms-hub-group-delivery">Delivered to</span>
+          <div class="ms-hub-node ms-hub-dst ms-hub-dst-violet" style="top:24.04%" data-pulse="o0">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
             </span>
-            <span class="ms-channel ms-channel-emerald" title="Slack: scan summary + full report links">
-              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M6 15a2 2 0 1 1-2-2h2zm1 0a2 2 0 1 1 4 0v5a2 2 0 1 1-4 0zm2-8a2 2 0 1 1 2-2v2zm0 1a2 2 0 1 1 0 4H4a2 2 0 1 1 0-4zm8 2a2 2 0 1 1 2 2h-2zm-1 0a2 2 0 1 1-4 0V5a2 2 0 1 1 4 0zm-2 8a2 2 0 1 1-2 2v-2zm0-1a2 2 0 1 1 0-4h5a2 2 0 1 1 0 4z"/></svg>
-              <span>Slack</span>
-              <em>summary + report links</em>
+            <span class="ms-hub-node-body">
+              <span class="ms-hub-node-name">AI IDE Agents</span>
+              <span class="ms-hub-node-sub">Claude · Cursor · Windsurf</span>
             </span>
-            <span class="ms-channel ms-channel-blue" title="Inline PR comments with AI triage">
-              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
-              <span>PR / MR Comments</span>
-              <em>inline findings + AI triage</em>
+          </div>
+          <div class="ms-hub-node ms-hub-dst ms-hub-dst-emerald" style="top:41.35%" data-pulse="o1">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6 15a2 2 0 1 1-2-2h2zm1 0a2 2 0 1 1 4 0v5a2 2 0 1 1-4 0zm2-8a2 2 0 1 1 2-2v2zm0 1a2 2 0 1 1 0 4H4a2 2 0 1 1 0-4zm8 2a2 2 0 1 1 2 2h-2zm-1 0a2 2 0 1 1-4 0V5a2 2 0 1 1 4 0zm-2 8a2 2 0 1 1-2 2v-2zm0-1a2 2 0 1 1 0-4h5a2 2 0 1 1 0 4z"/></svg>
             </span>
-            <span class="ms-channel ms-channel-orange" title="Dashboard updates in real-time">
-              <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
-              <span>Dashboard</span>
-              <em>real-time posture updates</em>
+            <span class="ms-hub-node-body">
+              <span class="ms-hub-node-name">Slack</span>
+              <span class="ms-hub-node-sub">summary + report links</span>
+            </span>
+          </div>
+          <div class="ms-hub-node ms-hub-dst ms-hub-dst-blue" style="top:58.65%" data-pulse="o2">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 0 1 2 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+            </span>
+            <span class="ms-hub-node-body">
+              <span class="ms-hub-node-name">PR / MR Comments</span>
+              <span class="ms-hub-node-sub">inline findings + AI triage</span>
+            </span>
+          </div>
+          <div class="ms-hub-node ms-hub-dst ms-hub-dst-orange" style="top:75.96%" data-pulse="o3">
+            <span class="ms-hub-node-icon">
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+            </span>
+            <span class="ms-hub-node-body">
+              <span class="ms-hub-node-name">Dashboard</span>
+              <span class="ms-hub-node-sub">real-time posture updates</span>
             </span>
           </div>
         </div>
