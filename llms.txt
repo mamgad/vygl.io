@@ -1,29 +1,35 @@
 # Vygl
 
-> Vygl is an AI-powered security scanning platform that finds vulnerabilities across code, dependencies, secrets, and infrastructure. It combines multiple scan engines (SAST, SCA, Secrets, IaC) with AI-powered triage to help development teams cut through scanner noise and focus on real issues.
+> Vygl is an AI-powered security scanning platform that finds vulnerabilities across code, dependencies, secrets, infrastructure, and container images. It combines multiple scan engines (SAST, SCA, Secrets, IaC, Container) with AI-powered triage to help development teams cut through scanner noise and focus on real issues.
 
 ## What Vygl Does
 
-Vygl scans your codebase using four specialized engines and then uses AI to triage the results:
+Vygl scans your codebase and container images using five specialized engines and then uses AI to triage the results:
 
 - **SAST (Static Application Security Testing)** via OpenGrep: Detects SQL injection, XSS, command injection, path traversal, SSRF, and insecure deserialization in source code.
 - **SCA (Software Composition Analysis)** via OSV: Identifies vulnerable dependencies like Log4Shell and Spring4Shell, with CVE tracking across 7+ programming languages and CycloneDX SBOM export.
 - **Secrets Detection** via Gitleaks: Finds hardcoded API keys, database credentials, JWT secrets, and private keys using 600+ detection patterns.
 - **IaC (Infrastructure as Code) Scanning** via Checkov: Catches public S3 buckets, unrestricted security groups, overprivileged IAM roles, and container misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation.
+- **Container Scanning**: Scans container images from the CLI or via registry integration. Finds vulnerable OS and application packages across every layer, and correlates container CVEs with SCA findings in the source code.
 - **AI-Powered Triage**: Every finding is reviewed by an LLM that scores confidence, identifies true vs false positives, and suggests fixes. Bring your own LLM provider or use Vygl's.
 
 ## Key Features
 
 - AI Security Brief: One-click AI-generated security report analyzing all findings with executive summary, priority actions, and quick wins.
+- Per-Image AI Analysis: Dedicated AI-generated security brief for each container image, with base image upgrade advice and priority package bumps.
+- CVE Watch: Continuous monitoring of every package in your SBOM against new vulnerability disclosures, with instant Slack, email, and webhook alerts when a new CVE matches a package you ship.
+- Source ↔ Container Correlation: Match SCA findings in source code with the same CVEs in built images for full supply-chain visibility.
 - SHA-256 fingerprinting for smart deduplication across scans.
 - Policy as Code with monitor, block, and disable modes.
 - Privacy-first: scans run in your environment; only findings metadata reaches the cloud.
-- Runs as a Docker container in CI/CD pipelines (GitHub Actions, GitLab CI, or any Docker-compatible pipeline).
-- Cloud dashboard for triage, tracking, and managing findings across projects and branches.
+- Runs as a Docker container in CI/CD pipelines (GitHub Actions, GitLab CI, or any Docker-compatible pipeline), or as a fully-managed scan via Git provider integration.
+- Cloud dashboard for triage, tracking, and managing findings across projects, branches, and container images.
 
 ## Integrations
 
-- MCP (Model Context Protocol) server for AI IDE integration (available) — query findings, verify issues, and check project health from Claude Code, Cursor, Windsurf, or any MCP-compatible IDE
+- MCP (Model Context Protocol) server for AI IDE integration (available) — query source and container findings, verify issues, correlate CVEs, inspect images, and check project health from Claude Code, Cursor, Windsurf, or any MCP-compatible IDE
+- Managed Scans via GitHub App, GitLab OAuth, and Bitbucket OAuth (available) — zero CI/CD config, auto-clone on push/PR
+- Container Registry: Harbor (available); ECR, Google Artifact Registry, and Docker Hub (coming soon)
 - GitHub PR comments (available)
 - GitLab MR comments (available)
 - Slack notifications (available)

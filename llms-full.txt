@@ -1,12 +1,12 @@
 # Vygl — AI-Powered Security Scanning Platform
 
-> Vygl is a security scanning platform that combines SAST, SCA, secrets detection, and IaC scanning with AI-powered triage. It helps development and security teams find vulnerabilities, cut through false positives, and focus on fixing what actually matters.
+> Vygl is a security scanning platform that combines SAST, SCA, secrets detection, IaC scanning, and container image scanning with AI-powered triage. It helps development and security teams find vulnerabilities, cut through false positives, and focus on fixing what actually matters.
 
 ## Product Overview
 
-Vygl is designed for security-conscious development teams who need comprehensive vulnerability scanning without the noise. It runs multiple scan engines in parallel and uses AI to analyze every finding, scoring confidence levels, identifying false positives, and suggesting fixes.
+Vygl is designed for security-conscious development teams who need comprehensive vulnerability scanning without the noise. It runs multiple scan engines in parallel across source code and container images, and uses AI to analyze every finding, scoring confidence levels, identifying false positives, and suggesting fixes.
 
-The platform operates on a privacy-first model: scans run in your environment (as a Docker container), and only findings metadata is sent to the cloud dashboard. Your source code never leaves your infrastructure.
+The platform operates on a privacy-first model: scans run in your environment (as a Docker container or via a managed Git integration that clones ephemerally), and only findings metadata is sent to the cloud dashboard. Your source code never leaves your infrastructure.
 
 ## Scan Engines
 
@@ -36,6 +36,14 @@ The platform operates on a privacy-first model: scans run in your environment (a
 - **Detects**: Public S3 buckets, unrestricted security groups (0.0.0.0/0 ingress), overprivileged IAM roles, container misconfigurations
 - **Supports**: Terraform, Kubernetes manifests, Dockerfiles, CloudFormation templates, Helm charts
 
+### Container Image Scanning
+- **Purpose**: Scans built container images for vulnerable OS and application packages across every layer
+- **Coverage**: Both OS packages (e.g., openssl, libcurl, zlib on Debian/Alpine/RHEL/Ubuntu bases) and application packages (e.g., Python/pip, npm, Go modules, Java artifacts)
+- **CLI**: One command to scan any image — `vygl scan --image harbor.io/app:latest` with `--fail-on` severity gating for CI/CD
+- **Registry Integration**: Connect Harbor with auto-scan on push via webhooks (available). ECR, Google Artifact Registry, and Docker Hub coming soon
+- **Source ↔ Container Correlation**: Matches SCA findings in source code with the same CVEs in the built image, giving full supply-chain visibility across the dev-to-deploy pipeline
+- **Per-Image AI Analysis**: AI-generated security brief for each scanned image — base image upgrade advice, priority package bumps, and actionable fix plans
+
 ## AI-Powered Triage
 
 Every finding from all scan engines flows through Vygl's AI triage system:
@@ -52,19 +60,32 @@ Teams can use Vygl's built-in LLM provider or configure their own (e.g., GPT-4o,
 ## AI Security Brief
 
 One-click comprehensive security report that:
-- Analyzes all open findings across all scan types
+- Analyzes all open findings across all scan types (source + container)
 - Generates an executive summary of the project's security posture
 - Identifies priority actions (critical issues to fix first)
 - Suggests quick wins (low-effort, high-impact fixes)
 - Provides finding counts by severity and type
 
+A separate **Per-Image AI Analysis** produces the same style of report scoped to a single container image — useful when triaging a specific build or release candidate.
+
+## CVE Watch
+
+Continuous monitoring for new vulnerability disclosures against every package in your SBOM.
+
+- **SBOM-Aware**: Every dependency from your scans is automatically tracked against live CVE feeds. No manual package lists
+- **24/7 Monitoring**: Four daily scan cycles match your dependencies against newly published CVEs
+- **Instant Notifications**: Slack, email, or webhook alerts fire as soon as a new CVE matches a package in your SBOM
+- **Upgrade Guidance**: Every alert includes the affected version range, CVSS score, and recommended fix version
+- **Multi-Project Visibility**: A single CVE alert surfaces every project in your org that ships the affected package
+
 ## How It Works
 
-1. **Install**: Run Vygl as a Docker container in your CI/CD pipeline or locally
-2. **Scan**: Vygl runs all four scan engines (SAST, SCA, Secrets, IaC) against your codebase
+1. **Install**: Run Vygl as a Docker container in your CI/CD pipeline, locally, or connect a Git provider for fully-managed scans
+2. **Scan**: Vygl runs all relevant scan engines (SAST, SCA, Secrets, IaC, Container) against your codebase and/or images
 3. **Triage**: AI automatically reviews every finding, scoring confidence and identifying false positives
 4. **Review**: Results appear in the cloud dashboard and/or as PR/MR comments
 5. **Fix**: Use AI-suggested fixes and priority rankings to remediate efficiently
+6. **Monitor**: CVE Watch keeps an eye on your SBOM and alerts on new disclosures against shipped dependencies
 
 ### CI/CD Integration
 Vygl runs as a Docker container and integrates with:
@@ -73,26 +94,42 @@ Vygl runs as a Docker container and integrates with:
 - Any Docker-compatible CI/CD pipeline
 - Local development environments
 
+### Managed Scans (Git Provider Integration)
+As an alternative to CI/CD, connect a GitHub App, GitLab OAuth, or Bitbucket OAuth integration. Vygl installs webhooks, clones ephemerally on every push or PR, runs all engines, and posts results back — no YAML, no pipelines, no Docker setup required. Source is cloned to a temp directory and deleted immediately after scanning. Works with GitHub Enterprise, self-hosted GitLab, and Bitbucket Data Center.
+
 ### Policy as Code
 Security policies are cloud-managed with three modes:
 - **Monitor**: Track findings without blocking
-- **Block**: Fail CI/CD pipelines on policy violations
+- **Block**: Fail CI/CD pipelines or block merges on policy violations
 - **Disable**: Turn off specific rules
+
+Policies apply org-wide across every managed scan.
 
 ## Integrations
 
 ### MCP IDE Integration (Available)
-Vygl provides an MCP (Model Context Protocol) server that integrates with AI-powered IDEs. Developers can query security findings, verify issues, and check project health without leaving their editor.
+Vygl provides an MCP (Model Context Protocol) server that integrates with AI-powered IDEs. Developers can query security findings, inspect container images, correlate source-to-container CVEs, verify issues, and check project health without leaving their editor.
 
 **Supported IDEs**: Claude Code, Cursor, Windsurf, and any MCP-compatible IDE.
 
 **Available MCP tools**:
-- `search_findings` — Search and filter findings by project, severity, scan type, and status
+- `search_findings` — Search and filter source findings by project, severity, scan type, and status
 - `get_finding_detail` — Get full details for a specific finding including code context
 - `get_project_health` — Get a project's overall security health score and breakdown
 - `get_security_posture` — Get security posture summary across all projects
 - `list_projects` — List all projects in the organization
 - `ai_verify_finding` — Verify a finding with AI triage to determine true/false positive status
+- `list_container_images` — List all scanned container images
+- `get_container_image_detail` — Get full details for a specific container image, including layers and package inventory
+- `search_container_findings` — Search and filter container vulnerabilities
+- `get_container_analysis` — Retrieve the Per-Image AI Analysis for a container image
+- `get_container_correlations` — Match source SCA findings to container CVEs for supply-chain visibility
+
+### Container Registry Integrations
+- **Harbor** (available) — connect with auto-scan on push via webhooks
+- **Amazon ECR** (coming soon)
+- **Google Artifact Registry** (coming soon)
+- **Docker Hub** (coming soon)
 
 ### GitHub PR Comments (Available)
 Vygl bot posts scan results directly on pull requests including:
@@ -104,9 +141,13 @@ Vygl bot posts scan results directly on pull requests including:
 ### GitLab MR Comments (Available)
 Same capabilities as GitHub integration, posted on merge requests.
 
+### Bitbucket (Available)
+OAuth 2.0 integration with managed scans on Bitbucket Cloud and Bitbucket Data Center.
+
 ### Slack Notifications (Available)
 - Scan completion summaries
 - Critical and high finding alerts
+- CVE Watch real-time disclosure alerts
 - Direct links to findings in the dashboard
 - Test notification support
 
@@ -114,35 +155,42 @@ Same capabilities as GitHub integration, posted on merge requests.
 Scan notifications and finding alerts in Teams channels.
 
 ### Custom Webhooks (Coming Soon)
-Send scan events to any HTTP endpoint for custom integrations.
+Send scan events and CVE Watch alerts to any HTTP endpoint for custom integrations.
 
 ## Cloud Dashboard
 
 Unified security dashboard providing:
-- **Security Posture Overview**: Total open findings across all projects
+- **Security Posture Overview**: Total open findings across all projects and container images
 - **Findings Over Time**: Trend charts showing new vs resolved findings
 - **Severity Distribution**: Visual breakdown of critical, high, medium, and low findings
 - **Top Vulnerabilities**: Table of most common findings by rule, severity, and type
 - **Project Management**: Multi-project support with branch-level tracking
+- **Container Image Inventory**: Per-image vulnerability breakdowns, layer analysis, and package coverage
+- **Source ↔ Container Correlation Views**: See which source dependencies map to CVEs in deployed images
+- **CVE Watch Feed**: Live alert stream for newly disclosed CVEs affecting your SBOM
 - **Finding Detail Pages**: Full context for each finding including code snippets, AI verdicts, and fix suggestions
 
 ## Comparison with Alternatives
 
 Vygl differentiates from other security scanning tools by:
-- **Unified platform**: SAST + SCA + Secrets + IaC in a single tool (vs running Semgrep, Snyk, TruffleHog, and Checkov separately)
+- **Unified platform**: SAST + SCA + Secrets + IaC + Container in a single tool (vs running Semgrep, Snyk, TruffleHog, Checkov, and Trivy separately)
 - **AI triage built-in**: Automatic false positive identification (vs manual triage in most scanners)
 - **Privacy-first**: Code stays in your environment (vs cloud-based scanners that upload code)
-- **AI Security Brief**: One-click security report generation (unique to Vygl)
-- **MCP IDE integration**: Query findings and verify issues directly from Claude Code, Cursor, Windsurf, or any MCP-compatible IDE (unique to Vygl)
+- **Source-to-Container Correlation**: A single CVE view that spans source dependencies and deployed image layers
+- **AI Security Brief & Per-Image Analysis**: One-click security reports at the project and image level (unique to Vygl)
+- **CVE Watch**: Continuous SBOM monitoring with real-time disclosure alerts (unique to Vygl)
+- **MCP IDE integration**: Query findings, inspect images, and correlate CVEs directly from Claude Code, Cursor, Windsurf, or any MCP-compatible IDE (unique to Vygl)
+- **Managed Scans**: Zero CI/CD config via Git provider integration — an alternative path for teams who don't want to maintain pipeline YAML
 - **Never blocks CI/CD by default**: Non-intrusive scanning that reports without blocking (configurable via Policy as Code)
 
 ## Technical Details
 
 - **Operating Systems**: Linux, macOS, Windows
-- **Deployment**: Docker container
+- **Deployment**: Docker container or managed Git integration
 - **Output Formats**: CycloneDX SBOM, dashboard, PR/MR comments, Slack, webhooks
-- **Detection Rules**: 600+ built-in patterns
+- **Detection Rules**: 600+ built-in patterns for secrets alone, plus OpenGrep, OSV, and Checkov rule sets, plus OS + app package CVE coverage for containers
 - **Language Support**: 7+ programming languages
+- **Container Base Support**: Debian, Ubuntu, Alpine, RHEL, and derivative base images
 
 ## Pricing and Access
 
@@ -158,34 +206,46 @@ Vygl differentiates from other security scanning tools by:
 ## Frequently Asked Questions
 
 ### What is Vygl?
-Vygl is an AI-powered security scanning platform that combines SAST, SCA, secrets detection, and IaC scanning with AI-powered triage to help development teams find and fix vulnerabilities.
+Vygl is an AI-powered security scanning platform that combines SAST, SCA, secrets detection, IaC scanning, and container image scanning with AI-powered triage to help development teams find and fix vulnerabilities.
 
 ### What types of vulnerabilities does Vygl detect?
-Vygl detects SQL injection, XSS, command injection, path traversal, SSRF in source code (SAST); known CVEs in dependencies like Log4Shell (SCA); hardcoded API keys, credentials, and secrets (Secrets); and infrastructure misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation (IaC).
+Vygl detects SQL injection, XSS, command injection, path traversal, SSRF in source code (SAST); known CVEs in dependencies like Log4Shell (SCA); hardcoded API keys, credentials, and secrets (Secrets); infrastructure misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation (IaC); and vulnerable OS and application packages in container images (Container Scanning).
 
 ### How does Vygl's AI triage work?
 Every finding is automatically reviewed by an LLM that classifies it as a true or false positive, assigns a confidence score, provides reasoning, and suggests fixes for confirmed vulnerabilities.
 
 ### Does Vygl access my source code?
-No. Vygl runs scans in your environment (as a Docker container). Only findings metadata is sent to the cloud dashboard — your source code never leaves your infrastructure.
+No. Vygl runs scans in your environment (as a Docker container), or in the case of managed scans, clones ephemerally to a temp directory and deletes immediately after scanning. Only findings metadata is sent to the cloud dashboard — your source code never leaves your infrastructure.
 
 ### What CI/CD pipelines does Vygl support?
-Vygl runs as a Docker container and works with GitHub Actions, GitLab CI/CD, and any Docker-compatible pipeline.
+Vygl runs as a Docker container and works with GitHub Actions, GitLab CI/CD, and any Docker-compatible pipeline. Alternatively, use Managed Scans via a GitHub App, GitLab OAuth, or Bitbucket OAuth integration — no CI/CD configuration required.
+
+### How does Vygl scan container images?
+Two options: (1) run `vygl scan --image <ref>` from the CLI or CI/CD, with `--fail-on` severity gating; or (2) connect a container registry (Harbor is available today; ECR, GAR, and Docker Hub are coming soon) and Vygl auto-scans on push via webhooks. Each scan covers OS and application packages across every layer.
+
+### What is Source ↔ Container Correlation?
+Vygl matches SCA findings in your source code against the same CVEs detected in your built container image, so you can see the full supply-chain picture — which vulnerable dependencies made it all the way into your deployed image.
+
+### What is CVE Watch?
+CVE Watch continuously monitors every package in your SBOM against live CVE feeds and fires Slack, email, or webhook alerts the moment a new CVE matches a package you ship. Each alert includes the affected version range, CVSS score, and recommended fix version.
 
 ### Is Vygl free?
 Vygl is free for open-source projects. Commercial access is invitation-only — email access@vygl.io to request access.
 
 ### What scan engines does Vygl use?
-Vygl uses OpenGrep for SAST, OSV for SCA, Gitleaks for secrets detection, and Checkov for IaC scanning.
+Vygl uses OpenGrep for SAST, OSV for SCA, Gitleaks for secrets detection, and Checkov for IaC scanning. Container scanning uses a combination of OS package databases and OSV-backed application package CVE data.
 
 ### Can I use my own LLM provider with Vygl?
 Yes. Vygl supports bring-your-own-LLM configuration, or you can use Vygl's built-in provider.
 
 ### Does Vygl block my CI/CD pipeline?
-By default, no. Vygl reports findings without blocking. You can configure blocking behavior through Policy as Code rules with monitor, block, and disable modes.
+By default, no. Vygl reports findings without blocking. You can configure blocking behavior through Policy as Code rules with monitor, block, and disable modes, or via `--fail-on` severity gates on the CLI.
 
 ### What is Vygl's MCP integration?
-Vygl provides an MCP (Model Context Protocol) server that lets developers query security findings, verify issues with AI triage, and check project health directly from AI-powered IDEs like Claude Code, Cursor, and Windsurf. Available tools include search_findings, get_finding_detail, get_project_health, get_security_posture, list_projects, and ai_verify_finding.
+Vygl provides an MCP (Model Context Protocol) server that lets developers query security findings, inspect container images, correlate source-to-container CVEs, verify issues with AI triage, and check project health directly from AI-powered IDEs like Claude Code, Cursor, and Windsurf. Available tools include search_findings, get_finding_detail, get_project_health, get_security_posture, list_projects, ai_verify_finding, list_container_images, get_container_image_detail, search_container_findings, get_container_analysis, and get_container_correlations.
 
 ### What programming languages does Vygl support?
 Vygl supports 7+ languages including Python, Java, JavaScript/Node.js, Go, Ruby, PHP, and Rust.
+
+### Which container registries does Vygl integrate with?
+Harbor is available today with auto-scan on push via webhooks. Amazon ECR, Google Artifact Registry, and Docker Hub are coming soon. Any image, regardless of registry, can be scanned via the CLI.
