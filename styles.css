@@ -2347,12 +2347,14 @@ img { max-width: 100%; }
 
 .ms-hub-left .ms-hub-node {
   right: 1rem;
-  max-width: calc(100% - 2.75rem);
+  width: 180px;
+  justify-content: flex-start;
 }
 
 .ms-hub-right .ms-hub-node {
   left: 1rem;
-  max-width: calc(100% - 2.75rem);
+  width: 232px;
+  justify-content: flex-start;
   padding: 0.5rem 0.75rem 0.5rem 0.625rem;
 }
 
