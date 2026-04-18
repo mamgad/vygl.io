@@ -4,23 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Google Consent Mode v2 — deny-by-default until user grants consent -->
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('consent', 'default', {
-      'ad_storage': 'denied',
-      'ad_user_data': 'denied',
-      'ad_personalization': 'denied',
-      'analytics_storage': 'denied',
-      'functionality_storage': 'granted',
-      'security_storage': 'granted',
-      'wait_for_update': 500
-    });
-    gtag('set', 'ads_data_redaction', true);
-    gtag('set', 'url_passthrough', true);
-  </script>
-
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -216,7 +199,7 @@
         <tr><td><code>_ga_P8PW8CG1XT</code></td><td>Persists GA4 session state</td><td>Analytics (consent)</td><td>2 years</td></tr>
       </tbody>
     </table>
-    <p>You can change your choice at any time via the <a href="#" onclick="event.preventDefault(); if(window.CookieConsent) CookieConsent.showPreferences();">Cookie settings</a> link in the footer.</p>
+    <p>Most browsers let you block or delete cookies via their settings. You can also install a GA opt-out browser add-on from Google at <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">tools.google.com/dlpage/gaoptout</a>.</p>
 
     <h2>4. Legal basis for processing (GDPR)</h2>
     <ul>
@@ -278,93 +261,9 @@
         <p>&copy; 2026 Vygl. All rights reserved.</p>
         <p class="footer-legal">
           <a href="/privacy.html">Privacy Policy</a>
-          <span aria-hidden="true">·</span>
-          <a href="#" onclick="event.preventDefault(); if(window.CookieConsent) CookieConsent.showPreferences();">Cookie settings</a>
         </p>
       </div>
     </div>
   </footer>
-
-  <!-- ─── Cookie Consent (CookieConsent v3 by Orest Bida — MIT licensed) ─── -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.1/dist/cookieconsent.css">
-  <script defer src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@v3.0.1/dist/cookieconsent.umd.js"></script>
-  <script defer>
-    window.addEventListener('load', function () {
-      CookieConsent.run({
-        guiOptions: {
-          consentModal: { layout: 'box inline', position: 'bottom right', equalWeightButtons: true, flipButtons: false },
-          preferencesModal: { layout: 'box', position: 'right', equalWeightButtons: true, flipButtons: false }
-        },
-        categories: {
-          necessary: { enabled: true, readOnly: true },
-          analytics: {
-            autoClear: {
-              cookies: [
-                { name: /^_ga/ },
-                { name: '_gid' }
-              ]
-            },
-            services: {
-              ga4: {
-                label: 'Google Analytics 4',
-                onAccept: function () { gtag('consent', 'update', { analytics_storage: 'granted' }); },
-                onReject: function () { gtag('consent', 'update', { analytics_storage: 'denied' }); },
-                cookies: [{ name: /^_ga/ }, { name: '_gid' }]
-              }
-            }
-          }
-        },
-        language: {
-          default: 'en',
-          translations: {
-            en: {
-              consentModal: {
-                title: 'Privacy matters',
-                description: 'Essential cookies keep the site running. Analytics cookies (GA4) — only with your consent — help us see what resonates. No ads, no tracking. <a href="/privacy.html">Privacy Policy</a>.',
-                acceptAllBtn: 'Accept all',
-                acceptNecessaryBtn: 'Reject',
-                showPreferencesBtn: 'Manage',
-                footer: '<a href="/privacy.html">Privacy Policy</a>'
-              },
-              preferencesModal: {
-                title: 'Cookie preferences',
-                acceptAllBtn: 'Accept all',
-                acceptNecessaryBtn: 'Reject all',
-                savePreferencesBtn: 'Save preferences',
-                closeIconLabel: 'Close modal',
-                sections: [
-                  {
-                    title: 'Cookie usage',
-                    description: 'We use cookies for essential site functionality and for anonymous traffic analytics via Google Analytics 4. No cookies are used for advertising or cross-site tracking.'
-                  },
-                  {
-                    title: 'Strictly necessary',
-                    description: 'Required for the website to function. These cannot be disabled.',
-                    linkedCategory: 'necessary'
-                  },
-                  {
-                    title: 'Analytics',
-                    description: 'Google Analytics 4 cookies (<code>_ga</code>, <code>_ga_*</code>) help us understand which content is useful. IP addresses are anonymised and no advertising data is collected.',
-                    linkedCategory: 'analytics',
-                    cookieTable: {
-                      headers: { name: 'Name', domain: 'Domain', desc: 'Description', exp: 'Expiration' },
-                      body: [
-                        { name: '_ga', domain: 'vygl.io', desc: 'Distinguishes unique users', exp: '2 years' },
-                        { name: '_ga_P8PW8CG1XT', domain: 'vygl.io', desc: 'Persists session state for GA4', exp: '2 years' }
-                      ]
-                    }
-                  },
-                  {
-                    title: 'Questions or requests',
-                    description: 'Contact us at <a href="mailto:access@vygl.io">access@vygl.io</a> to exercise your rights (access, deletion, opt-out).'
-                  }
-                ]
-              }
-            }
-          }
-        }
-      });
-    });
-  </script>
 </body>
 </html>
