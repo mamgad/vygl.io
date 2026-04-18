@@ -6898,3 +6898,217 @@ body::before {
     right: 5rem;
   }
 }
+
+/* ═══════════════════════════════════════════
+   Cookie Consent — Vygl themed overrides
+   ═══════════════════════════════════════════ */
+
+#cc-main {
+  --cc-font-family: var(--font-sans);
+
+  --cc-bg: var(--bg-card);
+  --cc-primary-color: var(--fg);
+  --cc-secondary-color: var(--fg-muted);
+
+  --cc-btn-primary-bg: #2563eb;
+  --cc-btn-primary-color: #ffffff;
+  --cc-btn-primary-border-color: rgba(96, 165, 250, 0.3);
+  --cc-btn-primary-hover-bg: #3b82f6;
+  --cc-btn-primary-hover-color: #ffffff;
+  --cc-btn-primary-hover-border-color: rgba(96, 165, 250, 0.5);
+
+  --cc-btn-secondary-bg: transparent;
+  --cc-btn-secondary-color: var(--fg);
+  --cc-btn-secondary-border-color: var(--border-hover);
+  --cc-btn-secondary-hover-bg: rgba(255, 255, 255, 0.04);
+  --cc-btn-secondary-hover-color: var(--fg);
+  --cc-btn-secondary-hover-border-color: var(--accent);
+
+  --cc-separator-border-color: var(--border);
+  --cc-link-color: var(--accent);
+
+  --cc-toggle-on-bg: var(--accent);
+  --cc-toggle-off-bg: #334155;
+  --cc-toggle-on-knob-color: #ffffff;
+  --cc-toggle-off-knob-color: #e2e8f0;
+  --cc-toggle-readonly-bg: #1e293b;
+  --cc-toggle-readonly-knob-color: #475569;
+  --cc-toggle-readonly-knob-icon-color: var(--bg);
+
+  --cc-cookie-category-block-bg: var(--bg-elevated);
+  --cc-cookie-category-block-border: var(--border);
+  --cc-cookie-category-block-hover-bg: var(--bg);
+  --cc-cookie-category-block-hover-border: var(--border-hover);
+  --cc-cookie-category-expanded-block-bg: rgba(96, 165, 250, 0.04);
+  --cc-cookie-category-expanded-block-hover-bg: rgba(96, 165, 250, 0.06);
+
+  --cc-overlay-bg: rgba(8, 11, 20, 0.75);
+  --cc-webkit-scrollbar-bg: var(--border);
+  --cc-webkit-scrollbar-bg-hover: var(--border-hover);
+
+  --cc-modal-border-radius: var(--radius);
+  --cc-btn-border-radius: var(--radius-sm);
+  --cc-pm-toggle-border-radius: 999px;
+}
+
+/* Consent modal (the small banner) */
+#cc-main .cm {
+  border: 1px solid var(--border);
+  box-shadow:
+    0 24px 60px -12px rgba(0, 0, 0, 0.7),
+    0 0 0 1px rgba(96, 165, 250, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+#cc-main .cm__title,
+#cc-main .pm__title {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+#cc-main .cm__desc,
+#cc-main .pm__section-desc,
+#cc-main .pm__section-title {
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+
+#cc-main .cm a,
+#cc-main .pm a {
+  color: var(--accent);
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.15s ease;
+}
+
+#cc-main .cm a:hover,
+#cc-main .pm a:hover {
+  border-bottom-color: var(--accent);
+}
+
+/* Primary button — Vygl gradient + glow */
+#cc-main .cm__btn--primary,
+#cc-main .pm__btn--primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+#cc-main .cm__btn--primary:hover,
+#cc-main .pm__btn--primary:hover {
+  background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 100%);
+  box-shadow:
+    0 0 30px rgba(59, 130, 246, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+#cc-main .cm__btn,
+#cc-main .pm__btn {
+  font-family: var(--font-sans);
+  font-weight: 600;
+}
+
+/* Preferences modal */
+#cc-main .pm {
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.7);
+}
+
+#cc-main .pm__header,
+#cc-main .pm__footer {
+  border-color: var(--border);
+}
+
+#cc-main .pm__section {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  transition: border-color 0.15s ease;
+}
+
+#cc-main .pm__section:hover {
+  border-color: var(--border-hover);
+}
+
+#cc-main .pm__section-title-wrapper {
+  padding: 1rem 1.25rem;
+}
+
+#cc-main .pm__section--expandable .pm__section-title-wrapper:hover {
+  background: rgba(96, 165, 250, 0.04);
+}
+
+/* Close (×) button in preferences modal */
+#cc-main .pm__close-btn {
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
+  transition: all 0.15s ease;
+}
+
+#cc-main .pm__close-btn:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--fg);
+  border-color: var(--border-hover);
+}
+
+/* Cookie table */
+#cc-main .pm table {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+}
+
+#cc-main .pm th {
+  background: var(--bg-elevated);
+  color: var(--fg);
+  font-weight: 600;
+  border-bottom: 1px solid var(--border);
+}
+
+#cc-main .pm td {
+  color: var(--fg-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+#cc-main .pm code {
+  font-family: var(--font-mono);
+  background: rgba(96, 165, 250, 0.08);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xs);
+  padding: 0.1rem 0.35rem;
+  color: var(--accent);
+  font-size: 0.85em;
+}
+
+/* Light theme overrides */
+[data-theme="light"] #cc-main {
+  --cc-bg: #ffffff;
+  --cc-primary-color: #0f172a;
+  --cc-secondary-color: #475569;
+
+  --cc-btn-secondary-bg: transparent;
+  --cc-btn-secondary-color: #0f172a;
+  --cc-btn-secondary-border-color: #e2e8f0;
+  --cc-btn-secondary-hover-bg: rgba(0, 0, 0, 0.03);
+  --cc-btn-secondary-hover-border-color: #2563eb;
+
+  --cc-separator-border-color: #e2e8f0;
+  --cc-cookie-category-block-bg: #f8fafc;
+  --cc-cookie-category-block-border: #e2e8f0;
+  --cc-cookie-category-block-hover-bg: #f1f5f9;
+  --cc-cookie-category-block-hover-border: #cbd5e1;
+  --cc-toggle-off-bg: #cbd5e1;
+  --cc-toggle-readonly-bg: #e2e8f0;
+  --cc-toggle-readonly-knob-color: #94a3b8;
+  --cc-overlay-bg: rgba(15, 23, 42, 0.45);
+}
+
+[data-theme="light"] #cc-main .cm,
+[data-theme="light"] #cc-main .pm {
+  box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.15);
+}
