@@ -2400,14 +2400,13 @@ img { max-width: 100%; }
 
 /* Delivery color accents */
 .ms-hub-dst-violet  .ms-hub-node-icon { color: var(--violet); }
-.ms-hub-dst-emerald .ms-hub-node-icon { color: var(--emerald); }
 .ms-hub-dst-blue    .ms-hub-node-icon { color: var(--blue); }
 .ms-hub-dst-orange  .ms-hub-node-icon { color: var(--orange); }
 
-.ms-hub-dst-violet:hover  { box-shadow: 0 6px 18px rgba(167,139,250,0.18); border-color: rgba(167,139,250,0.35); }
-.ms-hub-dst-emerald:hover { box-shadow: 0 6px 18px rgba(52,211,153,0.18);  border-color: rgba(52,211,153,0.35); }
-.ms-hub-dst-blue:hover    { box-shadow: 0 6px 18px rgba(96,165,250,0.18);  border-color: rgba(96,165,250,0.35); }
-.ms-hub-dst-orange:hover  { box-shadow: 0 6px 18px rgba(251,146,60,0.18);  border-color: rgba(251,146,60,0.35); }
+.ms-hub-dst-violet:hover { box-shadow: 0 6px 18px rgba(167,139,250,0.18); border-color: rgba(167,139,250,0.35); }
+.ms-hub-dst-slack:hover  { box-shadow: 0 6px 18px rgba(54,197,240,0.18);  border-color: rgba(54,197,240,0.35); }
+.ms-hub-dst-blue:hover   { box-shadow: 0 6px 18px rgba(96,165,250,0.18);  border-color: rgba(96,165,250,0.35); }
+.ms-hub-dst-orange:hover { box-shadow: 0 6px 18px rgba(251,146,60,0.18);  border-color: rgba(251,146,60,0.35); }
 
 /* Engine — the circle itself is pinned to 50%/50% so its center aligns with
    the SVG wire convergence point (x=500, y=260 in viewBox). Caption text is
@@ -2504,6 +2503,18 @@ img { max-width: 100%; }
   position: relative;
   z-index: 1;
   filter: drop-shadow(0 0 8px rgba(221,214,254,0.45));
+}
+
+.ms-hub-engine-logo {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: 1.75rem;
+  letter-spacing: 0.08em;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(221,214,254,0.5), 0 0 22px rgba(167,139,250,0.3);
+  user-select: none;
 }
 
 .ms-hub-engine-title {
@@ -2636,15 +2647,15 @@ img { max-width: 100%; }
 
 [data-theme="light"] .ms-hub-engine-core {
   background:
-    radial-gradient(circle at 35% 30%, rgba(167,139,250,0.35), transparent 55%),
-    radial-gradient(circle at 70% 75%, rgba(34,211,233,0.22), transparent 55%),
-    linear-gradient(145deg, #f8fafc 0%, #ede9fe 100%);
-  color: #7C3AED;
+    radial-gradient(circle at 35% 30%, rgba(124,58,237,0.55), transparent 55%),
+    radial-gradient(circle at 70% 75%, rgba(56,189,248,0.35), transparent 55%),
+    linear-gradient(145deg, #5b21b6 0%, #312e81 100%);
+  color: #ffffff;
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.6),
-    inset 0 0 24px rgba(167,139,250,0.15),
-    0 0 20px rgba(167,139,250,0.18),
-    0 0 48px rgba(167,139,250,0.12);
+    inset 0 1px 0 rgba(255,255,255,0.15),
+    inset 0 0 24px rgba(167,139,250,0.25),
+    0 0 20px rgba(167,139,250,0.25),
+    0 0 48px rgba(167,139,250,0.18);
 }
 
 [data-theme="light"] .ms-cap {
@@ -2742,6 +2753,10 @@ img { max-width: 100%; }
   .ms-hub-engine-core {
     width: 94px;
     height: 94px;
+  }
+
+  .ms-hub-engine-logo {
+    font-size: 1.375rem;
   }
 }
 
