@@ -2276,48 +2276,62 @@ img { max-width: 100%; }
   pointer-events: none;
 }
 
-/* Connected providers strip */
-.ms-connections {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 1rem 2rem;
+/* Connected sources: Repos + Container Registries */
+.ms-sources {
+  position: relative;
+  padding: 1.25rem 2rem 1.25rem 2rem;
   border-bottom: 1px solid var(--border);
-}
-
-.ms-conn {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 0.625rem;
-  padding: 0.5rem 1.75rem;
 }
 
-.ms-conn-icon {
-  width: 32px;
-  height: 32px;
+.ms-source-row {
   display: flex;
   align-items: center;
-  justify-content: center;
-  color: var(--fg);
+  gap: 1rem;
+}
+
+.ms-source-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--fg-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  width: 150px;
   flex-shrink: 0;
 }
 
-.ms-conn-info {
+.ms-source-chips {
   display: flex;
-  flex-direction: column;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  flex: 1;
 }
 
-.ms-conn-name {
-  font-size: 0.8125rem;
-  font-weight: 700;
-  line-height: 1.3;
+.ms-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.4375rem 0.75rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--fg);
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  cursor: default;
 }
 
-.ms-conn-auth {
-  font-size: 0.625rem;
-  color: var(--fg-faint);
-  font-family: var(--font-mono);
-  letter-spacing: 0.02em;
+.ms-brand:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-1px);
+  background: var(--bg);
+}
+
+.ms-brand svg {
+  flex-shrink: 0;
 }
 
 .ms-conn-badge {
@@ -2325,12 +2339,17 @@ img { max-width: 100%; }
   align-items: center;
   gap: 0.375rem;
   font-size: 0.6rem;
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   color: #22c55e;
-  flex-shrink: 0;
-  margin-left: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  border-radius: 999px;
+  position: absolute;
+  top: 1.25rem;
+  right: 2rem;
 }
 
 .ms-conn-dot {
@@ -2345,13 +2364,6 @@ img { max-width: 100%; }
 @keyframes ms-dot-pulse {
   0%, 100% { opacity: 1; box-shadow: 0 0 6px rgba(34, 197, 94, 0.5); }
   50% { opacity: 0.5; box-shadow: 0 0 10px rgba(34, 197, 94, 0.3); }
-}
-
-.ms-conn-sep {
-  width: 1px;
-  height: 28px;
-  background: var(--border);
-  flex-shrink: 0;
 }
 
 /* Pipeline flow with animated connectors */
@@ -2415,16 +2427,14 @@ img { max-width: 100%; }
 }
 
 /* Per-connector gradients (left-node color → right-node color) */
-.ms-flow-conn-1 { background: linear-gradient(90deg, rgba(96,165,250,0.45), rgba(167,139,250,0.45)); }
-.ms-flow-conn-2 { background: linear-gradient(90deg, rgba(167,139,250,0.45), rgba(34,211,233,0.45)); }
-.ms-flow-conn-3 { background: linear-gradient(90deg, rgba(34,211,233,0.45), rgba(52,211,153,0.45)); }
-.ms-flow-conn-4 { background: linear-gradient(90deg, rgba(52,211,153,0.45), rgba(251,146,60,0.45)); }
+.ms-flow-conn-1 { background: linear-gradient(90deg, rgba(96,165,250,0.45), rgba(34,211,233,0.45)); }
+.ms-flow-conn-2 { background: linear-gradient(90deg, rgba(34,211,233,0.45), rgba(52,211,153,0.45)); }
+.ms-flow-conn-3 { background: linear-gradient(90deg, rgba(52,211,153,0.45), rgba(251,146,60,0.45)); }
 
 /* Stagger so each particle hands off to the next — 0.8s per connector */
 .ms-flow-conn-1::after { animation-delay: 0s; }
 .ms-flow-conn-2::after { animation-delay: 0.8s; }
 .ms-flow-conn-3::after { animation-delay: 1.6s; }
-.ms-flow-conn-4::after { animation-delay: 2.4s; }
 
 .ms-flow-node {
   width: 48px;
@@ -2472,17 +2482,6 @@ img { max-width: 100%; }
   animation-delay: -0.15s;
 }
 
-.ms-node-purple {
-  background: rgba(167,139,250,0.08);
-  border-color: rgba(167,139,250,0.35);
-  color: var(--purple);
-  box-shadow: 0 0 12px rgba(167,139,250,0.06);
-}
-.ms-node-purple::before {
-  box-shadow: 0 0 20px 4px rgba(167,139,250,0.45);
-  animation-delay: 0.65s;
-}
-
 .ms-node-cyan {
   background: rgba(34,211,233,0.08);
   border-color: rgba(34,211,233,0.35);
@@ -2491,7 +2490,7 @@ img { max-width: 100%; }
 }
 .ms-node-cyan::before {
   box-shadow: 0 0 20px 4px rgba(34,211,233,0.45);
-  animation-delay: 1.45s;
+  animation-delay: 0.65s;
 }
 
 .ms-node-emerald {
@@ -2502,7 +2501,7 @@ img { max-width: 100%; }
 }
 .ms-node-emerald::before {
   box-shadow: 0 0 20px 4px rgba(52,211,153,0.45);
-  animation-delay: 2.25s;
+  animation-delay: 1.45s;
 }
 
 .ms-node-orange {
@@ -2513,23 +2512,98 @@ img { max-width: 100%; }
 }
 .ms-node-orange::before {
   box-shadow: 0 0 20px 4px rgba(251,146,60,0.45);
-  animation-delay: 3.05s;
+  animation-delay: 2.25s;
 }
 
 .ms-flow-step:hover .ms-node-blue { box-shadow: 0 0 24px rgba(96,165,250,0.3); }
-.ms-flow-step:hover .ms-node-purple { box-shadow: 0 0 24px rgba(167,139,250,0.3); }
 .ms-flow-step:hover .ms-node-cyan { box-shadow: 0 0 24px rgba(34,211,233,0.3); }
 .ms-flow-step:hover .ms-node-emerald { box-shadow: 0 0 24px rgba(52,211,153,0.3); }
 .ms-flow-step:hover .ms-node-orange { box-shadow: 0 0 24px rgba(251,146,60,0.3); }
 
 .ms-flow-label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: var(--fg-muted);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--fg);
   text-align: center;
-  max-width: 120px;
-  line-height: 1.4;
+  max-width: 140px;
+  line-height: 1.35;
 }
+
+.ms-flow-label em {
+  display: block;
+  margin-top: 0.1875rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  font-style: normal;
+  color: var(--fg-faint);
+}
+
+/* Delivery channels strip */
+.ms-delivery {
+  border-top: 1px solid var(--border);
+  padding: 1.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.ms-delivery-label {
+  font-size: 0.625rem;
+  font-weight: 700;
+  color: var(--fg-faint);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  flex-shrink: 0;
+}
+
+.ms-delivery-chips {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.ms-channel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4375rem;
+  padding: 0.4375rem 0.75rem 0.4375rem 0.625rem;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--fg);
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  cursor: default;
+}
+
+.ms-channel em {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  font-style: normal;
+  color: var(--fg-faint);
+  margin-left: 0.125rem;
+}
+
+.ms-channel:hover {
+  transform: translateY(-1px);
+  border-color: var(--border-strong);
+  background: var(--bg);
+}
+
+.ms-channel svg { flex-shrink: 0; }
+
+.ms-channel-violet { color: var(--violet); }
+.ms-channel-violet:hover { box-shadow: 0 0 0 1px rgba(196,181,253,0.25); }
+.ms-channel-emerald { color: var(--emerald); }
+.ms-channel-emerald:hover { box-shadow: 0 0 0 1px rgba(52,211,153,0.25); }
+.ms-channel-blue { color: var(--blue); }
+.ms-channel-blue:hover { box-shadow: 0 0 0 1px rgba(96,165,250,0.25); }
+.ms-channel-orange { color: var(--orange); }
+.ms-channel-orange:hover { box-shadow: 0 0 0 1px rgba(251,146,60,0.25); }
 
 /* Capabilities grid */
 .ms-caps {
@@ -2623,26 +2697,31 @@ img { max-width: 100%; }
 
 /* Managed Scans — Responsive */
 @media (max-width: 768px) {
-  .ms-connections {
+  .ms-sources {
+    padding: 1rem 1.25rem;
+    gap: 0.875rem;
+  }
+
+  .ms-source-row {
     flex-direction: column;
-    gap: 0;
-    padding: 0.75rem 1.5rem;
+    align-items: flex-start;
+    gap: 0.5rem;
   }
 
-  .ms-conn-sep {
-    width: 80%;
-    height: 1px;
+  .ms-source-label {
+    width: auto;
   }
 
-  .ms-conn {
-    padding: 0.625rem 1rem;
-    width: 100%;
+  .ms-conn-badge {
+    position: static;
+    align-self: center;
+    margin-top: 0.25rem;
   }
 
   .ms-flow {
     flex-wrap: wrap;
     gap: 0.75rem;
-    padding: 2rem 1.5rem;
+    padding: 1.75rem 1.25rem;
   }
 
   .ms-flow-conn {
@@ -2650,22 +2729,38 @@ img { max-width: 100%; }
   }
 
   .ms-flow-step {
-    width: calc(33.33% - 0.5rem);
+    width: calc(50% - 0.5rem);
+    flex: 0 0 calc(50% - 0.5rem);
   }
 
   .ms-flow-node {
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
   }
 
   .ms-flow-node svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
   }
 
   .ms-flow-label {
-    font-size: 0.6875rem;
-    max-width: 100px;
+    font-size: 0.75rem;
+    max-width: 120px;
+  }
+
+  .ms-flow-label em {
+    font-size: 0.625rem;
+  }
+
+  .ms-delivery {
+    padding: 1rem 1.25rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.625rem;
+  }
+
+  .ms-channel em {
+    display: none;
   }
 
   .ms-caps {
@@ -2676,10 +2771,6 @@ img { max-width: 100%; }
 @media (max-width: 480px) {
   .ms-caps {
     grid-template-columns: 1fr;
-  }
-
-  .ms-flow-step {
-    width: calc(50% - 0.5rem);
   }
 
   .managed-scans {
