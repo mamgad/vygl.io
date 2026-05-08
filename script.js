@@ -194,12 +194,25 @@ switchToTab = function(idx) {
 };
 
 // ─── Smooth scroll for anchor links ───
+// Map nav targets to the in-section button that should auto-fire on nav click.
+const navDemoTriggers = {
+  '#ai-demo': '#ai-verify-btn',
+  '#ai-consultation': '#ai-consult-btn',
+};
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', (e) => {
-    const target = document.querySelector(anchor.getAttribute('href'));
+    const href = anchor.getAttribute('href');
+    const target = document.querySelector(href);
     if (target) {
       e.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      const triggerSel = navDemoTriggers[href];
+      if (triggerSel) {
+        const btn = document.querySelector(triggerSel);
+        if (btn) setTimeout(() => btn.click(), 700);
+      }
     }
   });
 });
