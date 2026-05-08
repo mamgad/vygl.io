@@ -1,6 +1,6 @@
 # Vygl
 
-> Vygl is an AI-powered security scanning platform that finds vulnerabilities across code, dependencies, secrets, infrastructure, and container images. It combines multiple scan engines (SAST, SCA, Secrets, IaC, Container) with AI-powered triage to help development teams cut through scanner noise and focus on real issues.
+> Vygl is an AI-powered security scanning platform that finds vulnerabilities across code, dependencies, secrets, infrastructure, and container images. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs — so development teams stop drowning in scanner noise and only see real issues.
 
 ## What Vygl Does
 
@@ -11,7 +11,7 @@ Vygl scans your codebase and container images using five specialized engines and
 - **Secrets Detection** via Gitleaks: Finds hardcoded API keys, database credentials, JWT secrets, and private keys using 600+ detection patterns.
 - **IaC (Infrastructure as Code) Scanning** via Checkov: Catches public S3 buckets, unrestricted security groups, overprivileged IAM roles, and container misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation.
 - **Container Scanning**: Scans container images from the CLI or via registry integration. Finds vulnerable OS and application packages across every layer, and correlates container CVEs with SCA findings in the source code.
-- **AI-Powered Triage**: Every finding is reviewed by an LLM that scores confidence, identifies true vs false positives, and suggests fixes. Bring your own LLM provider or use Vygl's.
+- **AI-Powered Triage**: Every finding is reviewed by an LLM that scores confidence, classifies it as a true or false positive with reasoning, and suggests a fix. False positives are cleared automatically — your team only sees what's real. Bring your own LLM provider or use Vygl's.
 
 ## Key Features
 
@@ -33,7 +33,7 @@ Vygl scans your codebase and container images using five specialized engines and
 - GitHub PR comments (available)
 - GitLab MR comments (available)
 - Slack notifications (available)
-- Microsoft Teams (coming soon)
+- Microsoft Teams (available)
 - Custom Webhooks (coming soon)
 
 ## Pricing

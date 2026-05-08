@@ -1,10 +1,10 @@
 # Vygl — AI-Powered Security Scanning Platform
 
-> Vygl is a security scanning platform that combines SAST, SCA, secrets detection, IaC scanning, and container image scanning with AI-powered triage. It helps development and security teams find vulnerabilities, cut through false positives, and focus on fixing what actually matters.
+> Vygl is a security scanning platform spanning SAST, SCA, secrets detection, IaC, and container image scanning. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs. The result: development and security teams stop triaging false positives and only see real vulnerabilities.
 
 ## Product Overview
 
-Vygl is designed for security-conscious development teams who need comprehensive vulnerability scanning without the noise. It runs multiple scan engines in parallel across source code and container images, and uses AI to analyze every finding, scoring confidence levels, identifying false positives, and suggesting fixes.
+Vygl is designed for security-conscious development teams who need comprehensive vulnerability scanning without the noise. It runs multiple scan engines in parallel across source code and container images, and uses AI across every layer — verifying findings, scoring confidence, clearing false positives with reasoning, suggesting fixes, and producing project- and image-level security briefs.
 
 The platform operates on a privacy-first model: scans run in your environment (as a Docker container or via a managed Git integration that clones ephemerally), and only findings metadata is sent to the cloud dashboard. Your source code never leaves your infrastructure.
 
@@ -151,7 +151,7 @@ OAuth 2.0 integration with managed scans on Bitbucket Cloud and Bitbucket Data C
 - Direct links to findings in the dashboard
 - Test notification support
 
-### Microsoft Teams (Coming Soon)
+### Microsoft Teams (Available)
 Scan notifications and finding alerts in Teams channels.
 
 ### Custom Webhooks (Coming Soon)
