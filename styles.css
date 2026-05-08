@@ -2323,7 +2323,8 @@ img { max-width: 100%; }
 .ms-hub-right .ms-hub-group-label { left: 1rem;  text-align: left;  }
 
 .ms-hub-group-scm      { top: 6.5%; }
-.ms-hub-group-reg      { top: 42%; }
+.ms-hub-group-reg      { top: 39%; }
+.ms-hub-group-k8s      { top: 83%; }
 .ms-hub-group-delivery { top: 6.5%; }
 
 /* Source / delivery node chips — absolute positioned, centered on their y */
@@ -2401,12 +2402,40 @@ img { max-width: 100%; }
 }
 
 /* Delivery color accents */
+/* Coming-soon variant: faded, dashed border, no live wire */
+.ms-hub-node-soon {
+  border-style: dashed;
+  border-color: rgba(148, 163, 184, 0.35);
+  background: transparent;
+  opacity: 0.78;
+}
+.ms-hub-node-soon .ms-hub-node-icon { opacity: 0.85; }
+.ms-hub-node-soon .ms-hub-node-name { color: var(--fg-faint); }
+.ms-hub-node-soon-badge {
+  margin-left: auto;
+  font-size: 0.55rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  border: 1px solid rgba(234, 179, 8, 0.45);
+  background: rgba(234, 179, 8, 0.1);
+  color: #facc15;
+}
+.ms-hub-node-soon:hover {
+  opacity: 1;
+  border-color: rgba(148, 163, 184, 0.55);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
 .ms-hub-dst-violet  .ms-hub-node-icon { color: var(--violet); }
 .ms-hub-dst-blue    .ms-hub-node-icon { color: var(--blue); }
 .ms-hub-dst-orange  .ms-hub-node-icon { color: var(--orange); }
 
 .ms-hub-dst-violet:hover { box-shadow: 0 6px 18px rgba(167,139,250,0.18); border-color: rgba(167,139,250,0.35); }
 .ms-hub-dst-slack:hover  { box-shadow: 0 6px 18px rgba(54,197,240,0.18);  border-color: rgba(54,197,240,0.35); }
+.ms-hub-dst-teams:hover  { box-shadow: 0 6px 18px rgba(123,131,235,0.22); border-color: rgba(123,131,235,0.4); }
 .ms-hub-dst-blue:hover   { box-shadow: 0 6px 18px rgba(96,165,250,0.18);  border-color: rgba(96,165,250,0.35); }
 .ms-hub-dst-orange:hover { box-shadow: 0 6px 18px rgba(251,146,60,0.18);  border-color: rgba(251,146,60,0.35); }
 
