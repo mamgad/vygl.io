@@ -195,13 +195,13 @@ Vygl differentiates from other security scanning tools by:
 ## Pricing and Access
 
 - **Open Source Projects**: Free
-- **Commercial Teams**: Invitation-only (request access at access@vygl.io)
+- **Commercial Teams**: Invitation-only (request access at contact@vygl.io)
 
 ## Contact
 
 - **Website**: https://vygl.io
-- **Email**: access@vygl.io
-- **Access Requests**: access@vygl.io
+- **Email**: contact@vygl.io
+- **Access Requests**: contact@vygl.io
 
 ## Frequently Asked Questions
 
@@ -230,7 +230,7 @@ Vygl matches SCA findings in your source code against the same CVEs detected in 
 CVE Watch continuously monitors every package in your SBOM against live CVE feeds and fires Slack, email, or webhook alerts the moment a new CVE matches a package you ship. Each alert includes the affected version range, CVSS score, and recommended fix version.
 
 ### Is Vygl free?
-Vygl is free for open-source projects. Commercial access is invitation-only — email access@vygl.io to request access.
+Vygl is free for open-source projects. Commercial access is invitation-only — email contact@vygl.io to request access.
 
 ### What scan engines does Vygl use?
 Vygl uses OpenGrep for SAST, OSV for SCA, Gitleaks for secrets detection, and Checkov for IaC scanning. Container scanning uses a combination of OS package databases and OSV-backed application package CVE data.
