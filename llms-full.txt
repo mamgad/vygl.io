@@ -1,6 +1,6 @@
 # Vygl — AI-Powered Security Scanning Platform
 
-> Vygl is a security scanning platform spanning SAST, SCA, secrets detection, IaC, and container image scanning. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs. The result: development and security teams stop triaging false positives and only see real vulnerabilities.
+> Vygl is an AI-native ASPM (Application Security Posture Management) platform spanning SAST, SCA, secrets detection, IaC, and container image scanning. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs. The result: development and security teams stop triaging false positives and only see real vulnerabilities.
 
 ## Product Overview
 
@@ -206,7 +206,7 @@ Vygl differentiates from other security scanning tools by:
 ## Frequently Asked Questions
 
 ### What is Vygl?
-Vygl is an AI-powered security scanning platform that combines SAST, SCA, secrets detection, IaC scanning, and container image scanning with AI-powered triage to help development teams find and fix vulnerabilities.
+Vygl is an AI-native ASPM (Application Security Posture Management) platform that combines SAST, SCA, secrets detection, IaC scanning, and container image scanning with AI-powered triage to help development teams find and fix vulnerabilities.
 
 ### What types of vulnerabilities does Vygl detect?
 Vygl detects SQL injection, XSS, command injection, path traversal, SSRF in source code (SAST); known CVEs in dependencies like Log4Shell (SCA); hardcoded API keys, credentials, and secrets (Secrets); infrastructure misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation (IaC); and vulnerable OS and application packages in container images (Container Scanning).
