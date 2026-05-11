@@ -1,6 +1,6 @@
 # Vygl
 
-> Vygl is an AI-powered security scanning platform that finds vulnerabilities across code, dependencies, secrets, infrastructure, and container images. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs — so development teams stop drowning in scanner noise and only see real issues.
+> Vygl is an AI-native ASPM (Application Security Posture Management) platform that finds vulnerabilities across code, dependencies, secrets, infrastructure, and container images. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs — so development teams stop drowning in scanner noise and only see real issues.
 
 ## What Vygl Does
 
