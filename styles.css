@@ -167,9 +167,23 @@ img { max-width: 100%; }
   letter-spacing: 0.08em;
   display: flex;
   align-items: center;
+  gap: 0.5rem;
 }
 
-.logo-v { color: var(--accent); }
+.nav-logo-mark {
+  width: 2.25rem;
+  height: 2.25rem;
+  flex-shrink: 0;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+.nav-logo-mark.mark-on-light { display: none; }
+.nav-logo-mark.mark-on-dark { display: block; }
+[data-theme="light"] .nav-logo-mark.mark-on-light { display: block; }
+[data-theme="light"] .nav-logo-mark.mark-on-dark { display: none; }
+
+.logo-wordmark { display: inline-flex; }
+.logo-v { color: var(--fg); }
 .logo-text { color: var(--fg); }
 
 .nav-links {
