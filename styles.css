@@ -154,7 +154,7 @@ img { max-width: 100%; }
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
-  height: clamp(4rem, 3.25rem + 2vw, 5rem);
+  height: clamp(4rem, 3.5rem + 1vw, 4.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
