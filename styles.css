@@ -171,8 +171,8 @@ img { max-width: 100%; }
 }
 
 .nav-logo-mark {
-  width: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
-  height: clamp(1.75rem, 1.25rem + 1.5vw, 2.5rem);
+  width: clamp(2.5rem, 1.875rem + 1.25vw, 3rem);
+  height: clamp(2.5rem, 1.875rem + 1.25vw, 3rem);
   flex-shrink: 0;
   user-select: none;
   -webkit-user-drag: none;
