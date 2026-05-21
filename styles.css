@@ -167,12 +167,12 @@ img { max-width: 100%; }
   letter-spacing: 0.08em;
   display: flex;
   align-items: center;
-  gap: clamp(0.4rem, 0.25rem + 0.4vw, 0.625rem);
+  gap: 0.3em;
 }
 
 .nav-logo-mark {
-  width: clamp(2.5rem, 1.875rem + 1.25vw, 3rem);
-  height: clamp(2.5rem, 1.875rem + 1.25vw, 3rem);
+  height: 1.6em;
+  width: auto;
   flex-shrink: 0;
   user-select: none;
   -webkit-user-drag: none;
@@ -188,7 +188,7 @@ img { max-width: 100%; }
 [data-theme="light"] .nav-logo-mark.mark-on-dark { display: none; }
 
 .logo-wordmark { display: inline-flex; }
-.logo-v { color: var(--fg); }
+.logo-v { color: var(--accent); }
 .logo-text { color: var(--fg); }
 
 /* Footer brand: stacked lockup, larger mark */
@@ -199,8 +199,8 @@ img { max-width: 100%; }
   font-size: 2rem;
 }
 .footer-brand .nav-logo-mark {
-  width: 5rem;
-  height: 5rem;
+  height: 1.6em;
+  width: auto;
 }
 
 .nav-links {
