@@ -104,112 +104,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 revealElements.forEach(el => revealObserver.observe(el));
 
-// ─── Editor tab switching ───
-const editorTabs = document.querySelectorAll('.editor-tab');
-const editorPanels = document.querySelectorAll('.editor-panel');
-const findingsPanels = document.querySelectorAll('.findings-panel-inner');
-let autoRotateTimer = null;
-let userInteracted = false;
-
-function switchToTab(idx) {
-  // Switch active tab
-  editorTabs.forEach(t => t.classList.remove('active', 'tab-nudge'));
-  const targetTab = document.querySelector(`.editor-tab[data-tab="${idx}"]`);
-  if (targetTab) targetTab.classList.add('active');
-
-  // Switch active code panel
-  editorPanels.forEach(p => p.classList.remove('active'));
-  const activePanel = document.querySelector(`.editor-panel[data-panel="${idx}"]`);
-  if (activePanel) activePanel.classList.add('active');
-
-  // Switch active findings panel and re-trigger animations
-  findingsPanels.forEach(fp => {
-    fp.classList.remove('active');
-    fp.querySelectorAll('.anim-tag').forEach(a => {
-      a.style.animation = 'none';
-      a.offsetHeight;
-      a.style.animation = '';
-    });
-  });
-  const activeFP = document.querySelector(`.findings-panel-inner[data-findings="${idx}"]`);
-  if (activeFP) activeFP.classList.add('active');
-
-  // Nudge the next tab after a pause
-  if (!userInteracted) {
-    const nextIdx = (parseInt(idx) + 1) % editorTabs.length;
-    const nextTab = document.querySelector(`.editor-tab[data-tab="${nextIdx}"]`);
-    if (nextTab) {
-      setTimeout(() => nextTab.classList.add('tab-nudge'), 2500);
-    }
-  }
-}
-
-// Manual click
-editorTabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    userInteracted = true;
-    clearInterval(autoRotateTimer);
-    editorTabs.forEach(t => t.classList.remove('tab-nudge'));
-    switchToTab(tab.dataset.tab);
-  });
-});
-
-// Auto-rotate every 5s, stop on user click
-function startAutoRotate() {
-  let current = 0;
-  // Nudge the second tab after initial delay
-  setTimeout(() => {
-    const secondTab = document.querySelector('.editor-tab[data-tab="1"]');
-    if (secondTab && !userInteracted) secondTab.classList.add('tab-nudge');
-  }, 3000);
-
-  autoRotateTimer = setInterval(() => {
-    if (userInteracted) { clearInterval(autoRotateTimer); return; }
-    current = (current + 1) % editorTabs.length;
-    switchToTab(current);
-  }, 5000);
-}
-
-startAutoRotate();
-
-// ─── Align finding rows to code lines ───
-function alignFindings() {
-  const isSmall = window.innerWidth <= 1024;
-  document.querySelectorAll('.fp-row[data-line]').forEach(row => {
-    if (isSmall) {
-      row.style.top = '';
-      return;
-    }
-    const panelIdx = row.closest('.findings-panel-inner').dataset.findings;
-    const editorPanel = document.querySelector(`.editor-panel[data-panel="${panelIdx}"]`);
-    if (!editorPanel) return;
-    const lines = editorPanel.querySelectorAll('.code-line');
-    const lineIdx = parseInt(row.dataset.line);
-    const targetLine = lines[lineIdx];
-    if (!targetLine) return;
-
-    // Get the offset of the code line relative to the scan-demo-layout container
-    const container = row.closest('.scan-demo-layout');
-    const containerRect = container.getBoundingClientRect();
-    const lineRect = targetLine.getBoundingClientRect();
-    const rowHeight = row.offsetHeight;
-
-    // Center the finding row vertically on the code line
-    row.style.top = (lineRect.top - containerRect.top + (lineRect.height - rowHeight) / 2) + 'px';
-  });
-}
-
-// Run on load, resize, and tab switch
-alignFindings();
-window.addEventListener('resize', alignFindings);
-
-// Patch switchToTab to also re-align
-const origSwitch = switchToTab;
-switchToTab = function(idx) {
-  origSwitch(idx);
-  requestAnimationFrame(() => requestAnimationFrame(alignFindings));
-};
-
 // ─── Smooth scroll for anchor links ───
 // Map nav targets to the in-section button that should auto-fire on nav click.
 const navDemoTriggers = {
@@ -1241,4 +1135,46 @@ if (mcpSectionEl) {
       }
     });
   });
+})();
+
+// ─── Hero v2 — verdict tabs (auto-cycle + click) ───
+(function() {
+  const root = document.querySelector('.hero-v2');
+  if (!root) return;
+  const tabs = root.querySelectorAll('.hv-tab');
+  const panels = root.querySelectorAll('.hv-panel');
+  if (!tabs.length || !panels.length) return;
+
+  const CYCLE_MS = 8000;
+  let timer = null;
+  let userPaused = false;
+
+  function show(idx) {
+    tabs.forEach((t, i) => t.classList.toggle('active', i === idx));
+    panels.forEach((p) => p.classList.remove('active'));
+    // wait for fade-out to finish before activating next panel (matches CSS visibility delay)
+    setTimeout(() => { panels[idx].classList.add('active'); }, 260);
+  }
+  function startCycle() {
+    stopCycle();
+    if (userPaused) return;
+    timer = setInterval(() => {
+      const current = Array.from(panels).findIndex(p => p.classList.contains('active'));
+      show((current + 1) % panels.length);
+    }, CYCLE_MS);
+  }
+  function stopCycle() { if (timer) { clearInterval(timer); timer = null; } }
+
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener('click', () => {
+      userPaused = true;
+      stopCycle();
+      show(idx);
+    });
+  });
+
+  root.addEventListener('mouseenter', stopCycle);
+  root.addEventListener('mouseleave', () => { if (!userPaused) startCycle(); });
+
+  startCycle();
 })();
