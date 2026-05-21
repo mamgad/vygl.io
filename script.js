@@ -1178,3 +1178,23 @@ if (mcpSectionEl) {
 
   startCycle();
 })();
+
+// ─── Layers v2 — trigger scan beam when section scrolls into view ───
+(function() {
+  const stack = document.getElementById('lyStack');
+  if (!stack) return;
+  const trigger = () => stack.classList.add('is-scanning');
+
+  if (!('IntersectionObserver' in window)) { trigger(); return; }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        trigger();
+        io.disconnect();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  io.observe(stack);
+})();

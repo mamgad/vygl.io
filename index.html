@@ -686,124 +686,143 @@
     </div>
   </section>
 
-  <!-- ─── Features / Layers ─── -->
-  <section class="features" id="features">
+  <!-- ─── Features / Layers (v2 — vertical stack metaphor) ─── -->
+  <section class="layers-v2" id="features">
     <div class="section-grid section-grid-center" aria-hidden="true"></div>
     <div class="container">
       <div class="section-header reveal">
         <h2 class="section-title">Every Layer of Your Stack, Covered</h2>
-        <p class="section-subtitle">Multiple scan engines, with AI woven through every layer to verify findings and clear false positives — from source code to images.</p>
+        <p class="section-subtitle">Five engines scan top to bottom — source code, dependencies, secrets, infrastructure, and the built image. AI verifies every finding underneath.</p>
       </div>
 
-      <!-- Engines grid (parallel) + AI layer (post-process) -->
-      <div class="engines-layout reveal">
-        <div class="engines-grid">
-          <!-- SAST -->
-          <div class="engine-card">
-            <div class="engine-indicator engine-ind-purple"></div>
-            <div class="engine-top">
-              <span class="node-label node-label-purple">SAST</span>
-              <span class="engine-name">OpenGrep</span>
-            </div>
-            <h3>Code Analysis</h3>
-            <p>SQL injection, XSS, command injection, path traversal, SSRF, and insecure deserialization.</p>
-            <div class="node-detects">
-              <span>SQLi</span><span>XSS</span><span>RCE</span><span>Path Traversal</span><span>SSRF</span>
-            </div>
-          </div>
+      <div class="ly-stack reveal" id="lyStack">
+        <div class="ly-beam" aria-hidden="true"></div>
 
-          <!-- SCA -->
-          <div class="engine-card">
-            <div class="engine-indicator engine-ind-blue"></div>
-            <div class="engine-top">
-              <span class="node-label node-label-blue">SCA</span>
-              <span class="engine-name">OSV</span>
+        <div class="ly-layer ly-sast" data-layer="0">
+          <div class="ly-edge"></div>
+          <div class="ly-row">
+            <div class="ly-side">
+              <div class="ly-num">01</div>
+              <div class="ly-meta">
+                <div class="ly-name">Source Code</div>
+                <div class="ly-engine">SAST <span class="ly-engine-sep">·</span> OpenGrep</div>
+              </div>
             </div>
-            <h3>Dependency Analysis</h3>
-            <p>Vulnerable dependencies like Log4Shell and Spring4Shell. CVE tracking across 7+ languages.</p>
-            <div class="node-detects">
-              <span>Log4Shell</span><span>Spring4Shell</span><span>CVE Tracking</span><span>SBOM</span>
-            </div>
-          </div>
-
-          <!-- Secrets -->
-          <div class="engine-card">
-            <div class="engine-indicator engine-ind-red"></div>
-            <div class="engine-top">
-              <span class="node-label node-label-red">Secrets</span>
-              <span class="engine-name">Gitleaks</span>
-            </div>
-            <h3>Secret Detection</h3>
-            <p>Hardcoded AWS keys, database credentials, JWT secrets, and private keys using 600+ patterns.</p>
-            <div class="node-detects">
-              <span>AWS Keys</span><span>JWT Secrets</span><span>DB Creds</span><span>Private Keys</span>
-            </div>
-          </div>
-
-          <!-- IaC -->
-          <div class="engine-card">
-            <div class="engine-indicator engine-ind-emerald"></div>
-            <div class="engine-top">
-              <span class="node-label node-label-emerald">IaC</span>
-              <span class="engine-name">Checkov</span>
-            </div>
-            <h3>Infrastructure Scanning</h3>
-            <p>Public S3 buckets, unrestricted security groups, overprivileged IAM, and container misconfigs.</p>
-            <div class="node-detects">
-              <span>Terraform</span><span>Kubernetes</span><span>Docker</span><span>CloudFormation</span>
+            <div class="ly-catches">
+              <span class="ly-catch">SQL injection</span>
+              <span class="ly-catch">XSS</span>
+              <span class="ly-catch">Command injection</span>
+              <span class="ly-catch">Path traversal</span>
+              <span class="ly-catch">SSRF</span>
+              <span class="ly-catch">Insecure deserialization</span>
             </div>
           </div>
         </div>
 
-        <!-- Connector arrows -->
-        <div class="engines-connector">
-          <div class="connector-lines">
-            <div class="conn-line conn-line-purple"></div>
-            <div class="conn-line conn-line-blue"></div>
-            <div class="conn-line conn-line-red"></div>
-            <div class="conn-line conn-line-emerald"></div>
-          </div>
-          <div class="connector-merge">
-            <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        <div class="ly-layer ly-sca" data-layer="1">
+          <div class="ly-edge"></div>
+          <div class="ly-row">
+            <div class="ly-side">
+              <div class="ly-num">02</div>
+              <div class="ly-meta">
+                <div class="ly-name">Dependencies</div>
+                <div class="ly-engine">SCA <span class="ly-engine-sep">·</span> OSV</div>
+              </div>
+            </div>
+            <div class="ly-catches">
+              <span class="ly-catch">Log4Shell</span>
+              <span class="ly-catch">Spring4Shell</span>
+              <span class="ly-catch">CVE tracking</span>
+              <span class="ly-catch">CycloneDX SBOM</span>
+              <span class="ly-catch">7+ ecosystems</span>
+            </div>
           </div>
         </div>
 
-        <!-- AI verification — full width, receives all findings -->
-        <div class="ai-engine-card">
-          <div class="ai-engine-glow"></div>
-          <div class="ai-engine-inner">
-            <div class="ai-engine-left">
-              <div class="engine-top">
-                <span class="node-label node-label-violet">AI</span>
-                <span class="engine-name">LLM-Powered</span>
+        <div class="ly-layer ly-secrets" data-layer="2">
+          <div class="ly-edge"></div>
+          <div class="ly-row">
+            <div class="ly-side">
+              <div class="ly-num">03</div>
+              <div class="ly-meta">
+                <div class="ly-name">Secrets</div>
+                <div class="ly-engine">Secrets <span class="ly-engine-sep">·</span> Gitleaks</div>
               </div>
-              <h3>Finding Triage</h3>
-              <p>Findings flow through AI triage. Each result is analyzed for confidence, scored as true or false positive, and paired with a suggested fix. Bring your own LLM provider or use ours.</p>
             </div>
-            <div class="ai-engine-right">
-              <div class="ai-engine-stat">
-                <span class="ai-stat-icon ai-stat-red">
-                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
-                </span>
-                <div>
-                  <span class="ai-stat-label">False Positives</span>
-                  <span class="ai-stat-value">Identified</span>
-                </div>
+            <div class="ly-catches">
+              <span class="ly-catch">AWS keys</span>
+              <span class="ly-catch">DB credentials</span>
+              <span class="ly-catch">JWT secrets</span>
+              <span class="ly-catch">Private keys</span>
+              <span class="ly-catch">600+ patterns</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ly-layer ly-iac" data-layer="3">
+          <div class="ly-edge"></div>
+          <div class="ly-row">
+            <div class="ly-side">
+              <div class="ly-num">04</div>
+              <div class="ly-meta">
+                <div class="ly-name">Infrastructure</div>
+                <div class="ly-engine">IaC <span class="ly-engine-sep">·</span> Checkov</div>
               </div>
-              <div class="ai-engine-stat">
-                <span class="ai-stat-icon ai-stat-green">
-                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                </span>
-                <div>
-                  <span class="ai-stat-label">True Positives</span>
-                  <span class="ai-stat-value">Verified + Fix suggested</span>
-                </div>
+            </div>
+            <div class="ly-catches">
+              <span class="ly-catch">Public S3 buckets</span>
+              <span class="ly-catch">Open security groups</span>
+              <span class="ly-catch">Over-privileged IAM</span>
+              <span class="ly-catch">Terraform · K8s · CloudFormation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="ly-layer ly-images" data-layer="4">
+          <div class="ly-edge"></div>
+          <div class="ly-row">
+            <div class="ly-side">
+              <div class="ly-num">05</div>
+              <div class="ly-meta">
+                <div class="ly-name">Container Images</div>
+                <div class="ly-engine">Image <span class="ly-engine-sep">·</span> OSV</div>
+              </div>
+            </div>
+            <div class="ly-catches">
+              <span class="ly-catch">OS package CVEs</span>
+              <span class="ly-catch">App package CVEs</span>
+              <span class="ly-catch">Layer attribution</span>
+              <span class="ly-catch">Source ↔ image correlation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- AI verification — runs beneath every layer -->
+        <div class="ly-ai" data-layer="5">
+          <div class="ly-ai-glow"></div>
+          <div class="ly-ai-row">
+            <div class="ly-ai-left">
+              <span class="ly-ai-label">
+                <span class="ly-ai-dot"></span>
+                AI VERIFICATION LAYER
+              </span>
+              <div class="ly-ai-text">
+                Every finding from every layer flows through AI triage. <strong>Confidence scored. False positives cleared. Fixes suggested.</strong>
+              </div>
+            </div>
+            <div class="ly-ai-right">
+              <div class="ly-ai-pill ly-ai-pill-green">
+                <span class="ly-ai-pill-icon">✓</span>
+                Cleared
+              </div>
+              <div class="ly-ai-pill ly-ai-pill-red">
+                <span class="ly-ai-pill-icon">!</span>
+                Real + fix
               </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
