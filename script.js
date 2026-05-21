@@ -1,13 +1,32 @@
 // ─── Theme toggle ───
 const themeToggle = document.getElementById('theme-toggle');
 const savedTheme = localStorage.getItem('vygl_landing_theme') || 'dark';
-document.documentElement.setAttribute('data-theme', savedTheme);
+
+function syncFavicon(theme) {
+  // Swap the SVG favicon to match the manual theme toggle.
+  // ?v= matches our cache-bust scheme; bump in HTML when redeploying icons.
+  const href = (theme === 'light' ? 'favicon-light.svg' : 'favicon-dark.svg') + '?v=6';
+  let link = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    link.type = 'image/svg+xml';
+    document.head.appendChild(link);
+  }
+  link.href = href;
+}
+
+function setTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+  localStorage.setItem('vygl_landing_theme', theme);
+  syncFavicon(theme);
+}
+
+setTheme(savedTheme);
 
 themeToggle.addEventListener('click', () => {
   const current = document.documentElement.getAttribute('data-theme');
-  const next = current === 'light' ? 'dark' : 'light';
-  document.documentElement.setAttribute('data-theme', next);
-  localStorage.setItem('vygl_landing_theme', next);
+  setTheme(current === 'light' ? 'dark' : 'light');
 });
 
 // ─── Navbar scroll effect ───
@@ -64,9 +83,7 @@ const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
 if (mobileThemeToggle) {
   mobileThemeToggle.addEventListener('click', () => {
     const current = document.documentElement.getAttribute('data-theme');
-    const next = current === 'light' ? 'dark' : 'light';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('vygl_landing_theme', next);
+    setTheme(current === 'light' ? 'dark' : 'light');
   });
 }
 
