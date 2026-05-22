@@ -7326,3 +7326,229 @@ body::before {
   }
   .layers-v2 .ly-ai-right { flex-direction: row; flex-wrap: wrap; }
 }
+
+/* ════════════════════════════════════════════════════════════════
+   SECTION ATMOSPHERE
+   Subtle layered backgrounds so non-hero sections feel intentional,
+   not like flat color stripes. Three tiers:
+     Tier 1 (hero):           full atmospheric stack — defined in .hero-v2
+     Tier 2 (marquee, 7):     one signature themed ambient glow + faint grid
+     Tier 3 (connective, 6):  uniform subtle grid wallpaper
+   Plus soft gradient section boundaries to replace hard 1px stripes.
+   All effects are STATIC (no animation) — only the hero animates.
+   Implemented via background-image layering + ::before/::after lines,
+   so no HTML changes are required.
+   ════════════════════════════════════════════════════════════════ */
+
+/* ─── Tier 3: subtle grid wallpaper on connective sections ─── */
+.social-proof,
+.llm-providers,
+.terminal-section,
+.mcp-section,
+.integrations,
+.cta {
+  position: relative;
+  background-image:
+    linear-gradient(rgba(96,165,250,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: center top;
+}
+[data-theme="light"] .social-proof,
+[data-theme="light"] .llm-providers,
+[data-theme="light"] .terminal-section,
+[data-theme="light"] .mcp-section,
+[data-theme="light"] .integrations,
+[data-theme="light"] .cta {
+  background-image:
+    linear-gradient(rgba(37,99,235,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.04) 1px, transparent 1px);
+}
+
+/* ─── Tier 2: signature ambient glows per marquee section ───
+   Each section gets one or two themed radial glows plus the same
+   faint grid as Tier 3 for cohesion. The grid sits underneath so
+   the glow reads as the dominant texture. */
+
+/* Layers v2 — scanning theme: cyan→violet top/bottom edge bleed */
+.layers-v2 {
+  background-image:
+    radial-gradient(ellipse 70% 35% at 50% 0%, rgba(96,165,250,0.07), transparent 60%),
+    radial-gradient(ellipse 55% 30% at 50% 100%, rgba(167,139,250,0.06), transparent 60%),
+    linear-gradient(rgba(96,165,250,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.02) 1px, transparent 1px);
+  background-size: auto, auto, 64px 64px, 64px 64px;
+}
+[data-theme="light"] .layers-v2 {
+  background-image:
+    radial-gradient(ellipse 70% 35% at 50% 0%, rgba(37,99,235,0.07), transparent 60%),
+    radial-gradient(ellipse 55% 30% at 50% 100%, rgba(139,92,246,0.06), transparent 60%),
+    linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px);
+}
+
+/* Container Scan — cyan corner (container theme) + blue counterpoint */
+.container-scan {
+  background-image:
+    radial-gradient(ellipse 50% 65% at 100% 25%, rgba(34,211,238,0.06), transparent 60%),
+    radial-gradient(ellipse 45% 50% at 0% 75%, rgba(96,165,250,0.05), transparent 60%),
+    linear-gradient(rgba(96,165,250,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.02) 1px, transparent 1px);
+  background-size: auto, auto, 64px 64px, 64px 64px;
+}
+[data-theme="light"] .container-scan {
+  background-image:
+    radial-gradient(ellipse 50% 65% at 100% 25%, rgba(8,145,178,0.06), transparent 60%),
+    radial-gradient(ellipse 45% 50% at 0% 75%, rgba(37,99,235,0.05), transparent 60%),
+    linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px);
+}
+
+/* Managed Scans — blue/violet brand pair + faint diagonal sheen (hub network) */
+.managed-scans {
+  background-image:
+    radial-gradient(ellipse 45% 60% at 22% 35%, rgba(96,165,250,0.06), transparent 62%),
+    radial-gradient(ellipse 45% 60% at 78% 65%, rgba(167,139,250,0.05), transparent 62%),
+    linear-gradient(115deg, transparent 44%, rgba(96,165,250,0.025) 50%, transparent 56%),
+    linear-gradient(rgba(96,165,250,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.02) 1px, transparent 1px);
+  background-size: auto, auto, auto, 64px 64px, 64px 64px;
+}
+[data-theme="light"] .managed-scans {
+  background-image:
+    radial-gradient(ellipse 45% 60% at 22% 35%, rgba(37,99,235,0.06), transparent 62%),
+    radial-gradient(ellipse 45% 60% at 78% 65%, rgba(139,92,246,0.05), transparent 62%),
+    linear-gradient(115deg, transparent 44%, rgba(37,99,235,0.03) 50%, transparent 56%),
+    linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px);
+}
+
+/* CVE Watch — red/orange alarm wash (semantic to "new CVE dropped") */
+.cve-watch {
+  background-image:
+    radial-gradient(ellipse 50% 50% at 88% 20%, rgba(248,113,113,0.06), transparent 60%),
+    radial-gradient(ellipse 50% 50% at 12% 80%, rgba(251,146,60,0.04), transparent 60%),
+    linear-gradient(rgba(96,165,250,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.02) 1px, transparent 1px);
+  background-size: auto, auto, 64px 64px, 64px 64px;
+}
+[data-theme="light"] .cve-watch {
+  background-image:
+    radial-gradient(ellipse 50% 50% at 88% 20%, rgba(239,68,68,0.05), transparent 60%),
+    radial-gradient(ellipse 50% 50% at 12% 80%, rgba(245,158,11,0.04), transparent 60%),
+    linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px);
+}
+
+/* AI Verification Demo — violet ambient (AI signal) */
+.ai-demo-section {
+  background-image:
+    radial-gradient(ellipse 55% 50% at 50% 50%, rgba(167,139,250,0.06), transparent 62%),
+    linear-gradient(rgba(96,165,250,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.02) 1px, transparent 1px);
+  background-size: auto, 64px 64px, 64px 64px;
+}
+[data-theme="light"] .ai-demo-section {
+  background-image:
+    radial-gradient(ellipse 55% 50% at 50% 50%, rgba(139,92,246,0.06), transparent 62%),
+    linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px);
+}
+
+/* AI Consultation — paired with AI Demo: violet on left, blue on right */
+.ai-consult-section {
+  background-image:
+    radial-gradient(ellipse 40% 70% at 0% 50%, rgba(167,139,250,0.06), transparent 65%),
+    radial-gradient(ellipse 40% 70% at 100% 50%, rgba(96,165,250,0.05), transparent 65%),
+    linear-gradient(rgba(96,165,250,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.02) 1px, transparent 1px);
+  background-size: auto, auto, 64px 64px, 64px 64px;
+}
+[data-theme="light"] .ai-consult-section {
+  background-image:
+    radial-gradient(ellipse 40% 70% at 0% 50%, rgba(139,92,246,0.06), transparent 65%),
+    radial-gradient(ellipse 40% 70% at 100% 50%, rgba(37,99,235,0.05), transparent 65%),
+    linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px);
+}
+
+/* Dashboard (how-it-works) — blue brand spotlight from top */
+.how-it-works {
+  background-image:
+    radial-gradient(ellipse 60% 45% at 50% 0%, rgba(96,165,250,0.07), transparent 60%),
+    linear-gradient(rgba(96,165,250,0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.02) 1px, transparent 1px);
+  background-size: auto, 64px 64px, 64px 64px;
+}
+[data-theme="light"] .how-it-works {
+  background-image:
+    radial-gradient(ellipse 60% 45% at 50% 0%, rgba(37,99,235,0.07), transparent 60%),
+    linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px);
+}
+
+/* ─── Soft section boundaries ───
+   One 1px gradient line per section (at top via ::before), so every
+   inter-section seam shows exactly ONE line — no doubling.
+   The line fades transparent → blue → violet bloom at center → blue
+   → transparent, replacing flat-color stripe borders. */
+.social-proof,
+.container-scan,
+.cve-watch,
+.ai-consult-section,
+.how-it-works,
+.mcp-section {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+
+.social-proof::before,
+.layers-v2::before,
+.container-scan::before,
+.managed-scans::before,
+.cve-watch::before,
+.ai-demo-section::before,
+.ai-consult-section::before,
+.llm-providers::before,
+.how-it-works::before,
+.terminal-section::before,
+.mcp-section::before,
+.integrations::before,
+.cta::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 0;
+  height: 1px;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(96,165,250,0.08) 18%,
+    rgba(96,165,250,0.2) 38%,
+    rgba(167,139,250,0.3) 50%,
+    rgba(96,165,250,0.2) 62%,
+    rgba(96,165,250,0.08) 82%,
+    transparent 100%);
+  z-index: 2;
+}
+[data-theme="light"] .social-proof::before,
+[data-theme="light"] .layers-v2::before,
+[data-theme="light"] .container-scan::before,
+[data-theme="light"] .managed-scans::before,
+[data-theme="light"] .cve-watch::before,
+[data-theme="light"] .ai-demo-section::before,
+[data-theme="light"] .ai-consult-section::before,
+[data-theme="light"] .llm-providers::before,
+[data-theme="light"] .how-it-works::before,
+[data-theme="light"] .terminal-section::before,
+[data-theme="light"] .mcp-section::before,
+[data-theme="light"] .integrations::before,
+[data-theme="light"] .cta::before {
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(37,99,235,0.1) 18%,
+    rgba(37,99,235,0.25) 38%,
+    rgba(139,92,246,0.32) 50%,
+    rgba(37,99,235,0.25) 62%,
+    rgba(37,99,235,0.1) 82%,
+    transparent 100%);
+}
