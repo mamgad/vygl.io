@@ -5,7 +5,7 @@ const savedTheme = localStorage.getItem('vygl_landing_theme') || 'dark';
 function syncFavicon(theme) {
   // Swap the SVG favicon to match the manual theme toggle.
   // ?v= matches our cache-bust scheme; bump in HTML when redeploying icons.
-  const href = (theme === 'light' ? 'favicon-light.svg' : 'favicon-dark.svg') + '?v=6';
+  const href = (theme === 'light' ? 'favicon-light.svg' : 'favicon-dark.svg') + '?v=8';
   let link = document.querySelector('link[rel="icon"][type="image/svg+xml"]');
   if (!link) {
     link = document.createElement('link');
