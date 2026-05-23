@@ -6495,26 +6495,25 @@ body::before {
     radial-gradient(ellipse 80% 100% at 50% 100%, rgba(255,255,255,0.4), transparent 60%);
 }
 
-/* Brand bird watermark — large faded mark sitting in the right-side
-   background as a brand signature. Sits BEHIND the verdict card (the
-   card is z-index 3, this is in .hv-bg at z-index 0) so the card
-   overlaps it and only the surrounding silhouette breathes through. */
+/* Brand bird watermark — decorative stamp in the bottom-right corner.
+   Stays out of the card's vertical band (card is align-items:center),
+   fills the bottom-right area on tall viewports, and reads as a quiet
+   brand signature without competing with the headline. */
 .hero-v2 .hv-bg::after {
   content: '';
   position: absolute;
-  right: 4%;
-  top: 50%;
-  transform: translateY(-50%);
-  width: min(620px, 45vw);
+  right: -2%;
+  bottom: -4%;
+  width: min(360px, 30vw);
   aspect-ratio: 1140 / 856;
-  background-color: rgba(140, 180, 255, 0.05);
+  background-color: rgba(140, 180, 255, 0.08);
   -webkit-mask: url('vygl-mark-tight.png') no-repeat center / contain;
           mask: url('vygl-mark-tight.png') no-repeat center / contain;
   pointer-events: none;
   filter: blur(0.5px);
 }
 [data-theme="light"] .hero-v2 .hv-bg::after {
-  background-color: rgba(37, 99, 235, 0.06);
+  background-color: rgba(37, 99, 235, 0.09);
 }
 /* Hide watermark on stacked mobile/tablet — it would compete with content */
 @media (max-width: 1200px) {
