@@ -6529,8 +6529,21 @@ body::before {
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 5rem;
-  align-items: start;
+  align-items: stretch;
   min-height: calc(100vh - 160px);
+}
+/* Left column flexes vertically so the stats row pins to the bottom on
+   tall viewports — fills the hero on large screens without floating. */
+.hero-v2 .hv-left {
+  display: flex;
+  flex-direction: column;
+}
+/* Right column centers the verdict card vertically so it sits in the
+   visual midpoint of the hero on tall screens. */
+.hero-v2 .hv-right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* eyebrow */
@@ -6671,8 +6684,11 @@ body::before {
 /* stats */
 .hero-v2 .hv-stats {
   display: flex; gap: 2.5rem;
-  margin-top: 3rem;
-  padding-top: 2rem;
+  /* auto pushes stats to the bottom in the flex column (fills tall
+     viewports); padding-top provides the visual gap when there's no
+     extra space to absorb (small/medium screens). */
+  margin-top: auto;
+  padding-top: 3rem;
   border-top: 1px solid var(--hv-border);
   opacity: 0; transform: translateY(12px);
   animation: hv-reveal 0.7s 0.7s forwards;
