@@ -6482,21 +6482,59 @@ body::before {
 .hero-v2 .hv-grid {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(96,165,250,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96,165,250,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(120,180,255,0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,180,255,0.10) 1px, transparent 1px);
   background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 60% at 65% 35%, black, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 65% 35%, black, transparent 70%);
+  /* Aggressive mask — confines grid to the right side around the
+     verdict card so it never overlaps the engines/stats border lines
+     on the left column. */
+  mask-image: radial-gradient(ellipse 55% 55% at 78% 42%, black 10%, transparent 65%);
+  -webkit-mask-image: radial-gradient(ellipse 55% 55% at 78% 42%, black 10%, transparent 65%);
+  overflow: hidden;
 }
 [data-theme="light"] .hero-v2 .hv-grid {
   background-image:
-    linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px);
+    linear-gradient(rgba(37,99,235,0.11) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.11) 1px, transparent 1px);
+}
+/* Animated "scan spotlight" — a soft luminous radial drifts across
+   the visible grid area, brightening lines as it passes via screen
+   blending. Constrained to the right-side mask zone so it never
+   wanders behind the headline text on the left. */
+.hero-v2 .hv-grid::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 40%;
+  width: 50%;
+  pointer-events: none;
+  background: radial-gradient(ellipse 55% 65% at 50% 50%,
+    rgba(140,190,255,0.45) 0%,
+    rgba(120,165,255,0.18) 30%,
+    transparent 65%);
+  mix-blend-mode: screen;
+  animation: hv-grid-scan 12s ease-in-out infinite;
+  will-change: transform, opacity;
+  filter: blur(2px);
+}
+[data-theme="light"] .hero-v2 .hv-grid::after {
+  background: radial-gradient(ellipse 55% 65% at 50% 50%,
+    rgba(37,99,235,0.14) 0%,
+    rgba(37,99,235,0.06) 30%,
+    transparent 65%);
+  mix-blend-mode: multiply;
+}
+@keyframes hv-grid-scan {
+  0%, 100% { transform: translateX(-20%); opacity: 0.55; }
+  50%      { transform: translateX(50%);  opacity: 1; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-v2 .hv-grid::after { animation: none; transform: translateX(15%); opacity: 0.7; }
 }
 .hero-v2 .hv-grain {
   position: absolute; inset: 0;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
-  opacity: 0.05;
+  opacity: 0.06;
   mix-blend-mode: overlay;
 }
 [data-theme="light"] .hero-v2 .hv-grain { opacity: 0; }
