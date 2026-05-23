@@ -1,13 +1,14 @@
 # Vygl
 
-> Vygl is an AI-native ASPM (Application Security Posture Management) platform that finds vulnerabilities across code, dependencies, secrets, infrastructure, and container images. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs — so development teams stop drowning in scanner noise and only see real issues.
+> Vygl is an AI-native ASPM (Application Security Posture Management) platform that finds vulnerabilities across code, dependencies, malicious packages, secrets, infrastructure, and container images. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs — so development teams stop drowning in scanner noise and only see real issues.
 
 ## What Vygl Does
 
-Vygl scans your codebase and container images using five specialized engines and then uses AI to triage the results:
+Vygl scans your codebase and container images using six specialized engines and then uses AI to triage the results:
 
 - **SAST (Static Application Security Testing)** via OpenGrep: Detects SQL injection, XSS, command injection, path traversal, SSRF, and insecure deserialization in source code.
 - **SCA (Software Composition Analysis)** via OSV: Identifies vulnerable dependencies like Log4Shell and Spring4Shell, with CVE tracking across 7+ programming languages and CycloneDX SBOM export.
+- **Malicious Package Detection** via GuardDog: Scans dependencies across npm, PyPI, Go, and RubyGems for supply-chain attacks — typosquats and confusable names, malicious install/postinstall scripts, obfuscated payloads, suspicious binary execution, data exfiltration to attacker infrastructure, and compromised-maintainer releases. Complements SCA: SCA finds CVEs in legitimate packages; this finds packages that should never have been published.
 - **Secrets Detection** via Gitleaks: Finds hardcoded API keys, database credentials, JWT secrets, and private keys using 600+ detection patterns.
 - **IaC (Infrastructure as Code) Scanning** via Checkov: Catches public S3 buckets, unrestricted security groups, overprivileged IAM roles, and container misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation.
 - **Container Scanning**: Scans container images from the CLI or via registry integration. Finds vulnerable OS and application packages across every layer, and correlates container CVEs with SCA findings in the source code.

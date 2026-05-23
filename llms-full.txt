@@ -1,10 +1,10 @@
 # Vygl — AI-Powered Security Scanning Platform
 
-> Vygl is an AI-native ASPM (Application Security Posture Management) platform spanning SAST, SCA, secrets detection, IaC, and container image scanning. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs. The result: development and security teams stop triaging false positives and only see real vulnerabilities.
+> Vygl is an AI-native ASPM (Application Security Posture Management) platform spanning SAST, SCA, malicious package detection, secrets detection, IaC, and container image scanning. AI is woven through every layer — verifying findings, clearing false positives, suggesting fixes, and writing project- and image-level security briefs. The result: development and security teams stop triaging false positives and only see real vulnerabilities.
 
 ## Product Overview
 
-Vygl is designed for security-conscious development teams who need comprehensive vulnerability scanning without the noise. It runs multiple scan engines in parallel across source code and container images, and uses AI across every layer — verifying findings, scoring confidence, clearing false positives with reasoning, suggesting fixes, and producing project- and image-level security briefs.
+Vygl is designed for security-conscious development teams who need comprehensive vulnerability scanning without the noise. It runs six scan engines in parallel across source code and container images — SAST, SCA, malicious package detection, secrets, IaC, and container images — and uses AI across every layer — verifying findings, scoring confidence, clearing false positives with reasoning, suggesting fixes, and producing project- and image-level security briefs.
 
 The platform operates on a privacy-first model: scans run in your environment (as a Docker container or via a managed Git integration that clones ephemerally), and only findings metadata is sent to the cloud dashboard. Your source code never leaves your infrastructure.
 
@@ -22,6 +22,13 @@ The platform operates on a privacy-first model: scans run in your environment (a
 - **Detects**: Known CVEs including Log4Shell (CVE-2021-44228), Spring4Shell, jackson-databind vulnerabilities, and thousands more
 - **Features**: CVE tracking across 7+ languages, CycloneDX SBOM export
 - **Languages**: Python, Java, JavaScript/Node.js, Go, Ruby, PHP, Rust, and more
+
+### Malicious Package Detection
+- **Engine**: GuardDog
+- **Purpose**: Detects intentionally hostile packages and supply-chain attacks against your dependencies — distinct from SCA, which finds known CVEs in legitimate packages
+- **Detects**: Typosquats and confusable package names, malicious install/postinstall scripts, obfuscated code and payloads, suspicious binary execution, data exfiltration to attacker-controlled infrastructure, packages with no source repository, and releases from compromised maintainer accounts
+- **Ecosystems**: npm (JavaScript/TypeScript), PyPI (Python), Go modules, and RubyGems — the registries most frequently targeted by supply-chain attackers
+- **AI Triage**: Findings flow through the same AI verification as every other engine, with verdicts and reasoning rather than raw heuristic dumps
 
 ### Secrets Detection
 - **Engine**: Gitleaks
@@ -81,7 +88,7 @@ Continuous monitoring for new vulnerability disclosures against every package in
 ## How It Works
 
 1. **Install**: Run Vygl as a Docker container in your CI/CD pipeline, locally, or connect a Git provider for fully-managed scans
-2. **Scan**: Vygl runs all relevant scan engines (SAST, SCA, Secrets, IaC, Container) against your codebase and/or images
+2. **Scan**: Vygl runs all relevant scan engines (SAST, SCA, Malicious Package Detection, Secrets, IaC, Container) against your codebase and/or images
 3. **Triage**: AI automatically reviews every finding, scoring confidence and identifying false positives
 4. **Review**: Results appear in the cloud dashboard and/or as PR/MR comments
 5. **Fix**: Use AI-suggested fixes and priority rankings to remediate efficiently
@@ -173,7 +180,7 @@ Unified security dashboard providing:
 ## Comparison with Alternatives
 
 Vygl differentiates from other security scanning tools by:
-- **Unified platform**: SAST + SCA + Secrets + IaC + Container in a single tool (vs running Semgrep, Snyk, TruffleHog, Checkov, and Trivy separately)
+- **Unified platform**: SAST + SCA + Malicious Package Detection + Secrets + IaC + Container in a single tool (vs running Semgrep, Snyk, GuardDog, TruffleHog, Checkov, and Trivy separately)
 - **AI triage built-in**: Automatic false positive identification (vs manual triage in most scanners)
 - **Privacy-first**: Code stays in your environment (vs cloud-based scanners that upload code)
 - **Source-to-Container Correlation**: A single CVE view that spans source dependencies and deployed image layers
@@ -206,10 +213,19 @@ Vygl differentiates from other security scanning tools by:
 ## Frequently Asked Questions
 
 ### What is Vygl?
-Vygl is an AI-native ASPM (Application Security Posture Management) platform that combines SAST, SCA, secrets detection, IaC scanning, and container image scanning with AI-powered triage to help development teams find and fix vulnerabilities.
+Vygl is an AI-native ASPM (Application Security Posture Management) platform that combines SAST, SCA, malicious package detection, secrets detection, IaC scanning, and container image scanning with AI-powered triage to help development teams find and fix vulnerabilities.
 
 ### What types of vulnerabilities does Vygl detect?
-Vygl detects SQL injection, XSS, command injection, path traversal, SSRF in source code (SAST); known CVEs in dependencies like Log4Shell (SCA); hardcoded API keys, credentials, and secrets (Secrets); infrastructure misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation (IaC); and vulnerable OS and application packages in container images (Container Scanning).
+Vygl detects SQL injection, XSS, command injection, path traversal, SSRF in source code (SAST); known CVEs in dependencies like Log4Shell (SCA); malicious packages — typosquats, install-script backdoors, obfuscated payloads, and compromised-maintainer releases across npm, PyPI, Go, and RubyGems (Malicious Package Detection); hardcoded API keys, credentials, and secrets (Secrets); infrastructure misconfigurations in Terraform, Kubernetes, Docker, and CloudFormation (IaC); and vulnerable OS and application packages in container images (Container Scanning).
+
+### Does Vygl detect malicious packages and supply-chain attacks?
+Yes. Vygl's malicious package detection engine is powered by GuardDog and scans npm, PyPI, Go, and RubyGems for typosquatting, malicious install/postinstall scripts, obfuscated payloads, suspicious binary execution, data exfiltration to attacker infrastructure, and packages published by compromised maintainer accounts. This is separate from SCA: SCA finds known CVEs in legitimate packages; malicious package detection finds packages that should never have been published.
+
+### How is malicious package detection different from SCA?
+SCA matches your dependencies against the OSV database of known CVEs in legitimate open-source packages — vulnerabilities like Log4Shell where maintainers wrote insecure code. Malicious package detection (GuardDog) looks for packages that are intentionally hostile: typosquats, install scripts that exfiltrate environment variables, obfuscated code, and releases from compromised maintainer accounts. Both engines run on the same dependency manifests and both flow through Vygl's AI triage.
+
+### Which package ecosystems does Vygl scan for malware?
+GuardDog-powered malicious package detection covers npm (JavaScript/TypeScript), PyPI (Python), Go modules, and RubyGems.
 
 ### How does Vygl's AI triage work?
 Every finding is automatically reviewed by an LLM that classifies it as a true or false positive, assigns a confidence score, provides reasoning, and suggests fixes for confirmed vulnerabilities.
@@ -233,7 +249,7 @@ CVE Watch continuously monitors every package in your SBOM against live CVE feed
 Vygl is free for open-source projects. Commercial access is invitation-only — email access@vygl.io to request access.
 
 ### What scan engines does Vygl use?
-Vygl uses OpenGrep for SAST, OSV for SCA, Gitleaks for secrets detection, and Checkov for IaC scanning. Container scanning uses a combination of OS package databases and OSV-backed application package CVE data.
+Vygl uses OpenGrep for SAST, OSV for SCA, GuardDog for malicious package detection (npm, PyPI, Go, RubyGems), Gitleaks for secrets detection, and Checkov for IaC scanning. Container scanning uses a combination of OS package databases and OSV-backed application package CVE data.
 
 ### Can I use my own LLM provider with Vygl?
 Yes. Vygl supports bring-your-own-LLM configuration, or you can use Vygl's built-in provider.

@@ -6624,6 +6624,7 @@ body::before {
    color isn't semantic. Keeps the row professional/uniform. */
 .hero-v2 .hv-eng-purple  .hv-eng-label,
 .hero-v2 .hv-eng-blue    .hv-eng-label,
+.hero-v2 .hv-eng-orange  .hv-eng-label,
 .hero-v2 .hv-eng-red     .hv-eng-label,
 .hero-v2 .hv-eng-emerald .hv-eng-label,
 .hero-v2 .hv-eng-cyan    .hv-eng-label { color: var(--hv-fg); }
@@ -7148,6 +7149,7 @@ body::before {
 }
 .layers-v2 .ly-sast    .ly-edge { background: var(--purple); }
 .layers-v2 .ly-sca     .ly-edge { background: var(--blue); }
+.layers-v2 .ly-malware .ly-edge { background: var(--orange); }
 .layers-v2 .ly-secrets .ly-edge { background: var(--red); }
 .layers-v2 .ly-iac     .ly-edge { background: var(--emerald); }
 .layers-v2 .ly-images  .ly-edge { background: var(--cyan); }
@@ -7165,6 +7167,8 @@ body::before {
 .layers-v2 .ly-stack.is-scanning .ly-layer[data-layer="3"] .ly-edge   { animation-delay: 1.95s; }
 .layers-v2 .ly-stack.is-scanning .ly-layer[data-layer="4"]            { animation-delay: 2.45s; }
 .layers-v2 .ly-stack.is-scanning .ly-layer[data-layer="4"] .ly-edge   { animation-delay: 2.45s; }
+.layers-v2 .ly-stack.is-scanning .ly-layer[data-layer="5"]            { animation-delay: 2.95s; }
+.layers-v2 .ly-stack.is-scanning .ly-layer[data-layer="5"] .ly-edge   { animation-delay: 2.95s; }
 
 @keyframes ly-pulse {
   0%   { background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(0,0,0,0.04)); }
@@ -7217,6 +7221,7 @@ body::before {
 .layers-v2 .ly-engine-sep { opacity: 0.5; margin: 0 0.25rem; }
 .layers-v2 .ly-sast    .ly-engine { color: var(--purple); }
 .layers-v2 .ly-sca     .ly-engine { color: var(--blue); }
+.layers-v2 .ly-malware .ly-engine { color: var(--orange); }
 .layers-v2 .ly-secrets .ly-engine { color: var(--red); }
 .layers-v2 .ly-iac     .ly-engine { color: var(--emerald); }
 .layers-v2 .ly-images  .ly-engine { color: var(--cyan); }
