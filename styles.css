@@ -6478,7 +6478,48 @@ body::before {
 }
 
 /* atmosphere */
-.hero-v2 .hv-bg { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.hero-v2 .hv-bg {
+  position: absolute; inset: 0; pointer-events: none; z-index: 0;
+  /* Layered ambient — additional radials beyond .hv-glow children
+     for richer depth. Cyan accent top-left, large soft blue-violet
+     ellipse mid-right, plus a deep base wash. */
+  background-image:
+    radial-gradient(ellipse 35% 45% at 18% 22%, rgba(34,211,238,0.04), transparent 70%),
+    radial-gradient(ellipse 55% 60% at 72% 55%, rgba(120,140,255,0.05), transparent 65%),
+    radial-gradient(ellipse 80% 100% at 50% 100%, rgba(15,23,42,0.5), transparent 60%);
+}
+[data-theme="light"] .hero-v2 .hv-bg {
+  background-image:
+    radial-gradient(ellipse 35% 45% at 18% 22%, rgba(8,145,178,0.05), transparent 70%),
+    radial-gradient(ellipse 55% 60% at 72% 55%, rgba(96,80,200,0.05), transparent 65%),
+    radial-gradient(ellipse 80% 100% at 50% 100%, rgba(255,255,255,0.4), transparent 60%);
+}
+
+/* Brand bird watermark — large faded mark sitting in the right-side
+   background as a brand signature. Sits BEHIND the verdict card (the
+   card is z-index 3, this is in .hv-bg at z-index 0) so the card
+   overlaps it and only the surrounding silhouette breathes through. */
+.hero-v2 .hv-bg::after {
+  content: '';
+  position: absolute;
+  right: 4%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: min(620px, 45vw);
+  aspect-ratio: 1140 / 856;
+  background-color: rgba(140, 180, 255, 0.05);
+  -webkit-mask: url('vygl-mark-tight.png') no-repeat center / contain;
+          mask: url('vygl-mark-tight.png') no-repeat center / contain;
+  pointer-events: none;
+  filter: blur(0.5px);
+}
+[data-theme="light"] .hero-v2 .hv-bg::after {
+  background-color: rgba(37, 99, 235, 0.06);
+}
+/* Hide watermark on stacked mobile/tablet — it would compete with content */
+@media (max-width: 1200px) {
+  .hero-v2 .hv-bg::after { display: none; }
+}
 .hero-v2 .hv-grid {
   position: absolute; inset: 0;
   background-image:
@@ -6506,17 +6547,17 @@ body::before {
 .hero-v2 .hv-glow-1 {
   top: -10%; right: -10%;
   width: 720px; height: 720px;
-  background: radial-gradient(circle, rgba(96,165,250,0.08), transparent 65%);
+  background: radial-gradient(circle, rgba(96,165,250,0.11), transparent 65%);
   animation: hv-drift1 14s ease-in-out infinite;
 }
 .hero-v2 .hv-glow-2 {
   bottom: -10%; left: -10%;
   width: 620px; height: 620px;
-  background: radial-gradient(circle, rgba(167,139,250,0.07), transparent 65%);
+  background: radial-gradient(circle, rgba(167,139,250,0.09), transparent 65%);
   animation: hv-drift2 18s ease-in-out infinite;
 }
-[data-theme="light"] .hero-v2 .hv-glow-1 { background: radial-gradient(circle, rgba(37,99,235,0.1), transparent 65%); }
-[data-theme="light"] .hero-v2 .hv-glow-2 { background: radial-gradient(circle, rgba(139,92,246,0.07), transparent 65%); }
+[data-theme="light"] .hero-v2 .hv-glow-1 { background: radial-gradient(circle, rgba(37,99,235,0.12), transparent 65%); }
+[data-theme="light"] .hero-v2 .hv-glow-2 { background: radial-gradient(circle, rgba(139,92,246,0.09), transparent 65%); }
 @keyframes hv-drift1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,40px)} }
 @keyframes hv-drift2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(40px,-30px)} }
 
