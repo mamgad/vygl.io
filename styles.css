@@ -6482,16 +6482,16 @@ body::before {
 .hero-v2 .hv-grid {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(96,165,250,0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(96,165,250,0.12) 1px, transparent 1px);
+    linear-gradient(rgba(96,165,250,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96,165,250,0.05) 1px, transparent 1px);
   background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 95% 80% at 60% 40%, black 30%, transparent 95%);
-  -webkit-mask-image: radial-gradient(ellipse 95% 80% at 60% 40%, black 30%, transparent 95%);
+  mask-image: radial-gradient(ellipse 80% 60% at 65% 35%, black, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 65% 35%, black, transparent 70%);
 }
 [data-theme="light"] .hero-v2 .hv-grid {
   background-image:
-    linear-gradient(rgba(37,99,235,0.14) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(37,99,235,0.14) 1px, transparent 1px);
+    linear-gradient(rgba(37,99,235,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37,99,235,0.06) 1px, transparent 1px);
 }
 .hero-v2 .hv-grain {
   position: absolute; inset: 0;
