@@ -185,7 +185,7 @@
         "name": "Which container registries does Vygl integrate with?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Harbor is supported today with auto-scan on push via webhooks. Amazon ECR, Google Artifact Registry, and Docker Hub are coming soon. You can also scan any image directly from the CLI without a registry integration."
+          "text": "Harbor and Amazon ECR are supported today with auto-scan on push via webhooks. Google Artifact Registry (GAR), Docker Hub, and GitHub Container Registry (GHCR) are coming soon. You can also scan any image directly from the CLI without a registry integration."
         }
       },
       {
@@ -193,7 +193,7 @@
         "name": "What are Vygl Managed Scans?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Managed Scans let you connect source repositories (GitHub, GitLab, Bitbucket) and container registries (Harbor) so Vygl scans every push and image automatically. Findings flow straight to your IDE agents via MCP, Slack, and the dashboard — no CI/CD pipeline configuration required. Policy as Code applies across every managed scan, so you enforce security policy once and it propagates everywhere."
+          "text": "Managed Scans let you connect source repositories (GitHub, GitLab, Bitbucket) and container registries (Harbor, Amazon ECR) so Vygl scans every push and image automatically. Findings flow straight to your IDE agents via MCP, Slack, and the dashboard — no CI/CD pipeline configuration required. Policy as Code applies across every managed scan, so you enforce security policy once and it propagates everywhere."
         }
       },
       {
@@ -233,7 +233,7 @@
         "name": "What integrations does Vygl support?",
         "acceptedAnswer": {
           "@type": "Answer",
-          "text": "Source repositories via Managed Scans: GitHub, GitLab, and Bitbucket (cloud). Container registries: Harbor today; Amazon ECR, Google Artifact Registry, and Docker Hub coming soon. Code review: GitHub PR comments and GitLab MR comments. Notifications: Slack and Microsoft Teams real-time alerts; custom webhooks coming soon. AI IDEs via MCP (Model Context Protocol): Claude Code, Cursor, and Windsurf. Identity: Single Sign-On with Google, GitHub, GitLab, and Microsoft Entra ID. Vygl also exports CycloneDX SBOMs and provides a cloud dashboard for centralized finding management."
+          "text": "Source repositories via Managed Scans: GitHub, GitLab, and Bitbucket (cloud). Container registries: Harbor and Amazon ECR today; Google Artifact Registry (GAR), Docker Hub, and GitHub Container Registry (GHCR) coming soon. Code review: GitHub PR comments and GitLab MR comments. Notifications: Slack and Microsoft Teams real-time alerts; custom webhooks coming soon. AI IDEs via MCP (Model Context Protocol): Claude Code, Cursor, and Windsurf. Identity: Single Sign-On with Google, GitHub, GitLab, and Microsoft Entra ID. Vygl also exports CycloneDX SBOMs and provides a cloud dashboard for centralized finding management."
         }
       },
       {
@@ -914,7 +914,7 @@
               </div>
               <div>
                 <h4>Registry Integration</h4>
-                <p>Connect Harbor with auto-scan on push via webhooks. ECR, Google Artifact Registry, and Docker Hub coming soon.</p>
+                <p>Connect Harbor or Amazon ECR with auto-scan on push via webhooks. Google Artifact Registry, Docker Hub, and GHCR coming soon.</p>
               </div>
             </div>
             <div class="cs-feat">
@@ -1080,8 +1080,6 @@
           <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="0.7s"  repeatCount="indefinite"><mpath href="#ms-wire-i2"/></animateMotion></circle>
           <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="1.0s"  repeatCount="indefinite"><mpath href="#ms-wire-i3"/></animateMotion></circle>
           <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="1.35s" repeatCount="indefinite"><mpath href="#ms-wire-i4"/></animateMotion></circle>
-          <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="1.7s"  repeatCount="indefinite"><mpath href="#ms-wire-i5"/></animateMotion></circle>
-          <circle class="ms-pulse ms-pulse-in" r="5" fill="url(#ms-pulse-in-grad)"><animateMotion dur="2.6s" begin="2.05s" repeatCount="indefinite"><mpath href="#ms-wire-i6"/></animateMotion></circle>
 
           <!-- Outbound pulses -->
           <circle class="ms-pulse ms-pulse-out" r="5" fill="url(#ms-pulse-out-grad)"><animateMotion dur="2.4s" begin="1.3s"  repeatCount="indefinite"><mpath href="#ms-wire-o0"/></animateMotion></circle>
@@ -1126,17 +1124,19 @@
             </span>
             <span class="ms-hub-node-name">Amazon ECR</span>
           </div>
-          <div class="ms-hub-node" style="top:65.77%" data-pulse="i5">
+          <div class="ms-hub-node ms-hub-node-soon" style="top:65.77%">
             <span class="ms-hub-node-icon">
               <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
             </span>
             <span class="ms-hub-node-name">Google Artifact</span>
+            <span class="ms-hub-node-soon-badge">Soon</span>
           </div>
-          <div class="ms-hub-node" style="top:74.62%" data-pulse="i6">
+          <div class="ms-hub-node ms-hub-node-soon" style="top:74.62%">
             <span class="ms-hub-node-icon">
               <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="#2496ED"><path d="M13.98 11.08h2.12a.19.19 0 0 0 .19-.19V9.01a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.09.18.19.18m-2.95-5.43h2.12a.19.19 0 0 0 .19-.19V3.57a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.08.19.19.19m0 2.72h2.12a.19.19 0 0 0 .19-.19V6.29a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.08.19.19.19m-2.93 0h2.12a.19.19 0 0 0 .18-.19V6.29a.19.19 0 0 0-.18-.19H8.1a.19.19 0 0 0-.19.19v1.89c0 .1.09.19.19.19m-2.96 0h2.11a.19.19 0 0 0 .19-.19V6.29a.19.19 0 0 0-.19-.19H5.14a.19.19 0 0 0-.19.19v1.89c0 .1.09.19.19.19m5.89 2.71h2.12a.19.19 0 0 0 .19-.19V9a.19.19 0 0 0-.19-.19h-2.12a.19.19 0 0 0-.19.19v1.89c0 .1.08.18.19.18m-2.93 0h2.12a.18.18 0 0 0 .18-.19V9a.18.18 0 0 0-.18-.19H8.1a.19.19 0 0 0-.19.19v1.89c0 .1.08.18.19.18m-2.96 0h2.11a.19.19 0 0 0 .19-.19V9a.19.19 0 0 0-.19-.19H5.14a.19.19 0 0 0-.19.19v1.89c0 .1.09.18.19.18m-2.92 0h2.12a.19.19 0 0 0 .18-.19V9a.19.19 0 0 0-.18-.19H2.22a.19.19 0 0 0-.19.19v1.89c0 .1.08.18.19.18m21.54-1.19c-.07-.05-.67-.51-1.95-.51-.34 0-.68.03-1.01.09-.25-1.7-1.65-2.53-1.72-2.57l-.34-.2-.23.33c-.28.44-.49.92-.61 1.43-.23.97-.09 1.88.4 2.66-.59.33-1.55.41-1.74.42H.75A.75.75 0 0 0 0 11.32c0 1.39.23 2.76.69 4.06.54 1.43 1.35 2.48 2.4 3.13 1.19.72 3.11 1.13 5.28 1.13.98 0 1.96-.09 2.93-.27a12.3 12.3 0 0 0 3.82-1.39c.98-.57 1.86-1.29 2.61-2.13 1.26-1.42 2-3 2.56-4.4h.22c1.37 0 2.21-.55 2.68-1.01.3-.29.55-.65.7-1.05z"/></svg>
             </span>
             <span class="ms-hub-node-name">Docker Hub</span>
+            <span class="ms-hub-node-soon-badge">Soon</span>
           </div>
 
           <span class="ms-hub-group-label ms-hub-group-k8s">Live Workloads</span>
@@ -2334,14 +2334,14 @@
         <dt>Container Image Scanning</dt>
         <dd>Scan container images from the CLI or by connecting a registry. Finds vulnerable OS and application packages across every layer, correlates image CVEs with source-code SCA findings, and generates per-image AI security briefs.</dd>
         <dt>Managed Scans</dt>
-        <dd>Connect source repositories (GitHub, GitLab, Bitbucket) and container registries (Harbor) — Vygl scans every push and image automatically, no CI/CD configuration required. Findings flow to IDE agents, Slack, and the dashboard.</dd>
+        <dd>Connect source repositories (GitHub, GitLab, Bitbucket) and container registries (Harbor, Amazon ECR) — Vygl scans every push and image automatically, no CI/CD configuration required. Findings flow to IDE agents, Slack, and the dashboard.</dd>
       </dl>
     </section>
     <section>
       <h3>Integrations</h3>
       <ul>
         <li>Managed Scans for source repositories: GitHub, GitLab, Bitbucket (cloud)</li>
-        <li>Container registry integrations: Harbor (live); Amazon ECR, Google Artifact Registry, Docker Hub (coming soon)</li>
+        <li>Container registry integrations: Harbor and Amazon ECR (live); Google Artifact Registry, Docker Hub, GitHub Container Registry (coming soon)</li>
         <li>GitHub PR comments with scan results and AI triage summaries</li>
         <li>GitLab MR comments with scan results and AI triage summaries</li>
         <li>Slack real-time notifications with severity breakdowns and direct links</li>
