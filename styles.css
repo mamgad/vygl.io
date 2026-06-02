@@ -156,9 +156,9 @@ img { max-width: 100%; }
 }
 
 .nav-inner {
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 1.5rem;
   height: clamp(4rem, 3.5rem + 1vw, 4.5rem);
   display: flex;
   align-items: center;
@@ -6530,17 +6530,17 @@ body::before {
 /* layout */
 .hero-v2 .hv-inner {
   position: relative; z-index: 1;
-  max-width: 1400px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 2rem 2rem 4rem;
+  padding: 1.5rem 1.5rem 2.5rem;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
-  gap: 5rem;
+  gap: 4rem;
   /* Center both columns as a unit on tall viewports — keeps text and
      verdict card visually balanced together at the midpoint instead
      of pinning to top with empty space below. */
   align-items: center;
-  min-height: calc(100vh - 160px);
+  min-height: calc(100vh - 180px);
 }
 
 /* eyebrow */
@@ -6550,7 +6550,7 @@ body::before {
   font-size: 0.6875rem; font-weight: 600;
   letter-spacing: 0.22em;
   color: var(--hv-fg-faint);
-  margin-bottom: 1.25rem;
+  margin-bottom: 1rem;
   opacity: 0; transform: translateY(10px);
   animation: hv-reveal 0.6s 0.1s forwards;
 }
@@ -6575,7 +6575,7 @@ body::before {
   font-size: clamp(2.5rem, 5.5vw, 4.25rem);
   line-height: 1.05;
   letter-spacing: -0.015em;
-  margin: 0 0 1.75rem 0;
+  margin: 0 0 1.25rem 0;
   color: var(--hv-fg);
   opacity: 0; transform: translateY(12px);
   animation: hv-reveal 0.7s 0.2s forwards;
@@ -6591,8 +6591,8 @@ body::before {
   display: flex;
   gap: 1.75rem;
   flex-wrap: wrap;
-  margin: 0 0 1.5rem 0;
-  padding: 1rem 0 1.125rem;
+  margin: 0 0 1rem 0;
+  padding: 0.75rem 0 0.875rem;
   border-top: 1px solid var(--hv-border);
   border-bottom: 1px solid var(--hv-border);
   opacity: 0; transform: translateY(10px);
@@ -6626,7 +6626,7 @@ body::before {
   line-height: 1.55;
   color: var(--hv-fg-muted);
   max-width: 32rem;
-  margin: 0 0 1.25rem 0;
+  margin: 0 0 1rem 0;
   opacity: 0; transform: translateY(12px);
   animation: hv-reveal 0.7s 0.35s forwards;
 }
@@ -6642,7 +6642,7 @@ body::before {
   color: var(--hv-fg-faint);
   max-width: 34rem;
   line-height: 1.9;
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.5rem;
   opacity: 0; transform: translateY(12px);
   animation: hv-reveal 0.7s 0.45s forwards;
 }
@@ -6682,8 +6682,8 @@ body::before {
 /* stats */
 .hero-v2 .hv-stats {
   display: flex; gap: 2.5rem;
-  margin-top: 3rem;
-  padding-top: 2rem;
+  margin-top: 1.75rem;
+  padding-top: 1.5rem;
   border-top: 1px solid var(--hv-border);
   opacity: 0; transform: translateY(12px);
   animation: hv-reveal 0.7s 0.7s forwards;
@@ -7040,7 +7040,7 @@ body::before {
 @media (max-width: 1280px) and (min-width: 1201px) {
   .hero-v2 .hv-inner {
     gap: 3rem;
-    padding: 1.5rem 1.75rem 3rem;
+    padding: 1.25rem 1.5rem 2.5rem;
     min-height: auto;
   }
   .hero-v2 .hv-title { font-size: clamp(2.25rem, 4.6vw, 3.5rem); }
@@ -7053,7 +7053,7 @@ body::before {
   .hero-v2 .hv-inner {
     grid-template-columns: 1fr;
     gap: 3rem;
-    padding: 1.25rem 1.5rem 3rem;
+    padding: 1.25rem 1.5rem 2.5rem;
     min-height: auto;
   }
   .hero-v2 .hv-left,
@@ -7064,7 +7064,7 @@ body::before {
 }
 @media (max-width: 640px) {
   .hero-v2 { padding: 3rem 0 2.5rem; }
-  .hero-v2 .hv-inner { padding: 0.75rem 1.25rem 2rem; gap: 2.5rem; }
+  .hero-v2 .hv-inner { padding: 0.75rem 1.5rem 2rem; gap: 2.5rem; }
 }
 @media (max-width: 640px) {
   .hero-v2 .hv-stats { gap: 1.25rem; }
