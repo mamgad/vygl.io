@@ -6447,7 +6447,7 @@ body::before {
 
   position: relative;
   min-height: 100vh;
-  padding: 6rem 0 4rem;
+  padding: 5rem 0 2.5rem;
   overflow: hidden;
   background: var(--hv-bg);
   color: var(--hv-fg);
@@ -6642,7 +6642,7 @@ body::before {
   color: var(--hv-fg-faint);
   max-width: 34rem;
   line-height: 1.9;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
   opacity: 0; transform: translateY(12px);
   animation: hv-reveal 0.7s 0.45s forwards;
 }
@@ -6682,15 +6682,15 @@ body::before {
 /* stats */
 .hero-v2 .hv-stats {
   display: flex; gap: 2.5rem;
-  margin-top: 1.75rem;
-  padding-top: 1.5rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
   border-top: 1px solid var(--hv-border);
   opacity: 0; transform: translateY(12px);
   animation: hv-reveal 0.7s 0.7s forwards;
 }
 .hero-v2 .hv-stat-num {
   font-family: var(--font-display);
-  font-weight: 700; font-size: 1.875rem; line-height: 1;
+  font-weight: 700; font-size: 1.625rem; line-height: 1;
   background: linear-gradient(135deg, var(--hv-fg), var(--hv-fg-muted));
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -6700,7 +6700,7 @@ body::before {
   font-size: 0.625rem; letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--hv-fg-faint);
-  margin-top: 0.625rem;
+  margin-top: 0.375rem;
 }
 
 /* ────── RIGHT: verdict stack ────── */
@@ -6900,7 +6900,10 @@ body::before {
   border-top-color: transparent;
   border-radius: 50%;
 }
-.hero-v2 .hv-panel.active .hv-spinner { animation: hv-spin 0.85s linear infinite, hv-spinStop 0.1s 1.25s forwards; }
+/* Spin a finite number of full turns during the "analysis" window, then stop
+   upright (2×0.7s = 1.4s, ends at 720°≡0° so no snap) and dim — the review is
+   done, so the spinner must not keep rotating. */
+.hero-v2 .hv-panel.active .hv-spinner { animation: hv-spin 0.7s linear 2, hv-spinStop 0.3s 1.3s forwards; }
 @keyframes hv-spin { to { transform: rotate(360deg); } }
 @keyframes hv-spinStop { to { opacity: 0.25; } }
 .hero-v2 .hv-sweep::after {
