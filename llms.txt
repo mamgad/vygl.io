@@ -30,11 +30,12 @@ Vygl scans your codebase and container images using six specialized engines and 
 
 - MCP (Model Context Protocol) server for AI IDE integration (available) — query source and container findings, verify issues, correlate CVEs, inspect images, and check project health from Claude Code, Cursor, Windsurf, or any MCP-compatible IDE
 - Managed Scans via GitHub App, GitLab OAuth, and Bitbucket OAuth (available) — zero CI/CD config, auto-clone on push/PR
-- Container Registry: Harbor (available); ECR, Google Artifact Registry, and Docker Hub (coming soon)
+- Container Registry: Harbor and Amazon ECR (available); Google Artifact Registry, Docker Hub, and GitHub Container Registry (coming soon)
 - GitHub PR comments (available)
 - GitLab MR comments (available)
 - Slack notifications (available)
 - Microsoft Teams (available)
+- Single Sign-On (SSO) via Google, GitHub, GitLab, and Microsoft Entra ID (available)
 - Custom Webhooks (coming soon)
 
 ## Pricing

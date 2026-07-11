@@ -247,8 +247,8 @@ img { max-width: 100%; }
   color: var(--fg-muted);
   cursor: pointer;
   padding: 0.5rem;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   position: relative;
   z-index: 102;
   flex-direction: column;

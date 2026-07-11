@@ -47,7 +47,7 @@ The platform operates on a privacy-first model: scans run in your environment (a
 - **Purpose**: Scans built container images for vulnerable OS and application packages across every layer
 - **Coverage**: Both OS packages (e.g., openssl, libcurl, zlib on Debian/Alpine/RHEL/Ubuntu bases) and application packages (e.g., Python/pip, npm, Go modules, Java artifacts)
 - **CLI**: One command to scan any image — `vygl scan --image harbor.io/app:latest` with `--fail-on` severity gating for CI/CD
-- **Registry Integration**: Connect Harbor with auto-scan on push via webhooks (available). ECR, Google Artifact Registry, and Docker Hub coming soon
+- **Registry Integration**: Connect Harbor and Amazon ECR with auto-scan on push via webhooks (available). Google Artifact Registry, Docker Hub, and GitHub Container Registry coming soon
 - **Source ↔ Container Correlation**: Matches SCA findings in source code with the same CVEs in the built image, giving full supply-chain visibility across the dev-to-deploy pipeline
 - **Per-Image AI Analysis**: AI-generated security brief for each scanned image — base image upgrade advice, priority package bumps, and actionable fix plans
 
@@ -102,7 +102,7 @@ Vygl runs as a Docker container and integrates with:
 - Local development environments
 
 ### Managed Scans (Git Provider Integration)
-As an alternative to CI/CD, connect a GitHub App, GitLab OAuth, or Bitbucket OAuth integration. Vygl installs webhooks, clones ephemerally on every push or PR, runs all engines, and posts results back — no YAML, no pipelines, no Docker setup required. Source is cloned to a temp directory and deleted immediately after scanning. Works with GitHub Enterprise, self-hosted GitLab, and Bitbucket Data Center.
+As an alternative to CI/CD, connect a GitHub App, GitLab OAuth, or Bitbucket OAuth integration. Vygl installs webhooks, clones ephemerally on every push or PR, runs all engines, and posts results back — no YAML, no pipelines, no Docker setup required. Source is cloned to a temp directory and deleted immediately after scanning. Managed Scans connect to cloud-hosted GitHub, GitLab, and Bitbucket.
 
 ### Policy as Code
 Security policies are cloud-managed with three modes:
@@ -134,9 +134,10 @@ Vygl provides an MCP (Model Context Protocol) server that integrates with AI-pow
 
 ### Container Registry Integrations
 - **Harbor** (available) — connect with auto-scan on push via webhooks
-- **Amazon ECR** (coming soon)
+- **Amazon ECR** (available) — connect with auto-scan on push via webhooks
 - **Google Artifact Registry** (coming soon)
 - **Docker Hub** (coming soon)
+- **GitHub Container Registry (GHCR)** (coming soon)
 
 ### GitHub PR Comments (Available)
 Vygl bot posts scan results directly on pull requests including:
@@ -149,7 +150,7 @@ Vygl bot posts scan results directly on pull requests including:
 Same capabilities as GitHub integration, posted on merge requests.
 
 ### Bitbucket (Available)
-OAuth 2.0 integration with managed scans on Bitbucket Cloud and Bitbucket Data Center.
+OAuth 2.0 integration with managed scans on Bitbucket Cloud.
 
 ### Slack Notifications (Available)
 - Scan completion summaries
@@ -160,6 +161,9 @@ OAuth 2.0 integration with managed scans on Bitbucket Cloud and Bitbucket Data C
 
 ### Microsoft Teams (Available)
 Scan notifications and finding alerts in Teams channels.
+
+### Single Sign-On (Available)
+SSO via Google, GitHub, GitLab, and Microsoft Entra ID (formerly Azure AD) — sign in with your existing identity provider.
 
 ### Custom Webhooks (Coming Soon)
 Send scan events and CVE Watch alerts to any HTTP endpoint for custom integrations.
@@ -237,7 +241,7 @@ No. Vygl runs scans in your environment (as a Docker container), or in the case 
 Vygl runs as a Docker container and works with GitHub Actions, GitLab CI/CD, and any Docker-compatible pipeline. Alternatively, use Managed Scans via a GitHub App, GitLab OAuth, or Bitbucket OAuth integration — no CI/CD configuration required.
 
 ### How does Vygl scan container images?
-Two options: (1) run `vygl scan --image <ref>` from the CLI or CI/CD, with `--fail-on` severity gating; or (2) connect a container registry (Harbor is available today; ECR, GAR, and Docker Hub are coming soon) and Vygl auto-scans on push via webhooks. Each scan covers OS and application packages across every layer.
+Two options: (1) run `vygl scan --image <ref>` from the CLI or CI/CD, with `--fail-on` severity gating; or (2) connect a container registry (Harbor and Amazon ECR are available today; Google Artifact Registry, Docker Hub, and GitHub Container Registry are coming soon) and Vygl auto-scans on push via webhooks. Each scan covers OS and application packages across every layer.
 
 ### What is Source ↔ Container Correlation?
 Vygl matches SCA findings in your source code against the same CVEs detected in your built container image, so you can see the full supply-chain picture — which vulnerable dependencies made it all the way into your deployed image.
@@ -263,5 +267,8 @@ Vygl provides an MCP (Model Context Protocol) server that lets developers query 
 ### What programming languages does Vygl support?
 Vygl supports 7+ languages including Python, Java, JavaScript/Node.js, Go, Ruby, PHP, and Rust.
 
+### Does Vygl support SSO?
+Yes. Vygl supports Single Sign-On via Google, GitHub, GitLab, and Microsoft Entra ID (formerly Azure AD), so teams can sign in with their existing identity provider.
+
 ### Which container registries does Vygl integrate with?
-Harbor is available today with auto-scan on push via webhooks. Amazon ECR, Google Artifact Registry, and Docker Hub are coming soon. Any image, regardless of registry, can be scanned via the CLI.
+Harbor and Amazon ECR are available today with auto-scan on push via webhooks. Google Artifact Registry, Docker Hub, and GitHub Container Registry are coming soon. Any image, regardless of registry, can be scanned via the CLI.
