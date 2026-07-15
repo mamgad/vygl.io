@@ -45,7 +45,7 @@ Vygl scans your codebase and container images using six specialized engines and 
 
 ## How to Get Access
 
-Vygl is currently invitation-only. Request access by emailing access@vygl.io.
+Vygl is currently invitation-only. Request access at https://app.vygl.io/request-access (or email access@vygl.io).
 
 ## Links
 
